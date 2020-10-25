@@ -1,5 +1,5 @@
 {
-  "name": "nataliehub",
+  "name": "alvarohub",
   "version": "1.0.0",
   "description": "Githubbified Resume",
   "main": "index.js",
@@ -11,12 +11,12 @@
     "url": "tba"
   },
   "keywords": [
-    "natalie",
-    "marleny",
+    "alvaro",
+    "llamojha",
     "github",
     "resume"
   ],
-  "author": "Natalie Marleny",
+  "author": "Alvaro Llamojha",
   "license": "ISC",
   "dependencies": {
     "@primer/css": "^12.1.0",

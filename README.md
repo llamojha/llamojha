@@ -1,6 +1,6 @@
-# NatalieHub - A resume
+# AlvaroHub - A resume
 
-[nataliemarleny.github.io](https://nataliemarleny.github.io)<br><br>
+[alvarollamojha.github.io](https://alvarollamojha.github.io)<br><br>
 A project which forks [Primer CSS](https://github.com/primer/primer-css) to build a Githubbified Resume.<br>
 I challenged myself to:
 * Write as little of my own CSS as possible 
@@ -38,5 +38,3 @@ As I wanted to work quickly I forked the heatmap rather than build it from scrat
 As the priority with this project was to ship rather than reach perfection I worked using the Primer build CSS (core and product) and forked the documentation landing page for the boilerplate HTML. If this resume was to become an frequently updated project I would take the time to refactor using Jekyll as the CMS.
 <br><br><br>
 
-
-![Octonat Logo](https://github.com/nataliemarleny/nataliemarleny.github.io/blob/master/assets/img/Octonat.png)
