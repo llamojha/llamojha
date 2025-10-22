@@ -11,6 +11,20 @@ export const metadata: Metadata = {
   description:
     "Portfolio and résumé for Alvaro Llamojha, a DevOps, platform, and observability engineer with leadership across AWS, New Relic, and high-scale commerce.",
   metadataBase: new URL("https://llamojha.vercel.app"),
+  alternates: {
+    canonical: "https://llamojha.dev"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
+  },
   openGraph: {
     title: "Alvaro Llamojha",
     description:
