@@ -43,17 +43,16 @@ export const expertise = [
 
 export const experience: Experience[] = [
   {
-    role: "Senior DevOps & New Relic Engineer",
-    company: "JD Sports",
-    url: "https://www.jdsports.co.uk",
+    role: "Director & Principal Consultant",
+    company: "No Limits Solutions",
     location: "London",
-    timeframe: "Sep 2022 – Feb 2023",
+    timeframe: "May 2022 – Present",
     summary:
-      "Brought end-to-end observability to multi-channel commerce operations during peak retail season.",
+      "Founding director of a boutique consultancy delivering observability, SRE, and platform engineering leadership for retail and data-driven organisations.",
     achievements: [
-      "Implemented New Relic to unify monitoring across frontends, backends, and third-party services.",
-      "Created a command-centre dashboard so support teams could triage incidents in seconds during Black Friday.",
-      "Established proactive alerting that safeguarded system reliability across critical customer journeys."
+      "Led JD Sports' peak-season observability programme by implementing New Relic, central dashboards, and proactive alerting across multi-channel commerce systems.",
+      "Embedded with Kingfisher's Big Data team as Site Reliability Engineer to harden pipelines, improve on-call readiness, and elevate service-level reporting.",
+      "Explored generative AI applications for operational runbooks, incident summarisation, and customer experience experiments."
     ]
   },
   {
