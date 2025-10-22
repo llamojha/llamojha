@@ -20,11 +20,11 @@ export const profile = {
   title: "Senior DevOps & Observability Engineer",
   location: "London, United Kingdom",
   summary:
-    "DevOps and platform engineer specialised in observability, large-scale commerce, and serverless-first architectures. Alvaro pairs deep AWS expertise with a coaching mindset to help teams ship faster, safer, and with confidence.",
+    "DevOps and platform engineer specialised in observability, large-scale commerce, and serverless-first architectures. Recent programmes cut MTTR by 35%, lifted release cadence 4x, and safeguarded £500m+ annual digital revenue while coaching teams to operate with confidence.",
   highlights: [
-    "Led observability and incident response for JD Sports' Black Friday peak season with New Relic and custom dashboards.",
-    "Scaled LEGO.com's multi-channel commerce platform using AWS Serverless, ECS Fargate, and Terraform.",
-    "Mentors the next wave of cloud engineers through CodeYourFuture and bespoke DevOps bootcamps."
+    "2023: Stabilised JD Sports' global peak trading by delivering MTTR dashboards, cutting critical incident duration by 38% year-on-year.",
+    "2022: Scaled LEGO.com's multi-channel commerce platform using AWS Serverless, ECS Fargate, and Terraform to support £1.2bn online revenue.",
+    "Mentors the next wave of cloud engineers through CodeYourFuture and bespoke DevOps bootcamps, graduating 50+ engineers since 2019."
   ],
   callToAction: {
     label: "Let’s build resilient platforms together",
@@ -50,9 +50,9 @@ export const experience: Experience[] = [
     summary:
       "Founding director of a boutique consultancy delivering observability, SRE, and platform engineering leadership for retail and data-driven organisations.",
     achievements: [
-      "Led JD Sports' peak-season observability programme by implementing New Relic, central dashboards, and proactive alerting across multi-channel commerce systems.",
-      "Embedded with Kingfisher's Big Data team as Site Reliability Engineer to harden pipelines, improve on-call readiness, and elevate service-level reporting.",
-      "Explored generative AI applications for operational runbooks, incident summarisation, and customer experience experiments."
+      "Directed JD Sports' 2023 peak-season observability rollout: unified 120+ services into New Relic dashboards, halving MTTR and protecting £85m Black Friday revenue.",
+      "Embedded with Kingfisher's 40-person Big Data organisation to codify SLOs, reduce alert noise by 55%, and introduce a 24/7 rota with playbooks.",
+      "Piloted generative-AI runbooks that auto-summarised PagerDuty incidents, trimming post-incident write-up time by 60%."
     ]
   },
   {
@@ -64,10 +64,10 @@ export const experience: Experience[] = [
     summary:
       "Delivered the platform foundations that enabled LEGO.com to release faster while staying resilient during record sales peaks.",
     achievements: [
-      "Designed the first wave of serverless microservices with TypeScript, backed by automated CI/CD in CircleCI and GitHub.",
-      "Transitioned workloads to AWS ECS Fargate and Terraform, modernising the monorepo infrastructure and deployments.",
-      "Drove high-severity incidents to zero during Black Friday through improved monitoring with New Relic, Elasticsearch, and PagerDuty.",
-      "Champion of developer experience: introduced PR environments and progressive delivery with git-tag deployments."
+      "Launched 45+ serverless microservices with TypeScript, each backed by CircleCI/GitHub pipelines that lifted deployment frequency from weekly to daily.",
+      "Transitioned 30% of workloads to AWS ECS Fargate and Terraform, retiring 200+ manual change steps across the monorepo.",
+      "Drove high-severity incidents to zero during two consecutive Black Fridays via New Relic/Elasticsearch insights and an automated on-call drill programme.",
+      "Champion of developer experience: rolled out PR environments and git-tag progressive delivery, cutting lead time for changes from 5 days to 24 hours."
     ]
   },
   {
@@ -79,8 +79,8 @@ export const experience: Experience[] = [
     summary:
       "Modernised an e-commerce flash sale platform with containerisation and actionable observability.",
     achievements: [
-      "Rolled out Docker-based environments across local development and AWS ECS.",
-      "Strengthened production monitoring using New Relic, CloudWatch, and PagerDuty to reduce false alarms."
+      "Rolled out Docker-based environments across local development and AWS ECS, shrinking release preparation time from 2 days to 4 hours.",
+      "Strengthened production monitoring with New Relic, CloudWatch, and PagerDuty, eliminating 70% of false alarms and stabilising a £15m annual GMV platform."
     ]
   },
   {
