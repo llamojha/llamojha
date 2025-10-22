@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import {
   education,
@@ -21,13 +22,31 @@ const ContactButton = () => (
 );
 
 export default function HomePage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    jobTitle: profile.title,
+    url: "https://llamojha.vercel.app",
+    email: "mailto:hello@llamojha.dev",
+    sameAs: [
+      "https://www.linkedin.com/in/alvarollamojha",
+      "https://github.com/llamojha",
+      "https://twitter.com/llamojha"
+    ]
+  };
+
   return (
-    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-16 lg:px-12">
-      <header className="gradient-border rounded-[2.5rem] bg-white/5 p-[1px]">
-        <div className="card relative isolate overflow-hidden rounded-[2.45rem] border-white/10 bg-slate-950/60 px-8 py-12 sm:px-12 lg:px-16">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.35),transparent_55%)]" />
-          <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom_right,rgba(79,101,170,0.25),transparent_60%)]" />
-          <div className="flex flex-wrap items-start justify-between gap-6">
+    <>
+      <Script type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(jsonLd)}
+      </Script>
+      <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-16 lg:px-12">
+        <header className="gradient-border rounded-[2.5rem] bg-white/5 p-[1px]">
+          <div className="card relative isolate overflow-hidden rounded-[2.45rem] border-white/10 bg-slate-950/60 px-8 py-12 sm:px-12 lg:px-16">
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.35),transparent_55%)]" />
+            <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom_right,rgba(79,101,170,0.25),transparent_60%)]" />
+            <div className="flex flex-wrap items-start justify-between gap-6">
             <div className="max-w-2xl space-y-6">
               <div className="space-y-2">
                 <p className="text-xs font-semibold uppercase tracking-[0.45em] text-slate-300/80">DevOps Leadership</p>
@@ -187,6 +206,7 @@ export default function HomePage() {
           <ContactButton />
         </div>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }
