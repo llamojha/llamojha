@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg-gradient: radial-gradient(circle at 20% 20%, rgba(79, 101, 170, 0.25), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(47, 60, 116, 0.35), transparent 55%),
+    radial-gradient(circle at 50% 100%, rgba(115, 135, 192, 0.18), transparent 60%),
+    #0f172a;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-gradient);
+  color: #f8fafc;
+}
+
+a {
+  color: inherit;
+}
+
+.section-title {
+  @apply text-sm uppercase tracking-[0.35em] text-slate-300/80 font-semibold mb-6;
+}
+
+.card {
+  @apply bg-white/5 border border-white/10 rounded-3xl shadow-lg shadow-slate-900/25 backdrop-blur p-8;
+}
+
+.card-muted {
+  @apply border-white/5 bg-white/10;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(115, 135, 192, 0.8), rgba(47, 60, 116, 0.5));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.gradient-border > * {
+  position: relative;
+}
+
+.tag {
+  @apply inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-slate-100/90 backdrop-blur transition hover:bg-white/20;
+}
+
+.resume-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@screen lg {
+  .resume-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 1rem;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(148, 163, 184, 0.6), rgba(15, 23, 42, 0));
+}
+
+.timeline-item {
+  @apply relative pl-12 pb-12 last:pb-0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  top: 0.5rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #60a5fa;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.25);
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    inset: 0 auto 0 0.75rem;
+  }
+
+  .timeline-item {
+    padding-left: 2.75rem;
+  }
+
+  .timeline-item::before {
+    left: 0.65rem;
+  }
+}
