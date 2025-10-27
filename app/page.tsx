@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Script from "next/script";
+import { useEffect, useState } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import {
   education,
@@ -11,10 +14,15 @@ import {
   volunteering
 } from "@/data/profile";
 
-const ContactButton = () => (
+type ContactButtonProps = {
+  motionEnabled: boolean;
+};
+
+const ContactButton = ({ motionEnabled }: ContactButtonProps) => (
   <Link
     href={profile.callToAction.href}
-    className="inline-flex items-center gap-2 rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-400/40 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-sky-400/50"
+    data-animate-on-scroll={motionEnabled ? "cta" : undefined}
+    className="contact-button inline-flex items-center gap-2 rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-400/40 transition"
   >
     {profile.callToAction.label}
     <ArrowUpRightIcon className="h-4 w-4" />
@@ -22,6 +30,81 @@ const ContactButton = () => (
 );
 
 export default function HomePage() {
+  const [motionEnabled, setMotionEnabled] = useState<boolean | null>(null);
+  const [heroReady, setHeroReady] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => {
+      setMotionEnabled(!mediaQuery.matches);
+    };
+
+    updateMotionPreference();
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", updateMotionPreference);
+    } else {
+      mediaQuery.addListener(updateMotionPreference);
+    }
+
+    return () => {
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", updateMotionPreference);
+      } else {
+        mediaQuery.removeListener(updateMotionPreference);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (motionEnabled === null) {
+      return;
+    }
+
+    if (!motionEnabled) {
+      setHeroReady(true);
+      return;
+    }
+
+    setHeroReady(false);
+    const raf = window.requestAnimationFrame(() => setHeroReady(true));
+
+    return () => window.cancelAnimationFrame(raf);
+  }, [motionEnabled]);
+
+  useEffect(() => {
+    if (motionEnabled === null) {
+      return;
+    }
+
+    if (!motionEnabled) {
+      const elements = document.querySelectorAll<HTMLElement>("[data-animate-on-scroll]");
+      elements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, intersectionObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            intersectionObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -10%"
+      }
+    );
+
+    const elements = document.querySelectorAll<HTMLElement>("[data-animate-on-scroll]");
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, [motionEnabled]);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -43,41 +126,56 @@ export default function HomePage() {
       </Script>
       <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-16 lg:px-12">
         <header className="gradient-border rounded-[2.5rem] bg-white/5 p-[1px]">
-          <div className="card relative isolate overflow-hidden rounded-[2.45rem] border-white/10 bg-slate-950/60 px-8 py-12 sm:px-12 lg:px-16">
+          <div
+            className={`card relative isolate overflow-hidden rounded-[2.45rem] border-white/10 bg-slate-950/60 px-8 py-12 sm:px-12 lg:px-16 hero-card ${heroReady ? "is-visible" : ""}`}
+          >
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.35),transparent_55%)]" />
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom_right,rgba(79,101,170,0.25),transparent_60%)]" />
+            <div className="hero-motion-layer" aria-hidden />
+            <div className="hero-motion-grid" aria-hidden />
             <div className="flex flex-wrap items-start justify-between gap-6">
-            <div className="max-w-2xl space-y-6">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.45em] text-slate-300/80">DevOps Leadership</p>
-                <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  {profile.name}
-                </h1>
-                <p className="text-lg font-medium text-slate-200/90 sm:text-xl">{profile.title}</p>
-                <p className="text-sm uppercase tracking-[0.3em] text-slate-400/80">{profile.location}</p>
+              <div className="max-w-2xl space-y-6">
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.45em] text-slate-300/80">DevOps Leadership</p>
+                  <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    {profile.name}
+                  </h1>
+                  <p className="hero-subtitle text-lg font-medium text-slate-200/90 sm:text-xl">{profile.title}</p>
+                  <p className="text-sm uppercase tracking-[0.3em] text-slate-400/80">{profile.location}</p>
+                </div>
+                <p className="max-w-xl text-base text-slate-200/90 sm:text-lg">{profile.summary}</p>
+                <ul className="grid gap-3 sm:grid-cols-2">
+                  {profile.highlights.map((highlight, index) => (
+                    <li
+                      key={highlight}
+                      className="tag"
+                      data-animate-on-scroll={motionEnabled ? "badge" : undefined}
+                      style={motionEnabled ? { transitionDelay: `${index * 0.08}s` } : undefined}
+                    >
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="max-w-xl text-base text-slate-200/90 sm:text-lg">{profile.summary}</p>
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {profile.highlights.map((highlight) => (
-                  <li key={highlight} className="tag">
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
+              <ContactButton motionEnabled={motionEnabled ?? false} />
             </div>
-            <ContactButton />
           </div>
-        </div>
-      </header>
+        </header>
 
       <section className="resume-grid">
         <div className="space-y-8">
           <div className="card">
             <h2 className="section-title">Expertise</h2>
             <ul className="grid gap-3 sm:grid-cols-2">
-              {expertise.map((item) => (
-                <li key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-100/90">
-                  {item}
+              {expertise.map((item, index) => (
+                <li
+                  key={item}
+                  className="expertise-item rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-100/90"
+                  data-animate-on-scroll={motionEnabled ? "expertise" : undefined}
+                  style={motionEnabled ? { transitionDelay: `${index * 0.1}s` } : undefined}
+                >
+                  <span aria-hidden className="expertise-glyph" />
+                  <span className="expertise-label">{item}</span>
                 </li>
               ))}
             </ul>
@@ -93,7 +191,7 @@ export default function HomePage() {
                     {talk.url && (
                       <Link
                         href={talk.url}
-                        className="ml-2 inline-flex items-center text-xs font-normal text-sky-200/80 hover:text-sky-100"
+                        className="interactive-link ml-2 inline-flex items-center text-xs font-normal text-sky-200/80"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -126,7 +224,11 @@ export default function HomePage() {
             <h2 className="section-title text-slate-200">Interests</h2>
             <div className="flex flex-wrap gap-2">
               {interests.map((interest) => (
-                <span key={interest} className="tag">
+                <span
+                  key={interest}
+                  className="tag"
+                  data-animate-on-scroll={motionEnabled ? "badge" : undefined}
+                >
                   {interest}
                 </span>
               ))}
@@ -138,8 +240,14 @@ export default function HomePage() {
           <div>
             <h2 className="section-title">Experience</h2>
             <div className="relative timeline">
-              {experience.map((item) => (
-                <article key={`${item.company}-${item.role}`} className="timeline-item">
+              {experience.map((item, index) => (
+                <article
+                  key={`${item.company}-${item.role}`}
+                  className="timeline-item experience-card"
+                  data-animate-on-scroll={motionEnabled ? "experience" : undefined}
+                  style={motionEnabled ? { transitionDelay: `${index * 0.12}s` } : undefined}
+                >
+                  <span aria-hidden className="experience-arrow" />
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                     <div>
                       <h3 className="text-xl font-semibold text-white">
@@ -157,7 +265,7 @@ export default function HomePage() {
                         href={item.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.25em] text-sky-200/80 hover:text-sky-100"
+                        className="interactive-link inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.25em] text-sky-200/80"
                       >
                         Visit
                         <ArrowUpRightIcon className="h-3 w-3" />
@@ -203,7 +311,7 @@ export default function HomePage() {
               Have a platform reliability challenge? Alvaro is available for consulting and advisory conversations.
             </p>
           </div>
-          <ContactButton />
+          <ContactButton motionEnabled={motionEnabled ?? false} />
         </div>
       </footer>
       </main>
