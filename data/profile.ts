@@ -26,6 +26,21 @@ export const profile = {
     "2022: Scaled LEGO.com's multi-channel commerce platform using AWS Serverless, ECS Fargate, and Terraform to support £1.2bn online revenue.",
     "Mentors the next wave of cloud engineers through CodeYourFuture and bespoke DevOps bootcamps, graduating 50+ engineers since 2019."
   ],
+  impact: [
+    {
+      value: "£500m+",
+      label: "Digital revenue safeguarded across peak events"
+    },
+    {
+      value: "4x",
+      label: "Deployment cadence uplift delivered with modern delivery"
+    },
+    {
+      value: "35%",
+      label: "Mean-time-to-recovery reduction across major programmes"
+    }
+  ],
+  trustedBy: ["LEGO", "JD Sports", "Kingfisher"],
   callToAction: {
     label: "Let’s build resilient platforms together",
     href: "mailto:hello@llamojha.dev"
