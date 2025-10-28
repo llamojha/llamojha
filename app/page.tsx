@@ -119,29 +119,59 @@ export default function HomePage() {
     ]
   };
 
+  const heroSpotlights = [
+    {
+      title: "Observability blueprint",
+      description: "Telemetry operating model for peak retail and media events.",
+      metric: "120+ services unified · 45 dashboards"
+    },
+    {
+      title: "GenAI runbooks",
+      description: "Incident command packs summarised in minutes, not hours.",
+      metric: "60% faster retrospectives"
+    }
+  ];
+
   return (
     <>
       <Script type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(jsonLd)}
       </Script>
       <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-16 lg:px-12">
+        <nav className="hero-nav flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-6 py-3 text-xs font-semibold uppercase tracking-[0.4em] text-slate-300/70 backdrop-blur">
+          <span className="hero-logo">llamojha.dev</span>
+          <div className="flex items-center gap-4 text-[0.7rem] tracking-[0.35em]">
+            <Link href="#expertise" className="hero-nav-link">
+              Expertise
+            </Link>
+            <Link href="#experience" className="hero-nav-link">
+              Experience
+            </Link>
+            <Link href={profile.callToAction.href} className="hero-nav-cta">
+              Let’s talk
+            </Link>
+          </div>
+        </nav>
         <header className="gradient-border rounded-[2.5rem] bg-white/5 p-[1px]">
           <div
             className={`card relative isolate overflow-hidden rounded-[2.45rem] border-white/10 bg-slate-950/60 px-8 py-12 sm:px-12 lg:px-16 hero-card ${heroReady ? "is-visible" : ""}`}
           >
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(255,214,102,0.32),transparent_60%)]" />
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom_right,rgba(102,76,14,0.25),transparent_65%)]" />
+            <div className="hero-glow" aria-hidden />
             <div className="hero-motion-layer" aria-hidden />
             <div className="hero-motion-grid" aria-hidden />
-            <div className="flex flex-wrap items-start justify-between gap-6">
-              <div className="max-w-2xl space-y-6">
-                <div className="space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.45em] text-slate-300/80">DevOps Leadership</p>
-                  <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                    {profile.name}
-                  </h1>
-                  <p className="hero-subtitle text-lg font-medium text-slate-200/90 sm:text-xl">{profile.title}</p>
-                  <p className="text-sm uppercase tracking-[0.3em] text-slate-400/80">{profile.location}</p>
+            <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
+              <div className="max-w-2xl space-y-8">
+                <div className="space-y-4">
+                  <span className="hero-badge">Observability-first DevOps leadership</span>
+                  <div className="space-y-3">
+                    <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                      {profile.name}
+                    </h1>
+                    <p className="hero-subtitle text-lg font-medium text-slate-200/90 sm:text-xl">{profile.title}</p>
+                    <p className="text-sm uppercase tracking-[0.3em] text-slate-400/80">{profile.location}</p>
+                  </div>
                 </div>
                 <p className="max-w-xl text-base text-slate-200/90 sm:text-lg">{profile.summary}</p>
                 <ul className="grid gap-3 sm:grid-cols-2">
@@ -156,15 +186,60 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
+                <div className="flex flex-wrap items-center gap-4">
+                  <ContactButton motionEnabled={motionEnabled ?? false} />
+                  <Link
+                    href="#experience"
+                    className="hero-secondary-link inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--accent-faint)]"
+                  >
+                    View track record
+                    <ArrowUpRightIcon className="h-3 w-3" />
+                  </Link>
+                </div>
+                <div className="hero-impact-grid">
+                  {profile.impact.map((metric, index) => (
+                    <div
+                      key={metric.label}
+                      className="hero-impact-card"
+                      data-animate-on-scroll={motionEnabled ? "metric" : undefined}
+                      style={motionEnabled ? { transitionDelay: `${index * 0.1}s` } : undefined}
+                    >
+                      <span className="hero-impact-value">{metric.value}</span>
+                      <span className="hero-impact-label">{metric.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="hero-trusted">
+                  <span className="hero-trusted-label">Trusted by</span>
+                  <div className="hero-trusted-logos">
+                    {profile.trustedBy.map((brand) => (
+                      <span key={brand}>{brand}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <ContactButton motionEnabled={motionEnabled ?? false} />
+              <div className="hero-visual">
+                <div className="hero-visual-orb" aria-hidden />
+                {heroSpotlights.map((spotlight, index) => (
+                  <div
+                    key={spotlight.title}
+                    className="hero-spotlight"
+                    data-animate-on-scroll={motionEnabled ? "spotlight" : undefined}
+                    style={motionEnabled ? { transitionDelay: `${index * 0.12}s` } : undefined}
+                  >
+                    <p className="hero-spotlight-title">{spotlight.title}</p>
+                    <p className="hero-spotlight-description">{spotlight.description}</p>
+                    <span className="hero-spotlight-metric">{spotlight.metric}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </header>
 
       <section className="resume-grid">
         <div className="space-y-8">
-          <div className="card">
+          <div className="card" id="expertise">
             <h2 className="section-title">Expertise</h2>
             <ul className="grid gap-3 sm:grid-cols-2">
               {expertise.map((item, index) => (
@@ -237,7 +312,7 @@ export default function HomePage() {
         </div>
 
         <div className="card space-y-12">
-          <div>
+          <div id="experience">
             <h2 className="section-title">Experience</h2>
             <div className="relative timeline">
               {experience.map((item, index) => (
