@@ -6,6 +6,10 @@
   color-scheme: dark;
   --bg: #0d0d0d;
   --accent: #ffcc33;
+  --accent-soft: #f7db7d;
+  --accent-faint: rgba(255, 214, 102, 0.75);
+  --accent-deep: #8c6f1d;
+  --accent-shadow: rgba(255, 204, 51, 0.3);
   --text: #f5f5f5;
   --muted: #888888;
   --font-main: var(--font-sans, "Inter", "Avenir Next", sans-serif);
@@ -104,7 +108,7 @@ img:hover {
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(115, 135, 192, 0.8), rgba(47, 60, 116, 0.5));
+  background: linear-gradient(135deg, rgba(255, 204, 51, 0.75), rgba(77, 58, 12, 0.7));
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -136,7 +140,7 @@ img:hover {
   position: absolute;
   inset: 0 auto 0 1rem;
   width: 2px;
-  background: linear-gradient(180deg, rgba(148, 163, 184, 0.6), rgba(15, 23, 42, 0));
+  background: linear-gradient(180deg, rgba(255, 204, 51, 0.45), rgba(77, 58, 12, 0));
 }
 
 .timeline-item {
@@ -151,8 +155,8 @@ img:hover {
   width: 10px;
   height: 10px;
   border-radius: 9999px;
-  background: #60a5fa;
-  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.25);
+  background: #ffcc33;
+  box-shadow: 0 0 0 4px rgba(255, 204, 51, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -186,7 +190,7 @@ img:hover {
   position: absolute;
   inset: 18% 12%;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(94, 234, 212, 0.25) 0%, rgba(56, 189, 248, 0.08) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 214, 102, 0.2) 0%, rgba(255, 204, 51, 0.08) 45%, transparent 70%);
   opacity: 0;
   transform: scale(0.95);
   transition: opacity 0.6s ease-out;
@@ -219,9 +223,9 @@ img:hover {
 }
 
 .hero-motion-layer {
-  background: radial-gradient(circle at 30% 25%, rgba(56, 189, 248, 0.4), transparent 60%),
-    radial-gradient(circle at 70% 20%, rgba(14, 165, 233, 0.35), transparent 55%),
-    linear-gradient(140deg, rgba(2, 132, 199, 0.25), rgba(30, 64, 175, 0.18));
+  background: radial-gradient(circle at 30% 25%, rgba(255, 214, 102, 0.38), transparent 60%),
+    radial-gradient(circle at 70% 20%, rgba(199, 146, 32, 0.32), transparent 55%),
+    linear-gradient(140deg, rgba(102, 76, 14, 0.5), rgba(34, 25, 6, 0.2));
   filter: blur(12px);
   opacity: 0.45;
   animation: heroGradient 26s ease-in-out infinite alternate;
@@ -229,8 +233,8 @@ img:hover {
 
 .hero-motion-grid {
   background-image:
-    linear-gradient(90deg, rgba(148, 163, 184, 0.2) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(79, 70, 229, 0.18) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255, 214, 102, 0.18) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(140, 109, 24, 0.18) 1px, transparent 1px);
   background-size: 60px 60px;
   mix-blend-mode: screen;
   opacity: 0.28;
@@ -245,7 +249,7 @@ img:hover {
   width: 160px;
   height: 2px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, rgba(56, 189, 248, 0.65), transparent);
+  background: linear-gradient(90deg, rgba(255, 214, 102, 0.65), transparent);
   animation: heroTelemetry 9s ease-in-out infinite;
 }
 
@@ -264,7 +268,7 @@ img:hover {
   left: 1.25rem;
   width: 1.75rem;
   height: 2px;
-  background: linear-gradient(90deg, rgba(56, 189, 248, 0.85), rgba(14, 165, 233, 0));
+  background: linear-gradient(90deg, rgba(255, 214, 102, 0.85), rgba(140, 109, 24, 0));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s ease-out;
@@ -274,7 +278,7 @@ img:hover {
   width: 0.65rem;
   height: 0.65rem;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(94, 234, 212, 0.9) 0%, rgba(56, 189, 248, 0.45) 65%, transparent 100%);
+  background: radial-gradient(circle, rgba(255, 222, 140, 0.9) 0%, rgba(255, 204, 51, 0.45) 65%, transparent 100%);
   flex-shrink: 0;
   opacity: 0;
   transform: translateX(-12px);
@@ -324,7 +328,7 @@ img:hover {
   left: 2.75rem;
   right: 0;
   border-radius: 1.75rem;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 64, 175, 0.3));
+  background: linear-gradient(135deg, rgba(24, 18, 6, 0.92), rgba(77, 58, 12, 0.35));
   opacity: 0.85;
   transition: opacity 0.35s ease;
 }
@@ -336,7 +340,7 @@ img:hover {
 
 .experience-card:hover {
   transform: translate3d(0, -6px, 0) rotateX(0);
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.55);
+  box-shadow: 0 20px 45px rgba(24, 18, 6, 0.55);
 }
 
 .experience-card:hover::after {
@@ -349,8 +353,8 @@ img:hover {
   top: 1.75rem;
   width: 0.9rem;
   height: 0.9rem;
-  border-right: 2px solid rgba(148, 163, 184, 0.35);
-  border-bottom: 2px solid rgba(148, 163, 184, 0.35);
+  border-right: 2px solid rgba(255, 214, 102, 0.3);
+  border-bottom: 2px solid rgba(255, 214, 102, 0.3);
   transform: translate3d(0, -6px, 0) rotate(-45deg);
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
@@ -360,7 +364,7 @@ img:hover {
 .experience-card:hover .experience-arrow {
   opacity: 1;
   transform: translate3d(4px, -6px, 0) rotate(-45deg);
-  border-color: rgba(96, 165, 250, 0.9);
+  border-color: rgba(255, 204, 51, 0.8);
 }
 
 .interactive-link {
@@ -373,7 +377,7 @@ img:hover {
 
 .interactive-link:focus-visible {
   outline: none;
-  color: #e0f2fe;
+  color: var(--accent-soft);
 }
 
 .interactive-link::after {
@@ -414,7 +418,7 @@ img:hover {
   position: absolute;
   inset: -0.4rem;
   border-radius: inherit;
-  border: 2px solid rgba(56, 189, 248, 0.45);
+  border: 2px solid rgba(255, 214, 102, 0.35);
   opacity: 0;
   transform: scale(0.8);
   pointer-events: none;
@@ -427,13 +431,13 @@ img:hover {
 .contact-button:hover,
 .contact-button:focus-visible {
   transform: scale(1.05) translateY(-2px);
-  background: linear-gradient(135deg, #38bdf8, #7dd3fc);
-  box-shadow: 0 18px 40px rgba(56, 189, 248, 0.35);
+  background: linear-gradient(135deg, rgba(255, 214, 102, 0.95), rgba(140, 109, 24, 0.95));
+  box-shadow: 0 18px 40px var(--accent-shadow);
 }
 
 .contact-button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.45), 0 18px 40px rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 0 4px rgba(255, 214, 102, 0.3), 0 18px 40px var(--accent-shadow);
 }
 
 @keyframes heroGradient {
