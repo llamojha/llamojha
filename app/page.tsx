@@ -22,7 +22,7 @@ const ContactButton = ({ motionEnabled }: ContactButtonProps) => (
   <Link
     href={profile.callToAction.href}
     data-animate-on-scroll={motionEnabled ? "cta" : undefined}
-    className="contact-button inline-flex items-center gap-2 rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-400/40 transition"
+    className="contact-button inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-[#1f1503] shadow-lg shadow-[0_18px_40px_var(--accent-shadow)] transition"
   >
     {profile.callToAction.label}
     <ArrowUpRightIcon className="h-4 w-4" />
@@ -129,8 +129,8 @@ export default function HomePage() {
           <div
             className={`card relative isolate overflow-hidden rounded-[2.45rem] border-white/10 bg-slate-950/60 px-8 py-12 sm:px-12 lg:px-16 hero-card ${heroReady ? "is-visible" : ""}`}
           >
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.35),transparent_55%)]" />
-            <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom_right,rgba(79,101,170,0.25),transparent_60%)]" />
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(255,214,102,0.32),transparent_60%)]" />
+            <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom_right,rgba(102,76,14,0.25),transparent_65%)]" />
             <div className="hero-motion-layer" aria-hidden />
             <div className="hero-motion-grid" aria-hidden />
             <div className="flex flex-wrap items-start justify-between gap-6">
@@ -191,7 +191,7 @@ export default function HomePage() {
                     {talk.url && (
                       <Link
                         href={talk.url}
-                        className="interactive-link ml-2 inline-flex items-center text-xs font-normal text-sky-200/80"
+                        className="interactive-link ml-2 inline-flex items-center text-xs font-normal text-[var(--accent-faint)]"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -265,7 +265,7 @@ export default function HomePage() {
                         href={item.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="interactive-link inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.25em] text-sky-200/80"
+                        className="interactive-link inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent-faint)]"
                       >
                         Visit
                         <ArrowUpRightIcon className="h-3 w-3" />
@@ -276,7 +276,7 @@ export default function HomePage() {
                   <ul className="mt-4 space-y-2 text-sm text-slate-300/90">
                     {item.achievements.map((achievement) => (
                       <li key={achievement} className="flex gap-3">
-                        <span className="mt-1 block h-1 w-1 rounded-full bg-sky-300" aria-hidden />
+                        <span className="mt-1 block h-1 w-1 rounded-full bg-amber-300" aria-hidden />
                         <span>{achievement}</span>
                       </li>
                     ))}
@@ -308,7 +308,7 @@ export default function HomePage() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-slate-400/80">Let's collaborate</p>
             <p className="mt-2 text-lg font-semibold text-white">
-              Have a platform reliability challenge? Alvaro is available for consulting and advisory conversations.
+              Have a platform reliability challenge? Alvaro Llamojha is available for consulting and advisory conversations.
             </p>
           </div>
           <ContactButton motionEnabled={motionEnabled ?? false} />
