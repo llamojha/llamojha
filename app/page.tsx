@@ -308,7 +308,7 @@ export default function HomePage() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-slate-400/80">Let's collaborate</p>
             <p className="mt-2 text-lg font-semibold text-white">
-              Have a platform reliability challenge? Alvaro is available for consulting and advisory conversations.
+              Have a platform reliability challenge? Alvaro Llamojha is available for consulting and advisory conversations.
             </p>
           </div>
           <ContactButton motionEnabled={motionEnabled ?? false} />
