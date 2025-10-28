@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Source_Sans_3 } from "next/font/google";
+import { Fira_Code, Inter } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const sourceSans = Source_Sans_3({ subsets: ["latin"], variable: "--font-alt" });
+const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-alt" });
 
 export const metadata: Metadata = {
   title: "Alvaro Llamojha — DevOps & Observability Leader",
@@ -49,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={clsx(inter.variable, sourceSans.variable, "antialiased bg-slate-950")}>{children}</body>
+      <body className={clsx(inter.variable, firaCode.variable, "antialiased")}>{children}</body>
     </html>
   );
 }
