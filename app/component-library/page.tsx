@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
+import { LibraryHeader } from "./library-header";
+
 const llamojhaCss = readFileSync(join(process.cwd(), "app/llamojha.css"), "utf8");
 const libraryCss = `body { padding: 0 !important; }
 ` + llamojhaCss;
@@ -85,37 +87,7 @@ export default function ComponentLibraryPage() {
   return (
     <div className="theme-dark" style={{ minHeight: "100vh", paddingBlockEnd: "var(--space-10)" }}>
       <style>{libraryCss}</style>
-      <header className="navbar container-content" style={containerStyle} aria-expanded="false">
-        <div className="navbar-inner">
-          <div className="cluster">
-            <span className="badge">llamojha.css</span>
-            <span className="small">Warm-tech design tokens & components</span>
-          </div>
-          <nav className="navbar-menu" aria-label="Component library shortcuts">
-            <Link className="button button-subtle" href="#foundations">
-              Foundations
-            </Link>
-            <Link className="button button-subtle" href="#interactions">
-              Interactions
-            </Link>
-            <Link className="button button-subtle" href="#content">
-              Content
-            </Link>
-            <Link className="button button-subtle" href="#utilities">
-              Utilities
-            </Link>
-            <a className="button button-subtle" href="/component-library/download">
-              Download CSS
-            </a>
-            <Link className="button button-secondary" href="/">
-              Back to portfolio
-            </Link>
-          </nav>
-          <button type="button" className="navbar-toggle" aria-label="Toggle navigation">
-            ☰
-          </button>
-        </div>
-      </header>
+      <LibraryHeader containerStyle={containerStyle} />
 
       <main className="stack" style={{ gap: "var(--space-8)", paddingBlockStart: "var(--space-8)" }}>
         <section className="container-content" style={containerStyle}>
