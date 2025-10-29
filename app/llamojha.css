@@ -339,6 +339,155 @@ p, ul, ol, dl {
 /* 4. Components                                                              */
 /* ========================================================================== */
 @layer components {
+/* Component library documentation layout */
+.docs-page {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.docs-boundary {
+  margin-inline: auto;
+  max-inline-size: min(78rem, 100%);
+  padding-inline: clamp(var(--space-4), 6vw, var(--space-8));
+  width: 100%;
+}
+
+.docs-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-block: var(--space-8) var(--space-10);
+}
+
+.docs-hero {
+  row-gap: var(--space-5);
+}
+
+.docs-hero-copy {
+  gap: var(--space-4);
+  max-inline-size: 60ch;
+}
+
+.docs-shell {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.docs-sidebar {
+  position: relative;
+  padding-block-end: var(--space-4);
+}
+
+.docs-sidebar nav {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding-block-end: var(--space-2);
+  padding-inline-end: 0.25rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+}
+
+.docs-sidebar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  transition: color var(--duration-1) var(--ease-out-1),
+              border-color var(--duration-1) var(--ease-out-1),
+              background var(--duration-1) var(--ease-out-1);
+  white-space: nowrap;
+}
+
+.docs-sidebar-link:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+  border-color: color-mix(in srgb, var(--border) 60%, transparent);
+}
+
+.docs-sidebar-link:focus-visible {
+  outline: 2px solid var(--accent-strong-srgb);
+  outline-offset: 4px;
+  color: var(--text);
+}
+
+.docs-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-9);
+}
+
+.docs-section {
+  gap: var(--space-5);
+  padding-block: var(--space-6);
+  border-block-end: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+}
+
+.docs-section:last-of-type {
+  border-block-end: none;
+}
+
+.docs-section-header {
+  gap: var(--space-2);
+  max-inline-size: 56ch;
+}
+
+.docs-swatch {
+  border-radius: var(--radius-md);
+  block-size: 6rem;
+}
+
+.docs-header {
+  margin-inline: auto;
+  max-inline-size: min(78rem, 100%);
+  padding-inline: clamp(var(--space-4), 6vw, var(--space-8));
+}
+
+.docs-header .navbar-inner {
+  padding-inline: 0;
+}
+
+@media (min-width: 48rem) {
+  .docs-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .docs-main {
+    padding-block-start: var(--space-9);
+  }
+
+  .docs-shell {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-8);
+  }
+
+  .docs-sidebar {
+    position: sticky;
+    inset-block-start: var(--space-8);
+    max-block-size: calc(100vh - var(--space-10));
+  }
+
+  .docs-sidebar nav {
+    flex-direction: column;
+    gap: var(--space-2);
+    overflow: visible;
+    border: none;
+    padding: 0;
+  }
+
+  .docs-sidebar-link {
+    justify-content: flex-start;
+    white-space: normal;
+  }
+}
+
 /* Buttons */
 .button {
   position: relative;

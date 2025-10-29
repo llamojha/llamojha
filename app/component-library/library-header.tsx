@@ -1,29 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 
-type LibraryHeaderProps = {
-  containerStyle: CSSProperties;
-};
+import { libraryNavItems } from "./nav-items";
 
-type NavItem = {
-  href: string;
-  label: string;
-  variant?: "subtle" | "secondary";
-  isExternal?: boolean;
-};
-
-const navItems: NavItem[] = [
-  { href: "#foundations", label: "Foundations" },
-  { href: "#interactions", label: "Interactions" },
-  { href: "#content", label: "Content" },
-  { href: "#utilities", label: "Utilities" },
-  { href: "/component-library/download", label: "Download CSS", isExternal: true },
-  { href: "/", label: "Back to portfolio", variant: "secondary" }
-];
-
-export function LibraryHeader({ containerStyle }: LibraryHeaderProps) {
+export function LibraryHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -63,7 +45,7 @@ export function LibraryHeader({ containerStyle }: LibraryHeaderProps) {
   }, []);
 
   return (
-    <header className="navbar container-content" style={containerStyle} aria-expanded={isOpen}>
+    <header className="navbar container-content docs-header" aria-expanded={isOpen}>
       <div className="navbar-inner">
         <div className="cluster">
           <span className="badge">llamojha.css</span>
@@ -75,7 +57,7 @@ export function LibraryHeader({ containerStyle }: LibraryHeaderProps) {
           aria-label="Component library shortcuts"
           onClick={() => setIsOpen(false)}
         >
-          {navItems.map(({ href, label, variant = "subtle", isExternal }) => {
+          {libraryNavItems.map(({ href, label, variant = "subtle", isExternal }) => {
             const className = `button button-${variant}`;
             if (isExternal) {
               return (
