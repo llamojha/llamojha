@@ -307,13 +307,13 @@ p, ul, ol, dl {
   }
 }
 
-.grid {
+.docs-grid {
   display: grid;
   gap: var(--space-5);
 }
 
 @container content (min-width: 48rem) {
-  .grid {
+  .docs-grid {
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   }
 }

@@ -135,7 +135,7 @@ export default function ComponentLibraryPage() {
               title="Foundations for warm, resilient interfaces"
               description="Color, typography, spacing, and elevation primitives ensure consistent, high-contrast visuals across dark and light modes."
             >
-              <div className="grid">
+              <div className="docs-grid">
                 {colors.map((color) => (
                   <article key={color.token} className="card stack">
                     <div
