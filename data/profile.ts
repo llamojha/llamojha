@@ -22,18 +22,18 @@ export const profile = {
   summary:
     "DevOps and observability engineer with extensive experience designing cloud-native platforms for large-scale commerce organisations. Skilled across AWS, serverless architectures, infrastructure as code, and end-to-end monitoring. Recent work partners with start-ups and boutique consultancies to introduce AI-assisted workflows and responsible adoption patterns for generative AI services, including AWS Bedrock model orchestration.",
   highlights: [
-    "Delivered a New Relic observability rollout for JD Sports peak trading, complete with a Black Friday 2022 command-centre dashboard for support teams.",
-    "Designed LEGO.com's first serverless microservices iteration with Node.js/TypeScript and GitHub Actions, then guided the move to AWS ECS Fargate with Terraform-based IaC.",
+    "Delivered a New Relic observability rollout for JD Sports peak trading, complete with Black Friday dashboards that helped engineers react faster to incidents.",
+    "Designed LEGO.com's first serverless microservices iteration with Node.js/TypeScript and GitHub Actions, taking releases from once a week to continuous delivery with daily canary deployments.",
     "Supports generative AI start-ups with AWS serverless data pipelines, including Musicfy where product analytics and observability were instrumented with PostHog."
   ],
   impact: [
     {
       value: "JD Sports",
-      label: "Command-centre telemetry prepared for Black Friday 2022"
+      label: "Black Friday dashboards accelerating high-impact incident response"
     },
     {
       value: "LEGO.com",
-      label: "Serverless microservices and Terraform IaC foundations"
+      label: "Shifted releases from weekly drops to continuous delivery via GitHub Actions"
     },
     {
       value: "Musicfy",
@@ -65,7 +65,7 @@ export const experience: Experience[] = [
     summary:
       "Provide observability, platform, and DevOps consulting to retail and data-driven organisations as a solo practitioner.",
     achievements: [
-      "Delivered a New Relic observability rollout for JD Sports peak trading, including a Black Friday 2022 \"command centre\" dashboard for support teams.",
+      "Delivered a New Relic observability rollout for JD Sports peak trading, creating Black Friday dashboards so engineers could spot and triage incidents faster.",
       "Established monitoring and alerting across frontend, backend, and third-party services to strengthen incident response for contract clients.",
       "Supported generative AI start-ups with AWS, serverless, and data pipelines, including Musicfy where observability and product analytics were instrumented with PostHog."
     ]
@@ -79,9 +79,9 @@ export const experience: Experience[] = [
     summary:
       "Designed and scaled LEGO.com's cloud-native platforms while safeguarding peak-season reliability.",
     achievements: [
-      "Designed and rolled out the first serverless microservices iteration with Node.js and TypeScript, plus CI/CD for a monorepo using GitHub Actions.",
+      "Designed and rolled out the first serverless microservices iteration with Node.js and TypeScript, plus GitHub Actions workflows that moved releases from weekly drops to multiple automated deployments per day with canary guardrails.",
       "Transitioned LEGO.com infrastructure to AWS ECS Fargate with Terraform-based IaC, improving deployment consistency.",
-      "Eliminated high-severity incidents during peak seasons through refined monitoring with New Relic, Elasticsearch/Kibana, PagerDuty, and an AWS Infrastructure Event Manager framework.",
+      "Eliminated high-severity incidents during peak seasons by refining monitoring with New Relic, Elasticsearch/Kibana, PagerDuty, and an AWS Infrastructure Event Manager framework—turning Black Friday into a quiet, issue-free event.",
       "Optimised developer experience by modernising CI/CD tooling (Jenkins, CircleCI, GitHub Actions) and enabling git-tag-based deployments for frontend apps."
     ]
   },

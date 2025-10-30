@@ -122,12 +122,12 @@ export default function HomePage() {
   const heroSpotlights = [
     {
       title: "Black Friday command centre",
-      description: "New Relic dashboards that unified JD Sports support teams during 2022 peak trading.",
+      description: "New Relic dashboards that let JD Sports teams spot Black Friday spikes and act before incidents escalated.",
       metric: "Black Friday 2022 peak trading support"
     },
     {
       title: "Serverless delivery foundations",
-      description: "Node.js and TypeScript microservices with GitHub Actions pipelines powering LEGO.com releases.",
+      description: "Node.js and TypeScript microservices with GitHub Actions pipelines moving LEGO.com from weekly drops to daily canary releases.",
       metric: "GitHub Actions workflows for the LEGO.com monorepo"
     }
   ];
