@@ -40,7 +40,6 @@ export const profile = {
       label: "AI observability and analytics instrumentation via PostHog"
     }
   ],
-  trustedBy: ["JD Sports", "LEGO.com", "Musicfy"],
   callToAction: {
     label: "Book observability & platform consulting",
     href: "mailto:hello@amllamojha.com"

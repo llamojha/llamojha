@@ -211,14 +211,6 @@ export default function HomePage() {
                     </div>
                   ))}
                 </div>
-                <div className="hero-trusted">
-                  <span className="hero-trusted-label">Trusted by</span>
-                  <div className="hero-trusted-logos">
-                    {profile.trustedBy.map((brand) => (
-                      <span key={brand}>{brand}</span>
-                    ))}
-                  </div>
-                </div>
               </div>
               <div className="hero-visual">
                 <div className="hero-visual-orb" aria-hidden />
