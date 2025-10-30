@@ -110,8 +110,8 @@ export default function HomePage() {
     "@type": "Person",
     name: profile.name,
     jobTitle: profile.title,
-    url: "https://llamojha.vercel.app",
-    email: "mailto:hello@llamojha.dev",
+    url: "https://amllamojha.com",
+    email: "mailto:hello@amllamojha.com",
     sameAs: [
       "https://www.linkedin.com/in/alvarollamojha",
       "https://github.com/llamojha",
@@ -121,14 +121,14 @@ export default function HomePage() {
 
   const heroSpotlights = [
     {
-      title: "Observability blueprint",
-      description: "Telemetry operating model for peak retail and media events.",
-      metric: "120+ services unified · 45 dashboards"
+      title: "Black Friday command centre",
+      description: "New Relic dashboards that let JD Sports teams spot Black Friday spikes and act before incidents escalated.",
+      metric: "Black Friday 2022 peak trading support"
     },
     {
-      title: "GenAI runbooks",
-      description: "Incident command packs summarised in minutes, not hours.",
-      metric: "60% faster retrospectives"
+      title: "Serverless delivery foundations",
+      description: "Node.js and TypeScript microservices with GitHub Actions pipelines moving LEGO.com from weekly drops to daily canary releases.",
+      metric: "GitHub Actions workflows for the LEGO.com monorepo"
     }
   ];
 
@@ -139,7 +139,7 @@ export default function HomePage() {
       </Script>
       <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-16 lg:px-12">
         <nav className="hero-nav flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-6 py-3 text-xs font-semibold uppercase tracking-[0.4em] text-slate-300/70 backdrop-blur">
-          <span className="hero-logo">llamojha.dev</span>
+          <span className="hero-logo">amllamojha.com</span>
           <div className="flex items-center gap-4 text-[0.7rem] tracking-[0.35em]">
             <Link href="#expertise" className="hero-nav-link">
               Expertise
@@ -154,7 +154,9 @@ export default function HomePage() {
         </nav>
         <header className="gradient-border rounded-[2.5rem] bg-white/5 p-[1px]">
           <div
-            className={`card relative isolate overflow-hidden rounded-[2.45rem] border-white/10 bg-slate-950/60 px-8 py-12 sm:px-12 lg:px-16 hero-card ${heroReady ? "is-visible" : ""}`}
+            className={`card relative isolate overflow-hidden rounded-[2.45rem] border-white/10 bg-slate-950/60 px-8 py-12 sm:px-12 lg:px-16 hero-card ${
+              heroReady ? "is-visible" : ""
+            }`}
           >
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(255,214,102,0.32),transparent_60%)]" />
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom_right,rgba(102,76,14,0.25),transparent_65%)]" />

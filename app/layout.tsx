@@ -7,12 +7,12 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-alt" });
 
 export const metadata: Metadata = {
-  title: "Alvaro Llamojha — DevOps & Observability Leader",
+  title: "Alvaro Llamojha — DevOps & Observability Engineer",
   description:
-    "Portfolio and résumé for Alvaro Llamojha, a DevOps, platform, and observability engineer with leadership across AWS, New Relic, and high-scale commerce.",
-  metadataBase: new URL("https://llamojha.vercel.app"),
+    "Portfolio and résumé for Alvaro Llamojha, a DevOps and observability engineer specialising in AWS, serverless architectures, infrastructure as code, and end-to-end monitoring.",
+  metadataBase: new URL("https://amllamojha.com"),
   alternates: {
-    canonical: "https://llamojha.dev"
+    canonical: "https://amllamojha.com"
   },
   robots: {
     index: true,
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Alvaro Llamojha",
     description:
-      "DevOps & Observability leader with a track record building resilient platforms for LEGO, JD Sports, and more.",
-    url: "https://llamojha.vercel.app",
+      "DevOps and observability engineer with a track record building AWS, serverless, and monitoring platforms for commerce and AI teams.",
+    url: "https://amllamojha.com",
     siteName: "Alvaro Llamojha",
     locale: "en_GB",
     type: "website"
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alvaro Llamojha",
     description:
-      "DevOps & Observability leader with a track record building resilient platforms for LEGO, JD Sports, and more."
+      "DevOps and observability engineer with a track record building AWS, serverless, and monitoring platforms for commerce and AI teams."
   }
 };
 
