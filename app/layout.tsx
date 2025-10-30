@@ -33,8 +33,12 @@ export const metadata: Metadata = {
     }
   },
   icons: {
-    icon: "/icon",
-    apple: "/icon"
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", type: "image/png", sizes: "512x512" }
+    ],
+    apple: [{ url: "/favicon.png", sizes: "512x512" }],
+    shortcut: [{ url: "/favicon.ico" }]
   },
   robots: {
     index: true,
