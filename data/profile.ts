@@ -17,43 +17,43 @@ export type Talk = {
 
 export const profile = {
   name: "Alvaro Llamojha",
-  title: "Senior DevOps & Observability Engineer",
+  title: "DevOps & Observability Engineer",
   location: "London, United Kingdom",
   summary:
-    "DevOps and platform engineer specialised in observability, large-scale commerce, and serverless-first architectures. Recent programmes cut MTTR by 35%, lifted release cadence 4x, and safeguarded £500m+ annual digital revenue while coaching teams to operate with confidence.",
+    "DevOps and observability engineer with extensive experience designing cloud-native platforms for large-scale commerce organisations. Skilled across AWS, serverless architectures, infrastructure as code, and end-to-end monitoring. Recent work partners with start-ups and boutique consultancies to introduce AI-assisted workflows and responsible adoption patterns for generative AI services, including AWS Bedrock model orchestration.",
   highlights: [
-    "2023: Stabilised JD Sports' global peak trading by delivering MTTR dashboards, cutting critical incident duration by 38% year-on-year.",
-    "2022: Scaled LEGO.com's multi-channel commerce platform using AWS Serverless, ECS Fargate, and Terraform to support £1.2bn online revenue.",
-    "Mentors the next wave of cloud engineers through CodeYourFuture and bespoke DevOps bootcamps, graduating 50+ engineers since 2019."
+    "Delivered a New Relic observability rollout for JD Sports peak trading, complete with a Black Friday 2022 command-centre dashboard for support teams.",
+    "Designed LEGO.com's first serverless microservices iteration with Node.js/TypeScript and GitHub Actions, then guided the move to AWS ECS Fargate with Terraform-based IaC.",
+    "Supports generative AI start-ups with AWS serverless data pipelines, including Musicfy where product analytics and observability were instrumented with PostHog."
   ],
   impact: [
     {
-      value: "£500m+",
-      label: "Digital revenue safeguarded across peak events"
+      value: "JD Sports",
+      label: "Command-centre telemetry prepared for Black Friday 2022"
     },
     {
-      value: "4x",
-      label: "Deployment cadence uplift delivered with modern delivery"
+      value: "LEGO.com",
+      label: "Serverless microservices and Terraform IaC foundations"
     },
     {
-      value: "35%",
-      label: "Mean-time-to-recovery reduction across major programmes"
+      value: "Musicfy",
+      label: "AI observability and analytics instrumentation via PostHog"
     }
   ],
-  trustedBy: ["LEGO", "JD Sports", "Kingfisher"],
+  trustedBy: ["JD Sports", "LEGO.com", "Musicfy"],
   callToAction: {
     label: "Let’s build resilient platforms together",
-    href: "mailto:hello@llamojha.dev"
+    href: "mailto:hello@amllamojha.com"
   }
 };
 
 export const expertise = [
-  "AWS & Cloud Architecture",
-  "Serverless & Container Platforms",
-  "Observability with New Relic",
-  "CI/CD Automation",
-  "Incident Response Leadership",
-  "Developer Experience"
+  "AWS & Serverless Architecture",
+  "Terraform & Infrastructure as Code",
+  "CI/CD Automation (CircleCI, Jenkins, GitHub Actions)",
+  "Observability (New Relic, Elasticsearch/Kibana, PagerDuty)",
+  "JavaScript/TypeScript & Node.js",
+  "Generative AI Enablement"
 ];
 
 export const experience: Experience[] = [
@@ -63,39 +63,39 @@ export const experience: Experience[] = [
     location: "London",
     timeframe: "May 2022 – Present",
     summary:
-      "Founding director of a boutique consultancy delivering observability, SRE, and platform engineering leadership for retail and data-driven organisations.",
+      "Provide observability, platform, and DevOps consulting to retail and data-driven organisations as a solo practitioner.",
     achievements: [
-      "Directed JD Sports' 2023 peak-season observability rollout: unified 120+ services into New Relic dashboards, halving MTTR and protecting £85m Black Friday revenue.",
-      "Embedded with Kingfisher's 40-person Big Data organisation to codify SLOs, reduce alert noise by 55%, and introduce a 24/7 rota with playbooks.",
-      "Piloted generative-AI runbooks that auto-summarised PagerDuty incidents, trimming post-incident write-up time by 60%."
+      "Delivered a New Relic observability rollout for JD Sports peak trading, including a Black Friday 2022 \"command centre\" dashboard for support teams.",
+      "Established monitoring and alerting across frontend, backend, and third-party services to strengthen incident response for contract clients.",
+      "Supported generative AI start-ups with AWS, serverless, and data pipelines, including Musicfy where observability and product analytics were instrumented with PostHog."
     ]
   },
   {
     role: "Senior AWS DevOps & Serverless Engineer",
-    company: "LEGO",
+    company: "LEGO.com",
     url: "https://www.lego.com",
     location: "London",
     timeframe: "May 2018 – May 2022",
     summary:
-      "Delivered the platform foundations that enabled LEGO.com to release faster while staying resilient during record sales peaks.",
+      "Designed and scaled LEGO.com's cloud-native platforms while safeguarding peak-season reliability.",
     achievements: [
-      "Launched 45+ serverless microservices with TypeScript, each backed by CircleCI/GitHub pipelines that lifted deployment frequency from weekly to daily.",
-      "Transitioned 30% of workloads to AWS ECS Fargate and Terraform, retiring 200+ manual change steps across the monorepo.",
-      "Drove high-severity incidents to zero during two consecutive Black Fridays via New Relic/Elasticsearch insights and an automated on-call drill programme.",
-      "Champion of developer experience: rolled out PR environments and git-tag progressive delivery, cutting lead time for changes from 5 days to 24 hours."
+      "Designed and rolled out the first serverless microservices iteration with Node.js and TypeScript, plus CI/CD for a monorepo using GitHub Actions.",
+      "Transitioned LEGO.com infrastructure to AWS ECS Fargate with Terraform-based IaC, improving deployment consistency.",
+      "Eliminated high-severity incidents during peak seasons through refined monitoring with New Relic, Elasticsearch/Kibana, PagerDuty, and an AWS Infrastructure Event Manager framework.",
+      "Optimised developer experience by modernising CI/CD tooling (Jenkins, CircleCI, GitHub Actions) and enabling git-tag-based deployments for frontend apps."
     ]
   },
   {
     role: "DevOps Engineer",
-    company: "Secret Sales",
+    company: "SecretSales",
     url: "https://www.secretsales.com",
     location: "London",
     timeframe: "Aug 2017 – May 2018",
     summary:
-      "Modernised an e-commerce flash sale platform with containerisation and actionable observability.",
+      "Introduced containerisation and actionable observability to an e-commerce flash sale platform.",
     achievements: [
-      "Rolled out Docker-based environments across local development and AWS ECS, shrinking release preparation time from 2 days to 4 hours.",
-      "Strengthened production monitoring with New Relic, CloudWatch, and PagerDuty, eliminating 70% of false alarms and stabilising a £15m annual GMV platform."
+      "Introduced Docker-based containerisation for local and AWS ECS environments using AWS CloudFormation.",
+      "Strengthened production observability with New Relic, AWS CloudWatch, and PagerDuty while supporting on-call rotations."
     ]
   },
   {
@@ -104,10 +104,11 @@ export const experience: Experience[] = [
     url: "https://www.shopological.com",
     location: "London",
     timeframe: "Aug 2016 – Aug 2017",
-    summary: "Connected shoppers with retailers by evolving the platform's reliability and automation.",
+    summary:
+      "Supported a fashion discovery platform across multi-cloud infrastructure, monitoring, and deployment pipelines.",
     achievements: [
-      "Worked across AWS, Terraform, Ansible, Rackspace, and Sensu to keep services resilient.",
-      "Improved observability pipelines with ELK and GOCD-led delivery."
+      "Maintained AWS, Terraform, Ansible, Sensu, and GOCD pipelines for PHP and Java services.",
+      "Improved platform reliability through infrastructure automation and observability enhancements."
     ]
   },
   {
@@ -116,10 +117,11 @@ export const experience: Experience[] = [
     url: "https://www.metabroadcast.com",
     location: "London",
     timeframe: "Aug 2015 – Aug 2016",
-    summary: "Supported metadata services for major UK broadcasters with dependable cloud infrastructure.",
+    summary:
+      "Operated metadata platforms for UK broadcasters with a focus on reliability engineering and automation.",
     achievements: [
-      "Built and maintained AWS and Ubuntu estates with Puppet and Sensu.",
-      "Optimised incident response across Kafka and Cassandra-backed workloads."
+      "Leveraged AWS, Puppet, Sensu, Logstash, Kafka, Cassandra, and Jenkins to support media data services.",
+      "Focused on incident response and automation to keep broadcaster workloads reliable."
     ]
   },
   {
@@ -128,17 +130,18 @@ export const experience: Experience[] = [
     url: "https://www.indracompany.com",
     location: "Whiteley, Hampshire",
     timeframe: "Apr 2012 – Aug 2015",
-    summary: "Maintained mission-critical systems for UK Air Traffic Management at NATS.",
+    summary:
+      "Supported air traffic management solutions for NATS by managing mission-critical Linux systems.",
     achievements: [
-      "Ensured high-availability Linux environments supporting national air traffic operations.",
-      "Collaborated with engineering teams to roll out resilient monitoring and automation."
+      "Applied configuration management, monitoring, and scripting to maintain high-availability environments.",
+      "Partnered with engineering teams to support reliable delivery of air traffic systems."
     ]
   }
 ];
 
 export const education = [
   {
-    name: "AWS Solutions Architect – Associate",
+    name: "AWS Solutions Architect Associate",
     institution: "Amazon Web Services",
     year: "2020"
   },
@@ -156,7 +159,7 @@ export const talks: Talk[] = [
     year: "2021 – 2022"
   },
   {
-    title: "Tag-Based Deployment for a Serverless Monorepo",
+    title: "Tag-Based Deployment for a Serverless Mono-repo",
     event: "GCS Connect",
     year: "2020",
     url: "https://www.youtube.com/watch?v=Dg2WcgMZ62Y"
@@ -170,24 +173,14 @@ export const talks: Talk[] = [
 
 export const volunteering = [
   {
-    name: "Scout Leader & Mentor",
+    name: "CodeYourFuture Volunteer Mentor",
     summary:
-      "A decade of scout volunteering leading camps, charity projects, and youth instructor programmes—building teamwork and resilience."
-  },
-  {
-    name: "CodeYourFuture Mentor",
-    summary:
-      "Guiding aspiring developers through cloud and DevOps modules, including a bespoke five-week introduction to DevOps."
-  },
-  {
-    name: "No Limits Solutions Consultant",
-    summary:
-      "Independent DevOps consultancy focused on observability, alerting, and GenAI-powered personal projects."
+      "Support aspiring technologists through project guidance, pair-programming sessions, and career coaching to build confidence and employability."
   }
 ];
 
 export const interests = [
-  "Community-led mentoring",
+  "Developer enablement",
   "Observability strategy",
   "Platform reliability",
   "Generative AI experiments"
