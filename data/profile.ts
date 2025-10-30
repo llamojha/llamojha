@@ -42,7 +42,7 @@ export const profile = {
   ],
   trustedBy: ["JD Sports", "LEGO.com", "Musicfy"],
   callToAction: {
-    label: "Let’s build resilient platforms together",
+    label: "Book observability & platform consulting",
     href: "mailto:hello@amllamojha.com"
   }
 };
@@ -50,7 +50,7 @@ export const profile = {
 export const expertise = [
   "AWS & Serverless Architecture",
   "Terraform & Infrastructure as Code",
-  "CI/CD Automation (CircleCI, Jenkins, GitHub Actions)",
+  "CI/CD Automation (GitHub Actions, CircleCI, Jenkins)",
   "Observability (New Relic, Elasticsearch/Kibana, PagerDuty)",
   "JavaScript/TypeScript & Node.js",
   "Generative AI Enablement"

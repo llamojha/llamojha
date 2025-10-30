@@ -127,8 +127,8 @@ export default function HomePage() {
     },
     {
       title: "Serverless delivery foundations",
-      description: "Node.js and TypeScript microservices with CircleCI pipelines powering LEGO.com releases.",
-      metric: "CircleCI pipelines for the LEGO.com monorepo"
+      description: "Node.js and TypeScript microservices with GitHub Actions pipelines powering LEGO.com releases.",
+      metric: "GitHub Actions workflows for the LEGO.com monorepo"
     }
   ];
 
