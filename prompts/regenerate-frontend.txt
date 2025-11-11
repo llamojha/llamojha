@@ -1,0 +1,68 @@
+# Prompt: Reimagine the Front-End Experience
+
+You are a world-class product designer and front-end developer tasked with rebuilding this entire application's user interface from the ground up. Keep the instructions technology-agnostic so the solution can be implemented in any modern web stack.
+
+## Core Objectives
+- Recreate every page and component in a cohesive end-to-end experience.
+- Preserve the distinctive golden-and-dark aesthetic that defines the brand.
+- Emphasize fluid motion, micro-interactions, and a dynamic background that responds subtly to user activity.
+- Ensure accessibility, responsiveness, and performance across devices.
+
+## Visual Language
+- Palette: rich gold accents contrasted against deep charcoal, onyx, and midnight gradients.
+- Typography: elegant, high-contrast pairings that convey luxury and innovation; avoid specifying exact font families, but describe the mood and weight hierarchy.
+- Iconography & Illustrations: sleek, line-based artwork with luminous highlights, complemented by softly glowing particles in the background.
+- Background: implement a continuously evolving scene (e.g., particle fields, flowing ribbons, or abstract waves) that reacts to cursor movement and scroll depth.
+
+## Layout & Navigation
+- Build a modular layout system with clear spacing rules, layered depth, and card-like sections outlined by thin golden strokes or subtle shadows.
+- Design adaptive navigation that transforms between desktop (expanded, multi-level) and mobile (collapsible, gesture-friendly) contexts.
+- Incorporate sticky micro-navigation or quick-jump menus for long-form sections.
+
+## Content Sections
+For each major surface of the app, provide detailed structure, intended content, and interaction notes:
+1. **Hero / Landing Experience**
+   - Immersive headline, subheadline, and primary call-to-action.
+   - Animated background tied to scroll or pointer.
+   - Highlighted statistics or accolades in shimmering, animated tiles.
+2. **Value Proposition Blocks**
+   - Modular cards showcasing core offerings or pillars.
+   - Hover/tap animations that elevate cards with glow effects.
+3. **Dynamic Showcases**
+   - Carousel or grid experiences with animated transitions.
+   - Include optional video or live preview zones framed by golden borders.
+4. **Testimonials & Social Proof**
+   - Layered cards with depth, using gold accents for quotes and avatars.
+   - Subtle parallax scroll to create motion.
+5. **Process / How It Works**
+   - Timeline or stepper with animated connectors.
+   - Each step reveals supplementary details on interaction.
+6. **Team Spotlight**
+   - Profiles in circular frames with illuminated rings.
+   - Hover states trigger bio overlays and soft glows.
+7. **Resource Library / Blog**
+   - Masonry or staggered grid with animated filtering.
+   - Cards expand in place to reveal summaries.
+8. **Call-to-Action & Contact**
+   - Layered panel with form elements, gold-lined inputs, and interactive submit button.
+   - Include animated background elements that intensify near the CTA.
+9. **Footer**
+   - Multi-column layout with navigation, contact, and social links.
+   - Incorporate a subtle golden waveform animation at the top edge.
+
+## Interaction & Motion Guidelines
+- Define hover, focus, and active states that use light pulses, glows, and smooth transitions.
+- Specify scroll-triggered reveals, staggered animations, and component entrance timings.
+- Describe how the dynamic background reacts to key user events (scroll depth, cursor velocity, idle states).
+
+## Accessibility & Performance
+- Outline strategies to maintain contrast ratios, focus visibility, and motion-reduction preferences.
+- Provide tips for optimizing animation performance and reducing battery drain.
+- Ensure semantic structure and keyboard navigation remain first-class.
+
+## Deliverables
+- Detailed written specification of each page and component, including layout descriptions, content placeholders, and motion behaviors.
+- Annotated wireframe or storyboard descriptions that a designer or developer can translate into high-fidelity visuals and code.
+- Style guide directives covering color tokens, spacing scale, component states, and animation principles.
+
+Craft the output so it can be handed directly to a front-end team or generative design tool to produce a luxurious, animated, golden-on-dark interface that feels immersive, modern, and premium.
