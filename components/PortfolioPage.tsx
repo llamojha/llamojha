@@ -3,31 +3,40 @@ import React, { FC } from 'react';
 import { AnimatedSection } from './AnimatedSection';
 import { ExternalLinkIcon, GithubIcon } from './Icons';
 
+type Project = {
+  title: string;
+  description: string;
+  imageUrl: string;
+  tags: string[];
+  liveUrl?: string;
+  repoUrl?: string;
+};
+
 export const PortfolioPage: FC = () => {
-  const projects = [
+  const projects: Project[] = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack serverless e-commerce website built on AWS, featuring product catalogs, user authentication, and a payment gateway.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=E-Commerce',
-      tags: ['React', 'AWS Lambda', 'DynamoDB', 'Serverless', 'Stripe'],
-      liveUrl: '#',
-      repoUrl: '#',
+      title: 'Slimelord',
+      description:
+        'An arcade-inspired browser game built with Phaser.js featuring responsive controls, dynamic enemy patterns, and crunchy pixel art.',
+      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=Slimelord',
+      tags: ['Phaser.js', 'TypeScript', 'Game Development', 'Web Audio'],
+      liveUrl: 'https://slimelord.amllamojha.com',
     },
     {
-      title: 'Observability Dashboard',
-      description: 'A real-time monitoring dashboard for cloud applications, providing insights into performance metrics, logs, and traces.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=Dashboard',
-      tags: ['TypeScript', 'New Relic', 'GraphQL', 'ECS Fargate', 'Terraform'],
-      liveUrl: '#',
-      repoUrl: '#',
+      title: 'Twitch Clips Reels',
+      description:
+        'Auto-curated video reels that highlight trending Twitch clips with shareable embeds, built to streamline creator content workflows.',
+      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=Twitch+Clips+Reels',
+      tags: ['Next.js', 'TypeScript', 'Serverless', 'Twitch API'],
+      liveUrl: 'https://twitch-reels.amllamojha.com',
     },
     {
-      title: 'AI-Powered Chatbot',
-      description: 'A customer service chatbot prototype using AWS Bedrock to provide intelligent, context-aware responses to user queries.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=AI+Chatbot',
-      tags: ['GenAI', 'AWS Bedrock', 'Python', 'React', 'WebSocket'],
-      liveUrl: '#',
-      repoUrl: '#',
+      title: 'No Vibe No Code',
+      description:
+        'A playful micro-site that blends music-driven mood checks with coding prompts to keep hackathon teams energized and aligned.',
+      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=No+Vibe+No+Code',
+      tags: ['React', 'Tailwind CSS', 'Design Systems', 'Product Strategy'],
+      liveUrl: 'https://novibenocode.amllamojha.com',
     }
   ];
 
@@ -54,16 +63,30 @@ export const PortfolioPage: FC = () => {
               </div>
               <p className="text-gray-400 text-sm leading-relaxed flex-grow mb-6">{project.description}</p>
               <div className="mt-auto flex items-center space-x-6 text-sm">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group">
-                  <ExternalLinkIcon className="w-4 h-4" />
-                  <span>Live Demo</span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group">
-                  <GithubIcon className="w-4 h-4" />
-                  <span>GitHub</span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
-                </a>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group"
+                  >
+                    <ExternalLinkIcon className="w-4 h-4" />
+                    <span>Live Demo</span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                )}
+                {project.repoUrl && (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                    <span>GitHub</span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                )}
               </div>
             </div>
           </div>
