@@ -1,33 +1,46 @@
 
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { AnimatedSection } from './AnimatedSection';
 import { ExternalLinkIcon, GithubIcon } from './Icons';
 
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  liveUrl?: string;
+  repoUrl?: string;
+  previewUrl?: string;
+  imageUrl?: string;
+};
+
 export const PortfolioPage: FC = () => {
-  const projects = [
+  const projects: Project[] = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack serverless e-commerce website built on AWS, featuring product catalogs, user authentication, and a payment gateway.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=E-Commerce',
-      tags: ['React', 'AWS Lambda', 'DynamoDB', 'Serverless', 'Stripe'],
-      liveUrl: '#',
-      repoUrl: '#',
+      title: 'Slimelord',
+      description:
+        'An arcade-inspired browser game built with Phaser.js featuring responsive controls, dynamic enemy patterns, and crunchy pixel art.',
+      tags: ['Phaser.js', 'TypeScript', 'Game Development', 'Web Audio'],
+      liveUrl: 'https://slimelord.amllamojha.com',
+      previewUrl: 'https://slimelord.amllamojha.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://slimelord.amllamojha.com/opengraph/',
     },
     {
-      title: 'Observability Dashboard',
-      description: 'A real-time monitoring dashboard for cloud applications, providing insights into performance metrics, logs, and traces.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=Dashboard',
-      tags: ['TypeScript', 'New Relic', 'GraphQL', 'ECS Fargate', 'Terraform'],
-      liveUrl: '#',
-      repoUrl: '#',
+      title: 'Twitch Clips Reels',
+      description:
+        'Auto-curated video reels that highlight trending Twitch clips with shareable embeds, built to streamline creator content workflows.',
+      tags: ['Next.js', 'TypeScript', 'Serverless', 'Twitch API'],
+      liveUrl: 'https://twitch-reels.amllamojha.com',
+      previewUrl: 'https://twitch-reels.amllamojha.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://twitch-reels.amllamojha.com/opengraph/',
     },
     {
-      title: 'AI-Powered Chatbot',
-      description: 'A customer service chatbot prototype using AWS Bedrock to provide intelligent, context-aware responses to user queries.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=AI+Chatbot',
-      tags: ['GenAI', 'AWS Bedrock', 'Python', 'React', 'WebSocket'],
-      liveUrl: '#',
-      repoUrl: '#',
+      title: 'No Vibe No Code',
+      description:
+        'A playful micro-site that blends music-driven mood checks with coding prompts to keep hackathon teams energized and aligned.',
+      tags: ['React', 'Tailwind CSS', 'Design Systems', 'Product Strategy'],
+      liveUrl: 'https://novibenocode.amllamojha.com',
+      previewUrl: 'https://novibenocode.amllamojha.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://novibenocode.amllamojha.com/opengraph/',
     }
   ];
 
@@ -42,9 +55,7 @@ export const PortfolioPage: FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
         {projects.map((project, index) => (
           <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(252,211,77,0.15)] flex flex-col">
-            <div className="relative overflow-hidden aspect-video rounded-t-xl group">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-            </div>
+            <ProjectPreview project={project} />
             <div className="p-6 flex flex-col flex-grow">
               <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -54,21 +65,112 @@ export const PortfolioPage: FC = () => {
               </div>
               <p className="text-gray-400 text-sm leading-relaxed flex-grow mb-6">{project.description}</p>
               <div className="mt-auto flex items-center space-x-6 text-sm">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group">
-                  <ExternalLinkIcon className="w-4 h-4" />
-                  <span>Live Demo</span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group">
-                  <GithubIcon className="w-4 h-4" />
-                  <span>GitHub</span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
-                </a>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group"
+                  >
+                    <ExternalLinkIcon className="w-4 h-4" />
+                    <span>Live Demo</span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                )}
+                {project.repoUrl && (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                    <span>GitHub</span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                )}
               </div>
             </div>
           </div>
         ))}
       </div>
     </AnimatedSection>
+  );
+};
+
+const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
+  const [previewState, setPreviewState] = useState<'loading' | 'ready' | 'fallback'>(
+    project.previewUrl ? 'loading' : 'fallback'
+  );
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!project.previewUrl) {
+      setPreviewState('fallback');
+      return;
+    }
+
+    setPreviewState('loading');
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setPreviewState(current => (current === 'loading' ? 'fallback' : current));
+    }, 4500);
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+  }, [project.previewUrl]);
+
+  const handlePreviewLoad = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
+    setPreviewState('ready');
+  };
+
+  return (
+    <div className="relative overflow-hidden aspect-video rounded-t-xl group bg-gray-950">
+      {project.previewUrl && previewState !== 'fallback' && (
+        <iframe
+          src={project.previewUrl}
+          title={`${project.title} live preview`}
+          loading="lazy"
+          className={`absolute inset-0 h-full w-full border-0 transition-all duration-700 ease-out pointer-events-none ${
+            previewState === 'ready' ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
+          onLoad={handlePreviewLoad}
+        />
+      )}
+
+      {project.imageUrl && (
+        <img
+          src={project.imageUrl}
+          alt={`${project.title} preview image`}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 pointer-events-none ${
+            previewState === 'ready' ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+      )}
+
+      {!project.imageUrl && previewState !== 'ready' && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
+          <span className="text-sm font-semibold uppercase tracking-widest text-amber-300">
+            {project.title}
+          </span>
+        </div>
+      )}
+
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/80 via-gray-950/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+    </div>
   );
 };
