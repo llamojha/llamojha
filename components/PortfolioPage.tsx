@@ -16,7 +16,7 @@ type Project = {
 export const PortfolioPage: FC = () => {
   const projects: Project[] = [
     {
-      title: '3GS Background Animations',
+      title: 'Pixi JS Background Animations',
       description:
         'A dedicated gallery for the Pixi.js background modes used across the homepage, featuring live previews, toggleable modes, and annotated code snippets.',
       tags: ['Pixi.js', 'TypeScript', 'Motion Design', 'Interactive Backgrounds'],
@@ -150,8 +150,10 @@ const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
     setPreviewState('ready');
   };
 
-  return (
-    <div className="relative overflow-hidden aspect-video rounded-t-xl group bg-gray-950">
+  const baseClassName = 'relative overflow-hidden aspect-video rounded-t-xl group bg-gray-950';
+
+  const previewContent = (
+    <>
       {project.previewUrl && previewState !== 'fallback' && (
         <iframe
           src={project.previewUrl}
@@ -183,6 +185,24 @@ const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
       )}
 
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/80 via-gray-950/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-    </div>
+    </>
   );
+
+  if (project.liveUrl) {
+    const isInternalLiveLink = project.liveUrl.startsWith('#/') || project.liveUrl.startsWith('/#/');
+
+    return (
+      <a
+        href={project.liveUrl}
+        target={isInternalLiveLink ? undefined : '_blank'}
+        rel={isInternalLiveLink ? undefined : 'noopener noreferrer'}
+        aria-label={`Open ${project.title} live demo`}
+        className={`${baseClassName} block focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950`}
+      >
+        {previewContent}
+      </a>
+    );
+  }
+
+  return <div className={baseClassName}>{previewContent}</div>;
 };
