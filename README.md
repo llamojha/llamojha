@@ -1,32 +1,20 @@
-# Alvaro Llamojha — Personal Site
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-Modern personal website built with Next.js 14, Tailwind CSS, and the app router. The site highlights Alvaro's DevOps, observability, and mentoring experience and is optimised for static deployment on platforms such as Vercel.
+# Run and deploy your AI Studio app
 
-## Getting Started
+This contains everything you need to run your app locally.
 
-```bash
-npm install
-npm run dev
-```
+View your app in AI Studio: https://ai.studio/apps/drive/1oGKbksmAU6mf_HjPq0Q8nU2-Kumpe3-q
 
-Visit `http://localhost:3000` to see the site in development mode.
+## Run Locally
 
-## Production Build
+**Prerequisites:**  Node.js
 
-```bash
-npm run build
-npm start
-```
 
-On Vercel, the project runs with the default Next.js build command (`npm run build`) and output (`.next`).
-
-## Tech Stack
-
-- [Next.js](https://nextjs.org/) 14 with the App Router
-- [Tailwind CSS](https://tailwindcss.com/) with the Typography plugin
-- TypeScript for type safety
-- Heroicons for lightweight iconography
-
-## Content
-
-All profile content lives in [`data/profile.ts`](data/profile.ts) for quick updates without touching layout code.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
