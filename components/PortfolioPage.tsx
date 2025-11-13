@@ -1,15 +1,16 @@
 
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { AnimatedSection } from './AnimatedSection';
 import { ExternalLinkIcon, GithubIcon } from './Icons';
 
 type Project = {
   title: string;
   description: string;
-  imageUrl: string;
   tags: string[];
   liveUrl?: string;
   repoUrl?: string;
+  previewUrl?: string;
+  imageUrl?: string;
 };
 
 export const PortfolioPage: FC = () => {
@@ -18,25 +19,28 @@ export const PortfolioPage: FC = () => {
       title: 'Slimelord',
       description:
         'An arcade-inspired browser game built with Phaser.js featuring responsive controls, dynamic enemy patterns, and crunchy pixel art.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=Slimelord',
       tags: ['Phaser.js', 'TypeScript', 'Game Development', 'Web Audio'],
       liveUrl: 'https://slimelord.amllamojha.com',
+      previewUrl: 'https://slimelord.amllamojha.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://slimelord.amllamojha.com/opengraph/',
     },
     {
       title: 'Twitch Clips Reels',
       description:
         'Auto-curated video reels that highlight trending Twitch clips with shareable embeds, built to streamline creator content workflows.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=Twitch+Clips+Reels',
       tags: ['Next.js', 'TypeScript', 'Serverless', 'Twitch API'],
       liveUrl: 'https://twitch-reels.amllamojha.com',
+      previewUrl: 'https://twitch-reels.amllamojha.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://twitch-reels.amllamojha.com/opengraph/',
     },
     {
       title: 'No Vibe No Code',
       description:
         'A playful micro-site that blends music-driven mood checks with coding prompts to keep hackathon teams energized and aligned.',
-      imageUrl: 'https://placehold.co/600x400/030712/fcd34d?text=No+Vibe+No+Code',
       tags: ['React', 'Tailwind CSS', 'Design Systems', 'Product Strategy'],
       liveUrl: 'https://novibenocode.amllamojha.com',
+      previewUrl: 'https://novibenocode.amllamojha.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://novibenocode.amllamojha.com/opengraph/',
     }
   ];
 
@@ -51,9 +55,7 @@ export const PortfolioPage: FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
         {projects.map((project, index) => (
           <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(252,211,77,0.15)] flex flex-col">
-            <div className="relative overflow-hidden aspect-video rounded-t-xl group">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-            </div>
+            <ProjectPreview project={project} />
             <div className="p-6 flex flex-col flex-grow">
               <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -93,5 +95,82 @@ export const PortfolioPage: FC = () => {
         ))}
       </div>
     </AnimatedSection>
+  );
+};
+
+const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
+  const [previewState, setPreviewState] = useState<'loading' | 'ready' | 'fallback'>(
+    project.previewUrl ? 'loading' : 'fallback'
+  );
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!project.previewUrl) {
+      setPreviewState('fallback');
+      return;
+    }
+
+    setPreviewState('loading');
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setPreviewState(current => (current === 'loading' ? 'fallback' : current));
+    }, 4500);
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+  }, [project.previewUrl]);
+
+  const handlePreviewLoad = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
+    setPreviewState('ready');
+  };
+
+  return (
+    <div className="relative overflow-hidden aspect-video rounded-t-xl group bg-gray-950">
+      {project.previewUrl && previewState !== 'fallback' && (
+        <iframe
+          src={project.previewUrl}
+          title={`${project.title} live preview`}
+          loading="lazy"
+          className={`absolute inset-0 h-full w-full border-0 transition-all duration-700 ease-out pointer-events-none ${
+            previewState === 'ready' ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
+          onLoad={handlePreviewLoad}
+        />
+      )}
+
+      {project.imageUrl && (
+        <img
+          src={project.imageUrl}
+          alt={`${project.title} preview image`}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 pointer-events-none ${
+            previewState === 'ready' ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+      )}
+
+      {!project.imageUrl && previewState !== 'ready' && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
+          <span className="text-sm font-semibold uppercase tracking-widest text-amber-300">
+            {project.title}
+          </span>
+        </div>
+      )}
+
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/80 via-gray-950/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+    </div>
   );
 };
