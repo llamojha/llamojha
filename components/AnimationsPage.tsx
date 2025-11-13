@@ -1,7 +1,7 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { AnimatedSection } from './AnimatedSection';
 import DynamicBackground from './DynamicBackground';
-import { SparklesIcon, CodeIcon } from './Icons';
+import { SparklesIcon, CodeIcon, CopyIcon, CheckCircleIcon } from './Icons';
 
 interface AnimationOption {
   id: string;
@@ -127,6 +127,50 @@ export const AnimationsPage: FC = () => {
   );
 
   const [selectedAnimation, setSelectedAnimation] = useState<AnimationOption>(animations[0]);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setCopied(false), 2000);
+
+    return () => window.clearTimeout(timeout);
+  }, [copied]);
+
+  useEffect(() => {
+    setCopied(false);
+  }, [selectedAnimation]);
+
+  const handleCopy = async () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const text = selectedAnimation.codeSnippet;
+
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+
+      setCopied(true);
+    } catch (error) {
+      console.error('Failed to copy animation snippet', error);
+    }
+  };
 
   return (
     <AnimatedSection id="animations" stagger>
@@ -191,10 +235,24 @@ export const AnimationsPage: FC = () => {
               <CodeIcon className="w-5 h-5 text-amber-300" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Core implementation snippet</h3>
-                <p className="text-xs text-gray-500">components/DynamicBackground.tsx</p>
               </div>
             </div>
-            <span className="text-[10px] uppercase tracking-widest text-gray-500">Pixi.js</span>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="inline-flex items-center gap-2 rounded-full bg-gray-800/60 px-3 py-1.5 text-xs font-medium text-amber-200 transition-colors hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
+                aria-live="polite"
+              >
+                {copied ? (
+                  <CheckCircleIcon className="h-3.5 w-3.5" />
+                ) : (
+                  <CopyIcon className="h-3.5 w-3.5" />
+                )}
+                <span>{copied ? 'Copied!' : 'Copy snippet'}</span>
+              </button>
+              <span className="text-[10px] uppercase tracking-widest text-gray-500">Pixi.js</span>
+            </div>
           </div>
           <pre className="p-6 text-sm leading-relaxed text-amber-100 overflow-x-auto whitespace-pre">
             <code>{selectedAnimation.codeSnippet}</code>
