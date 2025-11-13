@@ -216,7 +216,12 @@ const CTA: FC = () => (
             <div className="relative z-10 text-center">
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Let's Connect</h2>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-10">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out and start a conversation.</p>
-                 <a href="#" className="group relative inline-flex items-center justify-center px-10 py-4 text-xl font-semibold text-gray-900 bg-amber-300 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,211,77,0.6)]">
+                <a
+                    href="https://www.linkedin.com/in/llamojha/"
+                    className="group relative inline-flex items-center justify-center px-10 py-4 text-xl font-semibold text-gray-900 bg-amber-300 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,211,77,0.6)]"
+                    target="_blank"
+                    rel="noreferrer"
+                >
                     <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-64 group-hover:h-64"></span>
                     <span className="relative">Connect on LinkedIn</span>
                 </a>
