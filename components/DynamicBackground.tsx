@@ -6,6 +6,8 @@ declare const PIXI: any;
 
 interface DynamicBackgroundProps {
   mode: string;
+  attachToWindow?: boolean;
+  className?: string;
 }
 
 // --- Animation Setups ---
@@ -546,17 +548,22 @@ const setupStarfield = (app: any) => {
 
 
 
-const DynamicBackground: React.FC<DynamicBackgroundProps> = ({ mode }) => {
+const DynamicBackground: React.FC<DynamicBackgroundProps> = ({ mode, attachToWindow = true, className }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const appRef = useRef<any>(null);
 
   useEffect(() => {
     let isCancelled = false;
+    let resizeObserver: ResizeObserver | null = null;
 
     const cleanup = () => {
         if (appRef.current) {
             appRef.current.destroy(true, { children: true, texture: true, baseTexture: true });
             appRef.current = null;
+        }
+        if (resizeObserver) {
+            resizeObserver.disconnect();
+            resizeObserver = null;
         }
         if (canvasRef.current) {
             while (canvasRef.current.firstChild) {
@@ -570,17 +577,18 @@ const DynamicBackground: React.FC<DynamicBackgroundProps> = ({ mode }) => {
     if (!canvasRef.current || typeof PIXI === 'undefined') {
       return;
     }
-    
+
     const initAnimation = () => {
+        const containerElement = canvasRef.current;
         const app = new PIXI.Application({
-          width: window.innerWidth,
-          height: window.innerHeight,
+          width: attachToWindow ? window.innerWidth : containerElement?.clientWidth || window.innerWidth,
+          height: attachToWindow ? window.innerHeight : containerElement?.clientHeight || window.innerHeight,
           backgroundColor: 0x030712, // gray-950
-          resizeTo: window,
+          resizeTo: attachToWindow ? window : containerElement || window,
           autoDensity: true,
           resolution: window.devicePixelRatio || 1,
         });
-        
+
         if (isCancelled) {
             app.destroy(true, { children: true, texture: true, baseTexture: true });
             return;
@@ -589,9 +597,19 @@ const DynamicBackground: React.FC<DynamicBackgroundProps> = ({ mode }) => {
         appRef.current = app;
         canvasRef.current?.appendChild(app.view as unknown as Node);
 
+        if (!attachToWindow && containerElement && typeof ResizeObserver !== 'undefined') {
+            resizeObserver = new ResizeObserver((entries) => {
+                const entry = entries[0];
+                if (!entry) return;
+                const { width, height } = entry.contentRect;
+                app.renderer.resize(width, height);
+            });
+            resizeObserver.observe(containerElement);
+        }
+
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) return;
-        
+
         switch (mode) {
             case 'rain': setupCyberpunkRain(app); break;
             case 'hex': setupHexGrid(app); break;
@@ -605,16 +623,20 @@ const DynamicBackground: React.FC<DynamicBackgroundProps> = ({ mode }) => {
             default: setupCyberpunkRain(app);
         }
     };
-    
+
     initAnimation();
 
     return () => {
       isCancelled = true;
       cleanup();
     };
-  }, [mode]);
+  }, [mode, attachToWindow]);
 
-  return <div ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10" />;
+  const defaultClassName = attachToWindow
+    ? 'fixed top-0 left-0 w-full h-full -z-10 bg-gray-950'
+    : 'relative w-full h-full bg-gray-950';
+
+  return <div ref={canvasRef} className={className ? className : defaultClassName} />;
 };
 
 export default DynamicBackground;
