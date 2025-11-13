@@ -2,24 +2,83 @@
 import React, { FC } from 'react';
 import { AnimatedSection } from './AnimatedSection';
 
-const AdventDayBox: FC<{ day: number }> = ({ day }) => {
-  return (
-    <div className="group perspective-1000 cursor-pointer">
-      <div className="relative aspect-square w-full transform-style-3d transition-transform duration-500 group-hover:-translate-y-2 group-hover:rotate-x-10 group-hover:scale-105">
-        
-        {/* Main box face */}
-        <div className="absolute flex h-full w-full items-center justify-center rounded-lg bg-red-700 from-red-600 to-red-800 bg-gradient-to-br shadow-lg transform translate-z-4 overflow-hidden">
-            <span className="font-bold text-white text-4xl md:text-5xl" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)'}}>{day}</span>
-        </div>
-        
-        {/* Ribbon */}
-        <div className="absolute top-0 left-1/2 h-full w-[18%] -translate-x-1/2 transform translate-z-5 bg-amber-400 from-amber-300 to-amber-400 bg-gradient-to-b shadow-md"></div>
-        <div className="absolute top-1/2 left-0 h-[18%] w-full -translate-y-1/2 transform translate-z-5 bg-amber-400 from-amber-300 to-amber-400 bg-gradient-to-r shadow-md"></div>
-        
-        {/* 3D Sides */}
-        <div className="absolute top-0 left-0 h-full w-8 rounded-lg bg-red-900 transform rotate-y-90 -translate-x-4 origin-left"></div>
-        <div className="absolute top-0 left-0 w-full h-8 rounded-lg bg-red-800 transform rotate-x-90 translate-y-4 origin-bottom"></div>
+const dayFeatureFlags: Record<number, boolean> = {
+  1: false,
+  2: false,
+  3: false,
+  4: false,
+  5: false,
+  6: false,
+  7: false,
+  8: false,
+  9: false,
+  10: false,
+  11: false,
+  12: false,
+  13: false,
+  14: false,
+  15: false,
+  16: false,
+  17: false,
+  18: false,
+  19: false,
+  20: false,
+  21: false,
+  22: false,
+  23: false,
+  24: false,
+  25: false,
+};
 
+const AdventDayBox: FC<{ day: number; enabled: boolean }> = ({ day, enabled }) => {
+  const paddedDay = day.toString().padStart(2, '0');
+  const projectUrl = `https://day${paddedDay}.advent2025.amllamojha.com`;
+  const previewUrl = `${projectUrl}/preview.png`;
+
+  return (
+    <div className="flex flex-col items-center gap-3 text-white">
+      <div className="rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-amber-200 shadow-[0_0_18px_rgba(255,215,0,0.2)]">
+        Day {paddedDay}
+      </div>
+      <div className={`advent-gift group w-full max-w-[190px] ${enabled ? 'gift-enabled' : ''}`}>
+        <div className="gift relative w-full">
+          <div className="gift-lid">
+            <div className="gift-ribbon-vertical" />
+            <div className="gift-bow" />
+          </div>
+          <div className="gift-box">
+            <div className="gift-ribbon-vertical" />
+            <div className="gift-ribbon-horizontal" />
+            <div className={`gift-content ${enabled ? 'gift-content-open' : ''}`}>
+              {enabled ? (
+                <a
+                  href={projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-full w-full flex-col items-center justify-center gap-3 text-center"
+                >
+                  <div className="relative h-28 w-28 overflow-hidden rounded-md border border-white/20 bg-black/20 shadow-inner">
+                    <img
+                      src={previewUrl}
+                      alt={`Preview of Advent calendar project for day ${day}`}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span className="text-sm font-semibold uppercase tracking-wide text-amber-200">
+                    View Day {paddedDay}
+                  </span>
+                </a>
+              ) : (
+                <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-center">
+                  <span className="text-4xl font-bold drop-shadow-lg">🎁</span>
+                  <span className="text-xs uppercase tracking-[0.35em] text-amber-100/80">Locked</span>
+                  <span className="text-[11px] text-gray-200/70">Opens soon!</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -38,14 +97,150 @@ export const AdventCalendarPage: FC = () => {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-12 mt-20">
         {days.map(day => (
-          <AdventDayBox key={day} day={day} />
+          <AdventDayBox key={day} day={day} enabled={dayFeatureFlags[day] ?? false} />
         ))}
       </div>
        <style>{`
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        .translate-z-4 { transform: translateZ(8px); }
-        .translate-z-5 { transform: translateZ(9px); }
+        .advent-gift {
+          perspective: 1200px;
+        }
+
+        .gift {
+          aspect-ratio: 1 / 1;
+          transform-style: preserve-3d;
+          transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1);
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .gift-box,
+        .gift-lid {
+          position: absolute;
+          inset: 0;
+          border-radius: 18px;
+          overflow: hidden;
+        }
+
+        .gift-box {
+          background: linear-gradient(135deg, #b91c1c, #7f1d1d 70%);
+          box-shadow: 0 30px 60px -20px rgba(239, 68, 68, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+          transform: translateZ(-8px) translateY(12px);
+        }
+
+        .gift-lid {
+          background: linear-gradient(135deg, #dc2626, #b91c1c);
+          height: 48%;
+          transform-origin: center bottom;
+          transform: translateY(-6%) translateZ(12px);
+          box-shadow: 0 18px 35px -18px rgba(220, 38, 38, 0.7);
+        }
+
+        .gift-bow {
+          position: absolute;
+          top: -14px;
+          left: 50%;
+          width: 74px;
+          height: 74px;
+          transform: translateX(-50%) rotate(45deg);
+          background: radial-gradient(circle at 30% 30%, #facc15 0%, #fbbf24 45%, #d97706 100%);
+          border-radius: 24px;
+          box-shadow: 0 10px 25px -10px rgba(251, 191, 36, 0.7);
+          transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1), filter 0.65s ease;
+        }
+
+        .gift-ribbon-vertical,
+        .gift-ribbon-horizontal {
+          position: absolute;
+          background: linear-gradient(180deg, #fde68a, #f59e0b);
+          mix-blend-mode: screen;
+        }
+
+        .gift-ribbon-vertical {
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          width: 16%;
+          transform: translateX(-50%);
+          box-shadow: inset 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        .gift-ribbon-horizontal {
+          left: 0;
+          right: 0;
+          top: 50%;
+          height: 16%;
+          transform: translateY(-50%);
+          box-shadow: inset 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        .gift-content {
+          position: absolute;
+          inset: 16% 10% 14% 10%;
+          background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+          border-radius: 14px;
+          border: 1px solid rgba(255,255,255,0.1);
+          transform: translateZ(20px) scale(0.96);
+          transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .gift-content::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 14px;
+          background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.25), transparent 65%);
+          mix-blend-mode: screen;
+          opacity: 0;
+          transition: opacity 0.6s ease;
+        }
+
+        .gift-content-open::after {
+          opacity: 1;
+        }
+
+        .advent-gift .gift-content {
+          opacity: 0.85;
+        }
+
+        .advent-gift.gift-enabled .gift-content,
+        .advent-gift:hover .gift-content {
+          opacity: 1;
+          transform: translateZ(26px) scale(1);
+        }
+
+        .advent-gift:hover .gift,
+        .advent-gift.gift-enabled .gift {
+          transform: translateY(-18px) rotateX(16deg) rotateY(-6deg) scale(1.02);
+        }
+
+        .advent-gift:hover .gift-lid,
+        .advent-gift.gift-enabled .gift-lid {
+          transform: translateY(-120%) rotateX(82deg) translateZ(8px);
+        }
+
+        .advent-gift:hover .gift-bow,
+        .advent-gift.gift-enabled .gift-bow {
+          transform: translateX(-50%) rotate(20deg) translateY(-6px) scale(1.05);
+          filter: brightness(1.15);
+        }
+
+        .gift a {
+          text-decoration: none;
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+          }
+          50% {
+            transform: translate3d(0, -8px, 0) rotateX(4deg) rotateY(-2deg);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .gift {
+            animation-duration: 7.5s;
+          }
+        }
       `}</style>
     </AnimatedSection>
   );
