@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect, ReactNode, FC } from 'react';
 import { MenuIcon, XIcon, ArrowRightIcon, QuoteIcon, CheckCircleIcon, LinkedinIcon, TwitterIcon, GithubIcon, ArrowUpIcon } from './components/Icons';
 import { AnimatedSection } from './components/AnimatedSection';
 import { PortfolioPage } from './components/PortfolioPage';
+import { AnimationsPage } from './components/AnimationsPage';
 import { AdventCalendarPage } from './components/AdventCalendarPage';
 
 // --- Section Components ---
@@ -26,7 +27,7 @@ const Header: FC<{ currentRoute: string }> = ({ currentRoute }) => {
     let href = '';
 
     const isExternalPage = ['Projects', 'Advent Calendar'].includes(link);
-    const isOnExternalPage = currentRoute.startsWith('#/projects') || currentRoute.startsWith('#/advent-calendar');
+    const isOnExternalPage = currentRoute.startsWith('#/projects') || currentRoute.startsWith('#/advent-calendar') || currentRoute.startsWith('#/animations');
 
     if (isExternalPage) {
         href = `/#/${linkLower}`;
@@ -229,6 +230,7 @@ const Footer: FC<{ currentRoute: string }> = ({ currentRoute }) => {
         { name: 'Experience', section: 'experience' },
         { name: 'Skills', section: 'skills' },
         { name: 'Projects', section: 'projects' },
+        { name: 'Animations', section: 'animations' },
         { name: 'Advent Calendar', section: 'advent-calendar' },
         { name: 'Talks', section: 'talks' },
     ];
@@ -245,8 +247,8 @@ const Footer: FC<{ currentRoute: string }> = ({ currentRoute }) => {
                         <h4 className="font-semibold text-white mb-4">Navigation</h4>
                         <ul className="space-y-2 text-sm">
                             {navLinks.map(link => {
-                                const isExternalPage = ['projects', 'advent-calendar'].includes(link.section);
-                                const isOnExternalPage = currentRoute.startsWith('#/projects') || currentRoute.startsWith('#/advent-calendar');
+                                const isExternalPage = ['projects', 'advent-calendar', 'animations'].includes(link.section);
+                                const isOnExternalPage = currentRoute.startsWith('#/projects') || currentRoute.startsWith('#/advent-calendar') || currentRoute.startsWith('#/animations');
                                 const href = isExternalPage
                                     ? `/#/${link.section}`
                                     : (isOnExternalPage ? `/#${link.section}` : `#${link.section}`);
@@ -347,6 +349,9 @@ export default function App() {
   const renderContent = () => {
     if (route.startsWith('#/projects')) {
       return <PortfolioPage />;
+    }
+    if (route.startsWith('#/animations')) {
+      return <AnimationsPage />;
     }
     if (route.startsWith('#/advent-calendar')) {
       return <AdventCalendarPage />;

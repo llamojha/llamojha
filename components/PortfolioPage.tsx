@@ -16,6 +16,13 @@ type Project = {
 export const PortfolioPage: FC = () => {
   const projects: Project[] = [
     {
+      title: '3GS Background Animations',
+      description:
+        'A dedicated gallery for the Pixi.js background modes used across the homepage, featuring live previews, toggleable modes, and annotated code snippets.',
+      tags: ['Pixi.js', 'TypeScript', 'Motion Design', 'Interactive Backgrounds'],
+      liveUrl: '/#/animations',
+    },
+    {
       title: 'Slimelord',
       description:
         'An arcade-inspired browser game built with Phaser.js featuring responsive controls, dynamic enemy patterns, and crunchy pixel art.',
@@ -66,16 +73,21 @@ export const PortfolioPage: FC = () => {
               <p className="text-gray-400 text-sm leading-relaxed flex-grow mb-6">{project.description}</p>
               <div className="mt-auto flex items-center space-x-6 text-sm">
                 {project.liveUrl && (
+                  (() => {
+                    const isInternalLiveLink = project.liveUrl.startsWith('#/') || project.liveUrl.startsWith('/#/');
+                    return (
                   <a
                     href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={isInternalLiveLink ? '_self' : '_blank'}
+                    rel={isInternalLiveLink ? undefined : 'noopener noreferrer'}
                     className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group"
                   >
                     <ExternalLinkIcon className="w-4 h-4" />
                     <span>Live Demo</span>
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
                   </a>
+                    );
+                  })()
                 )}
                 {project.repoUrl && (
                   <a
