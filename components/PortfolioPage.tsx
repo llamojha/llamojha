@@ -50,13 +50,22 @@ export const PortfolioPage: FC = () => {
       imageUrl: 'https://v1.screenshot.11ty.dev/https://watercolor-helper.amllamojha.com',
     },
     {
+      title: 'Approve Please',
+      description:
+        'A lightweight approvals tracker to collect, review, and action requests with clear statuses and links.',
+      tags: ['Next.js', 'TypeScript', 'Productivity', 'UI/UX'],
+      liveUrl: 'https://approve-please.amllamojha.com',
+      previewUrl: 'https://approve-please.amllamojha.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://approve-please.amllamojha.com',
+    },
+    {
       title: 'No Vibe No Code',
       description:
         'A playful micro-site that blends music-driven mood checks with coding prompts to keep hackathon teams energized and aligned.',
       tags: ['React', 'Tailwind CSS', 'Design Systems', 'Product Strategy'],
-      liveUrl: 'https://novibenocode.amllamojha.com',
-      previewUrl: 'https://novibenocode.amllamojha.com',
-      imageUrl: 'https://v1.screenshot.11ty.dev/https://novibenocode.amllamojha.com/opengraph/',
+      liveUrl: 'https://www.novibenocode.com',
+      previewUrl: 'https://www.novibenocode.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://www.novibenocode.com/opengraph/',
     }
   ];
 
