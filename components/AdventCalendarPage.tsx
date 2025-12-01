@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { AnimatedSection } from './AnimatedSection';
 
 const dayFeatureFlags: Record<number, boolean> = {
-  1: false,
+  1: true,
   2: false,
   3: false,
   4: false,

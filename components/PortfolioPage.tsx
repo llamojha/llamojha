@@ -41,6 +41,15 @@ export const PortfolioPage: FC = () => {
       imageUrl: 'https://v1.screenshot.11ty.dev/https://twitch-reels.amllamojha.com/opengraph/',
     },
     {
+      title: 'Watercolor Helper',
+      description:
+        'A watercolor reference tool that generates palettes, compositions, and practice prompts to speed up painting sessions.',
+      tags: ['Next.js', 'TypeScript', 'Design Tools', 'AI-Assisted'],
+      liveUrl: 'https://watercolor-helper.amllamojha.com',
+      previewUrl: 'https://watercolor-helper.amllamojha.com',
+      imageUrl: 'https://v1.screenshot.11ty.dev/https://watercolor-helper.amllamojha.com',
+    },
+    {
       title: 'No Vibe No Code',
       description:
         'A playful micro-site that blends music-driven mood checks with coding prompts to keep hackathon teams energized and aligned.',
