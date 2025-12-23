@@ -3,6 +3,8 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { AnimatedSection } from './AnimatedSection';
 import { ExternalLinkIcon, GithubIcon } from './Icons';
 
+type Language = 'en' | 'es';
+
 type Project = {
   title: string;
   description: string;
@@ -13,74 +15,158 @@ type Project = {
   imageUrl?: string;
 };
 
-export const PortfolioPage: FC = () => {
-  const projects: Project[] = [
-    {
-      title: 'Pixi JS Background Animations',
-      description:
-        'A dedicated gallery for the Pixi.js background modes used across the homepage, featuring live previews, toggleable modes, and annotated code snippets.',
-      tags: ['Pixi.js', 'TypeScript', 'Motion Design', 'Interactive Backgrounds'],
-      liveUrl: '/#/animations',
+type Labels = {
+  liveDemo: string;
+  github: string;
+  previewAriaLabel: (title: string) => string;
+};
+
+const copy = {
+  en: {
+    title: 'Project Showcase',
+    subtitle:
+      "A selection of projects I've built, showcasing my skills in web development, cloud architecture, and DevOps.",
+    labels: {
+      liveDemo: 'Live Demo',
+      github: 'GitHub',
+      previewAriaLabel: (title: string) => `Open ${title} live demo`,
     },
-    {
-      title: 'Slimelord',
-      description:
-        'An arcade-inspired browser game built with Phaser.js featuring responsive controls, dynamic enemy patterns, and crunchy pixel art.',
-      tags: ['Phaser.js', 'TypeScript', 'Game Development', 'Web Audio'],
-      liveUrl: 'https://slimelord.amllamojha.com',
-      previewUrl: 'https://slimelord.amllamojha.com',
-      imageUrl: 'https://v1.screenshot.11ty.dev/https://slimelord.amllamojha.com/opengraph/',
+    projects: [
+      {
+        title: 'Pixi JS Background Animations',
+        description:
+          'A dedicated gallery for the Pixi.js background modes used across the homepage, featuring live previews, toggleable modes, and annotated code snippets.',
+        tags: ['Pixi.js', 'TypeScript', 'Motion Design', 'Interactive Backgrounds'],
+        liveUrl: '/#/animations',
+      },
+      {
+        title: 'Slimelord',
+        description:
+          'An arcade-inspired browser game built with Phaser.js featuring responsive controls, dynamic enemy patterns, and crunchy pixel art.',
+        tags: ['Phaser.js', 'TypeScript', 'Game Development', 'Web Audio'],
+        liveUrl: 'https://slimelord.amllamojha.com',
+        previewUrl: 'https://slimelord.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://slimelord.amllamojha.com/opengraph/',
+      },
+      {
+        title: 'Twitch Clips Reels',
+        description:
+          'Auto-curated video reels that highlight trending Twitch clips with shareable embeds, built to streamline creator content workflows.',
+        tags: ['Next.js', 'TypeScript', 'Serverless', 'Twitch API'],
+        liveUrl: 'https://twitch-reels.amllamojha.com',
+        previewUrl: 'https://twitch-reels.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://twitch-reels.amllamojha.com/opengraph/',
+      },
+      {
+        title: 'Watercolor Helper',
+        description:
+          'A watercolor reference tool that generates palettes, compositions, and practice prompts to speed up painting sessions.',
+        tags: ['Next.js', 'TypeScript', 'Design Tools', 'AI-Assisted'],
+        liveUrl: 'https://watercolor-helper.amllamojha.com',
+        previewUrl: 'https://watercolor-helper.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://watercolor-helper.amllamojha.com',
+      },
+      {
+        title: 'Approve Please',
+        description:
+          'A lightweight approvals tracker to collect, review, and action requests with clear statuses and links.',
+        tags: ['Next.js', 'TypeScript', 'Productivity', 'UI/UX'],
+        liveUrl: 'https://approve-please.amllamojha.com',
+        previewUrl: 'https://approve-please.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://approve-please.amllamojha.com',
+      },
+      {
+        title: 'No Vibe No Code',
+        description:
+          'A playful micro-site that blends music-driven mood checks with coding prompts to keep hackathon teams energized and aligned.',
+        tags: ['React', 'Tailwind CSS', 'Design Systems', 'Product Strategy'],
+        liveUrl: 'https://www.novibenocode.com',
+        previewUrl: 'https://www.novibenocode.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://www.novibenocode.com/opengraph/',
+      },
+    ] as Project[],
+  },
+  es: {
+    title: 'Vitrina de proyectos',
+    subtitle:
+      'Una seleccion de proyectos que he creado, mostrando mis habilidades en desarrollo web, arquitectura cloud y DevOps.',
+    labels: {
+      liveDemo: 'Demo en vivo',
+      github: 'GitHub',
+      previewAriaLabel: (title: string) => `Abrir demo en vivo de ${title}`,
     },
-    {
-      title: 'Twitch Clips Reels',
-      description:
-        'Auto-curated video reels that highlight trending Twitch clips with shareable embeds, built to streamline creator content workflows.',
-      tags: ['Next.js', 'TypeScript', 'Serverless', 'Twitch API'],
-      liveUrl: 'https://twitch-reels.amllamojha.com',
-      previewUrl: 'https://twitch-reels.amllamojha.com',
-      imageUrl: 'https://v1.screenshot.11ty.dev/https://twitch-reels.amllamojha.com/opengraph/',
-    },
-    {
-      title: 'Watercolor Helper',
-      description:
-        'A watercolor reference tool that generates palettes, compositions, and practice prompts to speed up painting sessions.',
-      tags: ['Next.js', 'TypeScript', 'Design Tools', 'AI-Assisted'],
-      liveUrl: 'https://watercolor-helper.amllamojha.com',
-      previewUrl: 'https://watercolor-helper.amllamojha.com',
-      imageUrl: 'https://v1.screenshot.11ty.dev/https://watercolor-helper.amllamojha.com',
-    },
-    {
-      title: 'Approve Please',
-      description:
-        'A lightweight approvals tracker to collect, review, and action requests with clear statuses and links.',
-      tags: ['Next.js', 'TypeScript', 'Productivity', 'UI/UX'],
-      liveUrl: 'https://approve-please.amllamojha.com',
-      previewUrl: 'https://approve-please.amllamojha.com',
-      imageUrl: 'https://v1.screenshot.11ty.dev/https://approve-please.amllamojha.com',
-    },
-    {
-      title: 'No Vibe No Code',
-      description:
-        'A playful micro-site that blends music-driven mood checks with coding prompts to keep hackathon teams energized and aligned.',
-      tags: ['React', 'Tailwind CSS', 'Design Systems', 'Product Strategy'],
-      liveUrl: 'https://www.novibenocode.com',
-      previewUrl: 'https://www.novibenocode.com',
-      imageUrl: 'https://v1.screenshot.11ty.dev/https://www.novibenocode.com/opengraph/',
-    }
-  ];
+    projects: [
+      {
+        title: 'Pixi JS Background Animations',
+        description:
+          'Galeria dedicada a los modos de fondo Pixi.js usados en la home, con previews en vivo, modos alternables y snippets anotados.',
+        tags: ['Pixi.js', 'TypeScript', 'Diseno de movimiento', 'Fondos interactivos'],
+        liveUrl: '/#/animations',
+      },
+      {
+        title: 'Slimelord',
+        description:
+          'Juego arcade en navegador construido con Phaser.js, controles responsivos, patrones de enemigos dinamicos y pixel art.',
+        tags: ['Phaser.js', 'TypeScript', 'Desarrollo de juegos', 'Web Audio'],
+        liveUrl: 'https://slimelord.amllamojha.com',
+        previewUrl: 'https://slimelord.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://slimelord.amllamojha.com/opengraph/',
+      },
+      {
+        title: 'Twitch Clips Reels',
+        description:
+          'Reels de video auto-curados con clips en tendencia de Twitch y embeds compartibles, pensados para creadores.',
+        tags: ['Next.js', 'TypeScript', 'Serverless', 'Twitch API'],
+        liveUrl: 'https://twitch-reels.amllamojha.com',
+        previewUrl: 'https://twitch-reels.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://twitch-reels.amllamojha.com/opengraph/',
+      },
+      {
+        title: 'Watercolor Helper',
+        description:
+          'Herramienta de referencia para acuarela que genera paletas, composiciones y ejercicios para pintar mas rapido.',
+        tags: ['Next.js', 'TypeScript', 'Herramientas de diseno', 'IA asistida'],
+        liveUrl: 'https://watercolor-helper.amllamojha.com',
+        previewUrl: 'https://watercolor-helper.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://watercolor-helper.amllamojha.com',
+      },
+      {
+        title: 'Approve Please',
+        description:
+          'Un tracker ligero de aprobaciones para recopilar, revisar y actuar solicitudes con estados claros y enlaces.',
+        tags: ['Next.js', 'TypeScript', 'Productividad', 'UI/UX'],
+        liveUrl: 'https://approve-please.amllamojha.com',
+        previewUrl: 'https://approve-please.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://approve-please.amllamojha.com',
+      },
+      {
+        title: 'No Vibe No Code',
+        description:
+          'Micro-sitio que mezcla chequeos de energia musical con prompts de codigo para mantener equipos alineados.',
+        tags: ['React', 'Tailwind CSS', 'Sistemas de diseno', 'Estrategia de producto'],
+        liveUrl: 'https://www.novibenocode.com',
+        previewUrl: 'https://www.novibenocode.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://www.novibenocode.com/opengraph/',
+      },
+    ] as Project[],
+  },
+};
+
+export const PortfolioPage: FC<{ language: Language }> = ({ language }) => {
+  const content = copy[language];
+  const projects = content.projects;
+  const labels = content.labels;
 
   return (
     <AnimatedSection id="projects" stagger>
       <div className="pt-20 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Project Showcase</h1>
-        <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-          A selection of projects I've built, showcasing my skills in web development, cloud architecture, and DevOps.
-        </p>
+        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">{content.title}</h1>
+        <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">{content.subtitle}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
         {projects.map((project, index) => (
           <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(252,211,77,0.15)] flex flex-col">
-            <ProjectPreview project={project} />
+            <ProjectPreview project={project} labels={labels} />
             <div className="p-6 flex flex-col flex-grow">
               <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -101,7 +187,7 @@ export const PortfolioPage: FC = () => {
                     className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group"
                   >
                     <ExternalLinkIcon className="w-4 h-4" />
-                    <span>Live Demo</span>
+                    <span>{labels.liveDemo}</span>
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
                   </a>
                     );
@@ -115,7 +201,7 @@ export const PortfolioPage: FC = () => {
                     className="flex items-center space-x-2 text-gray-300 hover:text-amber-300 transition-colors group"
                   >
                     <GithubIcon className="w-4 h-4" />
-                    <span>GitHub</span>
+                    <span>{labels.github}</span>
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full"></span>
                   </a>
                 )}
@@ -128,7 +214,7 @@ export const PortfolioPage: FC = () => {
   );
 };
 
-const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
+const ProjectPreview: FC<{ project: Project; labels: Labels }> = ({ project, labels }) => {
   const [previewState, setPreviewState] = useState<'loading' | 'ready' | 'fallback'>(
     project.previewUrl ? 'loading' : 'fallback'
   );
@@ -214,7 +300,7 @@ const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
         href={project.liveUrl}
         target={isInternalLiveLink ? undefined : '_blank'}
         rel={isInternalLiveLink ? undefined : 'noopener noreferrer'}
-        aria-label={`Open ${project.title} live demo`}
+        aria-label={labels.previewAriaLabel(project.title)}
         className={`${baseClassName} block focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950`}
       >
         {previewContent}
