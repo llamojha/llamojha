@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { AnimatedSection } from './AnimatedSection';
+import React, { FC } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { AnimatedSection } from "./AnimatedSection";
 
-export type Language = 'en' | 'es';
+export type Language = "en" | "es";
 
 type ArticleCopy = {
   title: string;
@@ -27,54 +27,72 @@ type Props = {
 
 const labels = {
   en: {
-    title: 'Articles',
-    subtitle: 'Notes, guides, and playbooks from the field.',
-    backToList: 'Back to articles',
-    readTimeLabel: 'Read time',
-    notFoundTitle: 'Article not found',
-    notFoundBody: 'The link might be outdated. Head back to the article list to keep exploring.',
-    notFoundCta: 'View all articles',
+    title: "Articles",
+    subtitle: "Notes, guides, and playbooks from the field.",
+    backToList: "Back to articles",
+    readTimeLabel: "Read time",
+    notFoundTitle: "Article not found",
+    notFoundBody:
+      "The link might be outdated. Head back to the article list to keep exploring.",
+    notFoundCta: "View all articles",
   },
   es: {
-    title: 'Articulos',
-    subtitle: 'Notas, guias y playbooks desde el campo.',
-    backToList: 'Volver a los articulos',
-    readTimeLabel: 'Tiempo de lectura',
-    notFoundTitle: 'Articulo no encontrado',
-    notFoundBody: 'El enlace puede estar desactualizado. Vuelve a la lista para seguir explorando.',
-    notFoundCta: 'Ver todos los articulos',
+    title: "Articulos",
+    subtitle: "Notas, guias y playbooks desde el campo.",
+    backToList: "Volver a los articulos",
+    readTimeLabel: "Tiempo de lectura",
+    notFoundTitle: "Articulo no encontrado",
+    notFoundBody:
+      "El enlace puede estar desactualizado. Vuelve a la lista para seguir explorando.",
+    notFoundCta: "Ver todos los articulos",
   },
 };
 
 const markdownComponents = {
   h2: ({ children }: { children: React.ReactNode }) => (
-    <h2 className="text-2xl md:text-3xl font-semibold text-white mt-10 mb-4">{children}</h2>
+    <h2 className="text-2xl md:text-3xl font-semibold text-white mt-10 mb-4">
+      {children}
+    </h2>
   ),
   h3: ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-xl md:text-2xl font-semibold text-white mt-8 mb-3">{children}</h3>
+    <h3 className="text-xl md:text-2xl font-semibold text-white mt-8 mb-3">
+      {children}
+    </h3>
   ),
-  p: ({ children }: { children: React.ReactNode }) => <p className="text-gray-300 leading-relaxed">{children}</p>,
+  p: ({ children }: { children: React.ReactNode }) => (
+    <p className="text-gray-300 leading-relaxed">{children}</p>
+  ),
   ul: ({ children }: { children: React.ReactNode }) => (
     <ul className="list-disc pl-6 space-y-2 text-gray-300">{children}</ul>
   ),
   ol: ({ children }: { children: React.ReactNode }) => (
     <ol className="list-decimal pl-6 space-y-2 text-gray-300">{children}</ol>
   ),
-  li: ({ children }: { children: React.ReactNode }) => <li className="leading-relaxed">{children}</li>,
+  li: ({ children }: { children: React.ReactNode }) => (
+    <li className="leading-relaxed">{children}</li>
+  ),
   blockquote: ({ children }: { children: React.ReactNode }) => (
-    <blockquote className="border-l-4 border-amber-300/60 pl-4 italic text-gray-300">{children}</blockquote>
+    <blockquote className="border-l-4 border-amber-300/60 pl-4 italic text-gray-300">
+      {children}
+    </blockquote>
   ),
   a: ({ children, href }: { children: React.ReactNode; href?: string }) => (
     <a
       href={href}
       className="text-amber-300 hover:text-amber-200 underline underline-offset-4 transition-colors"
-      target={href?.startsWith('http') ? '_blank' : undefined}
-      rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+      target={href?.startsWith("http") ? "_blank" : undefined}
+      rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
     >
       {children}
     </a>
   ),
-  code: ({ inline, children }: { inline?: boolean; children: React.ReactNode }) =>
+  code: ({
+    inline,
+    children,
+  }: {
+    inline?: boolean;
+    children: React.ReactNode;
+  }) =>
     inline ? (
       <code className="bg-gray-900/70 border border-gray-800 rounded px-1.5 py-0.5 text-amber-200 text-sm">
         {children}
@@ -83,19 +101,27 @@ const markdownComponents = {
       <code className="text-amber-200 text-sm">{children}</code>
     ),
   pre: ({ children }: { children: React.ReactNode }) => (
-    <pre className="bg-gray-900 border border-gray-800 rounded-xl p-4 overflow-x-auto">{children}</pre>
+    <pre className="bg-gray-900 border border-gray-800 rounded-xl p-4 overflow-x-auto">
+      {children}
+    </pre>
   ),
   table: ({ children }: { children: React.ReactNode }) => (
     <div className="overflow-x-auto">
-      <table className="w-full border border-gray-800 text-left text-sm">{children}</table>
+      <table className="w-full border border-gray-800 text-left text-sm">
+        {children}
+      </table>
     </div>
   ),
   thead: ({ children }: { children: React.ReactNode }) => (
     <thead className="bg-gray-900 text-gray-200">{children}</thead>
   ),
-  tbody: ({ children }: { children: React.ReactNode }) => <tbody className="text-gray-300">{children}</tbody>,
+  tbody: ({ children }: { children: React.ReactNode }) => (
+    <tbody className="text-gray-300">{children}</tbody>
+  ),
   th: ({ children }: { children: React.ReactNode }) => (
-    <th className="border border-gray-800 px-3 py-2 font-semibold">{children}</th>
+    <th className="border border-gray-800 px-3 py-2 font-semibold">
+      {children}
+    </th>
   ),
   td: ({ children }: { children: React.ReactNode }) => (
     <td className="border border-gray-800 px-3 py-2 align-top">{children}</td>
@@ -108,56 +134,58 @@ const markdownComponents = {
 
 const articles: Article[] = [
   {
-    slug: 'devto-posthog-observability',
-    date: { en: 'Dec 18, 2025', es: '18 Dic 2025' },
-    readTime: { en: '5 min', es: '5 min' },
-    externalUrl: 'https://dev.to/kirodotdev/building-my-first-kiro-power-posthog-observability-fik',
-    source: { en: 'Dev.to', es: 'Dev.to' },
+    slug: "devto-posthog-observability",
+    date: { en: "Dec 18, 2025", es: "18 Dic 2025" },
+    readTime: { en: "5 min", es: "5 min" },
+    externalUrl:
+      "https://dev.to/kirodotdev/building-my-first-kiro-power-posthog-observability-fik",
+    source: { en: "Dev.to", es: "Dev.to" },
     content: {
       en: {
-        title: 'Building My First Kiro: Power PostHog Observability',
-        summary:
-          'A build log on wiring observability workflows with PostHog.',
-        body: '',
+        title: "Building My First Kiro: Power PostHog Observability",
+        summary: "A build log on wiring observability workflows with PostHog.",
+        body: "",
       },
       es: {
-        title: 'Construyendo mi primer Kiro: observabilidad con PostHog',
+        title: "Construyendo mi primer Kiro: observabilidad con PostHog",
         summary:
-          'Registro de construccion sobre workflows de observabilidad con PostHog.',
-        body: '',
+          "Registro de construccion sobre workflows de observabilidad con PostHog.",
+        body: "",
       },
     },
   },
   {
-    slug: 'devto-no-vibe-no-code',
-    date: { en: 'Dec 3, 2025', es: '3 Dic 2025' },
-    readTime: { en: '6 min', es: '6 min' },
-    externalUrl: 'https://dev.to/kirodotdev/no-vibe-no-code-bootstrapping-ideas-o88',
-    source: { en: 'Dev.to', es: 'Dev.to' },
+    slug: "devto-no-vibe-no-code",
+    date: { en: "Dec 3, 2025", es: "3 Dic 2025" },
+    readTime: { en: "6 min", es: "6 min" },
+    externalUrl:
+      "https://dev.to/kirodotdev/no-vibe-no-code-bootstrapping-ideas-o88",
+    source: { en: "Dev.to", es: "Dev.to" },
     content: {
       en: {
-        title: 'No Vibe No Code: Bootstrapping Ideas',
+        title: "No Vibe No Code: Bootstrapping Ideas",
         summary:
-          'How the idea for No Vibe No Code took shape, from concept to execution.',
-        body: '',
+          "How the idea for No Vibe No Code took shape, from concept to execution.",
+        body: "",
       },
       es: {
-        title: 'No Vibe No Code: ideas para bootstrapping',
+        title: "No Vibe No Code: ideas para bootstrapping",
         summary:
-          'Como nacio la idea de No Vibe No Code, desde el concepto hasta la ejecucion.',
-        body: '',
+          "Como nacio la idea de No Vibe No Code, desde el concepto hasta la ejecucion.",
+        body: "",
       },
     },
   },
   {
-    slug: 'serverless-migrations',
-    date: { en: 'Oct 21, 2025', es: '21 Oct 2025' },
-    readTime: { en: '4 min', es: '4 min' },
+    slug: "serverless-migrations",
+    date: { en: "Oct 21, 2025", es: "21 Oct 2025" },
+    readTime: { en: "4 min", es: "4 min" },
     content: {
       en: {
-        title: 'From vibe coding to specs: how I started shipping bigger changes with Kiro',
+        title:
+          "From vibe coding to specs: how I started shipping bigger changes with Kiro",
         summary:
-          'Why vibe coding breaks at scale, how specs fixed the drift, and the workflow that made Kiro practical.',
+          "Why vibe coding breaks at scale, how specs fixed the drift, and the workflow that made Kiro practical.",
         body: `## My "vibe coding" phase
 
 I started vibe coding the way most of us do: I wanted momentum. I used AI mostly to revive projects I had never finished and to build a simple survival-style game. Small scope, quick feedback, instant dopamine. It was straightforward and it did the job.
@@ -223,14 +251,15 @@ If you want to explore the broader ecosystem around this workflow (beyond Kiro),
 - **Spec-Driven Development** (overview with Kiro): https://kiro.dev/blog/kiro-and-the-future-of-software-development/
 - **OpenSpec**: https://openspec.dev
 
-My takeaway: vibe coding is amazing for starting. Specs are how you finish, especially when the project is bigger than your short-term memory. And tools like Kiro make that spec loop feel natural instead of "process for process' sake."
+My takeaway: vibe coding is amazing for starting. Specs are how you finish, especially when the project is bigger than your short-term memory. Kiro keeps the loop practical and concrete, not process for its own sake.
 
 **"Stop chasing better prompts. Write a better spec."**`,
       },
       es: {
-        title: 'De vibe coding a specs: como empece a entregar cambios mas grandes con Kiro',
+        title:
+          "De vibe coding a specs: como empece a entregar cambios mas grandes con Kiro",
         summary:
-          'Por que el vibe coding se rompe a escala, como los specs reducen el drift y el flujo que hizo Kiro practico.',
+          "Por que el vibe coding se rompe a escala, como los specs reducen el drift y el flujo que hizo Kiro practico.",
         body: `## Mi fase de "vibe coding"
 
 Empece con vibe coding como casi todos: queria momentum. Use AI para revivir proyectos que nunca termine y para construir un juego sencillo tipo survival. Alcance pequeno, feedback rapido, dopamina instantanea. Funcionaba y cumplia.
@@ -279,16 +308,16 @@ Y lo grande: no es magia negra. Es un workflow.
 
 Lo que hago en la practica se ve asi:
 
-1. **Arranco de un issue / ticket de GitHub**  
+1. **Arranco de un issue / ticket de GitHub**
    Escribo issues como siempre (contexto + acceptance criteria), y le pido a Kiro que convierta ese contexto en un spec. (El PM interno escribe el contrato; Kiro ayuda a ejecutar.)
 
-2. **Spec -> tasks -> PR**  
+2. **Spec -> tasks -> PR**
    Cuando el spec esta claro, las tareas se vuelven chicas y verificables. Eso mantiene los diffs coherentes y los PRs revisables, porque no dejas que el agente "hierva el oceano".
 
-3. **Guardrails para que el agente no se vaya de paseo**  
+3. **Guardrails para que el agente no se vaya de paseo**
    Mi regla personal sigue igual: **el agente propone; yo acepto con tests.**
 
-4. **Bonus: encaje con el ecosistema AWS (especialmente infra)**  
+4. **Bonus: encaje con el ecosistema AWS (especialmente infra)**
    En mi mundo, el angulo AWS importa. Kiro puede cargar contexto especializado, como un power de AWS CDK, para no re-explicar todo cada vez.
 
 Si quieres explorar el ecosistema alrededor de este flujo (mas alla de Kiro), dos referencias utiles:
@@ -296,7 +325,7 @@ Si quieres explorar el ecosistema alrededor de este flujo (mas alla de Kiro), do
 - **Spec-Driven Development** (overview / discussions): https://www.geoffreylitt.com/2024/02/16/specs.html
 - **OpenSpec**: https://github.com/yaniv-golan/openspec
 
-Mi takeaway: vibe coding es genial para empezar. Los specs son como terminas, sobre todo cuando el proyecto es mas grande que tu memoria de corto plazo. Y herramientas como Kiro hacen que el loop de specs se sienta natural, no "proceso por proceso".
+Mi takeaway: vibe coding es genial para empezar. Los specs son como terminas, sobre todo cuando el proyecto es mas grande que tu memoria de corto plazo. Kiro mantiene el loop practico y concreto, no proceso por proceso.
 
 Si quieres una linea de cierre fuerte para el post, yo usaria:
 **"Deja de perseguir mejores prompts. Escribe un mejor contrato."**`,
@@ -304,19 +333,20 @@ Si quieres una linea de cierre fuerte para el post, yo usaria:
     },
   },
   {
-    slug: 'genai-ops',
-    date: { en: 'Sep 3, 2025', es: '3 Sep 2025' },
-    readTime: { en: '5 min', es: '5 min' },
+    slug: "genai-ops",
+    date: { en: "Sep 3, 2025", es: "3 Sep 2025" },
+    readTime: { en: "5 min", es: "5 min" },
     content: {
       en: {
-        title: 'Amplify v1 → Amplify Gen 2: why I loved v1 for hosting, why I hated it for backend, and why Gen 2 finally feels right',
+        title:
+          "Amplify v1 → Amplify Gen 2: why I loved v1 for hosting, why I hated it for backend, and why Gen 2 finally feels right",
         summary:
-          'Why v1 nailed hosting but hurt backend management, and how Gen 2 fixes the workflow with code-first backend and sandbox environments.',
+          "Why v1 nailed hosting but hurt backend management, and how Gen 2 fixes the workflow with code-first backend and sandbox environments.",
         body: `## The best thing about Amplify
 
-"For example, what I am going to say is the best thing about Amplify is how easy it is to set up a site with AWS Power Services. I like to use more AWS services and hosting to other places. It might be also easy, but then integration with AWS is not that. So I wanted to go all full on AWS. That's why I chose Amplify."
+"The best thing about Amplify is how easy it is to set up a site with AWS Power Services. I wanted to go all in on AWS."
 
-That is the core of it. I have hosted sites in other places and sure, it can be easy, but the moment you want to go deeper with AWS services, the integration story is not always there. I wanted to go full AWS without turning my personal projects into an infra project. Amplify v1 made that ridiculously simple for frontend hosting.
+That is the core of it. I have hosted sites in other places, and sure, it can be easy, but the moment you want to go deeper with AWS services, the integration story is not always there. I wanted to go full AWS without turning my personal projects into an infra project. Amplify v1 made that ridiculously simple for frontend hosting.
 
 Frontend in v1? Smooth. Repo connected, build runs, site is live. You get that "AWS power services" feeling without needing to stitch everything yourself.
 
@@ -342,7 +372,7 @@ For me, that matters because it targets the exact two things that hurt in v1:
 
 In Gen 2, backend definition lives in code. That means the backend is not a weird parallel universe; it is reviewable, diffable, and easier to reason about.
 
-This is the game changer for me because it means that I can treat backend like normal code, a similar approach as with CDK. This is what all devops are aiming for.
+This matters because it lets me treat backend like normal code, similar to how I work with CDK. That is the DevOps end goal.
 
 ### 2) Deploy and automation get a lot more DevOps-friendly
 
@@ -350,7 +380,7 @@ Gen 2 fits modern workflows better: branch-based environments, reproducible pipe
 
 Translation: I can bring Amplify into my way of working instead of reshaping my workflow around Amplify's limits.
 
-## The game changer: Cloud Sandbox environments
+## Cloud Sandbox environments
 
 Back in my time, setting up Feature Environments or Pull Request environments was always a challenge. It is not that it is impossible, it is that it is overhead. And usually that overhead lands on... you guessed it... the DevOps person.
 
@@ -358,13 +388,13 @@ Gen 2's cloud sandbox changes that dynamic completely.
 
 Now it is super easy for devs to have an AWS sandbox environment to try their app without much overhead from me (the DevOps). Each developer gets an isolated dev space to build/test/iterate without stepping on other people's work, and without turning every experiment into an ops request.
 
-This is why it is a game changer for teams:
+This removes the "DevOps gate" bottleneck for teams:
 
 - devs can spin up their own sandbox and move fast
 - it is isolated, so experimentation does not become a coordination nightmare
 - the shared environment bottleneck disappears
 
-Personally, it is the difference between me having to setup a feature environment or building a way to automate them and be able to just hand over to the devs so they can do it themselves.
+For me, it replaces manual environment setup with devs spinning up their own safely.
 
 ## My situation: I am mostly hosting-first
 
@@ -386,12 +416,12 @@ If you are coming from v1, tell me what hurt the most (auth redirects? env drift
       },
       es: {
         title:
-          'Amplify v1 → Amplify Gen 2: por que me encanto v1 para hosting, por que odie el backend, y por que Gen 2 por fin se siente bien',
+          "Amplify v1 → Amplify Gen 2: por que me encanto v1 para hosting, por que odie el backend, y por que Gen 2 por fin se siente bien",
         summary:
-          'Por que v1 era perfecto para hosting pero doloroso en backend, y como Gen 2 arregla el flujo con backend code-first y sandbox.',
+          "Por que v1 era perfecto para hosting pero doloroso en backend, y como Gen 2 arregla el flujo con backend code-first y sandbox.",
         body: `## Lo mejor de Amplify
 
-"For example, what I am going to say is the best thing about Amplify is how easy it is to set up a site with AWS Power Services. I like to use more AWS services and hosting to other places. It might be also easy, but then integration with AWS is not that. So I wanted to go all full on AWS. That's why I chose Amplify."
+"Lo mejor de Amplify es lo facil que es levantar un sitio con AWS Power Services. Queria ir full AWS."
 
 Ese es el centro del tema. He hosteado sitios en otros lugares y si, puede ser facil, pero cuando quieres ir mas profundo con servicios de AWS, la integracion no siempre esta. Yo queria ir full AWS sin convertir mis proyectos personales en un proyecto de infraestructura. Amplify v1 hizo eso absurdamente simple para hosting frontend.
 
@@ -431,7 +461,7 @@ Gen 2 encaja mejor con workflows modernos: entornos por branch, pipelines reprod
 
 Traduccion: puedo llevar Amplify a mi forma de trabajo en vez de torcer mi flujo por los limites de Amplify.
 
-## El game changer: Cloud Sandbox
+## Cloud Sandbox
 
 En mis tiempos, setear Feature Environments o Pull Request environments era siempre un desafio. No es que sea imposible, es que es overhead. Y normalmente ese overhead cae en... adivinaste... la persona de DevOps.
 
@@ -439,16 +469,13 @@ El cloud sandbox de Gen 2 cambia esa dinamica por completo.
 
 Ahora es super facil que los devs tengan un AWS sandbox para probar su app sin mucho overhead de mi lado (DevOps). Cada dev tiene un espacio aislado para construir/probar/iterar sin pisar el trabajo de los demas y sin convertir cada experimento en un "pedido a ops".
 
-Por eso es un game changer para equipos:
+Por eso elimina el cuello de botella del "DevOps gate" en los equipos:
 
 - los devs pueden levantar su propio sandbox y moverse rapido
 - es aislado, asi que la experimentacion no se vuelve un caos de coordinacion
 - desaparece el cuello de botella del entorno compartido
 
-Para mi, es la diferencia entre:
-
-- "abre un ticket y te creo un entorno"
-- y "levanta tu sandbox y rompe cosas de forma segura"
+Para mi, es pasar de crear entornos a mano a que el equipo los levante en minutos y de forma segura.
 
 ## Mi situacion: soy mas hosting-first
 
@@ -471,15 +498,16 @@ Si vienes de v1, dime que fue lo que mas dolio (auth redirects? env drift? IAM "
     },
   },
   {
-    slug: 'observability-playbook',
-    date: { en: 'Aug 11, 2025', es: '11 Ago 2025' },
-    readTime: { en: '7 min', es: '7 min' },
+    slug: "observability-playbook",
+    date: { en: "Aug 11, 2025", es: "11 Ago 2025" },
+    readTime: { en: "7 min", es: "7 min" },
     content: {
       en: {
-        title: 'Deployment patterns on AWS: from "ship to prod and pray" to controlled, low-risk deployments',
+        title:
+          'Deployment patterns on AWS: from "ship to prod and pray" to controlled, low-risk deployments',
         summary:
-          'A practical map of rolling, blue/green, and canary deployments plus a minimal checklist for safer AWS deployments.',
-        body: `Deployments are my passion, I like how releases can be automated and how they evolve over time.
+          "A practical map of rolling, blue/green, and canary deployments plus a minimal checklist for safer AWS deployments.",
+        body: `I have spent years helping teams move from manual releases to automated rollouts.
 
 Not in the "I love YAML" way (okay... sometimes), but in the practical way: helping teams move from a single server with manual releases to a setup that scales, rolls back fast, and does not make you sweat every Friday release.
 
@@ -509,9 +537,8 @@ This post is a practical map so you can:
 Rolling is the "update the fleet gradually" pattern.
 
 If you have 5 servers, you update one, then the next, then the next. You can do it:
-- one-at-a-time,
-- half-at-a-time,
-- or larger batches (percentage-based, depending on the platform).
+- one-at-a-time
+- or percentage-based batches (5% or 20% are common)
 
 In AWS CodeDeploy, those "how many at once?" knobs are built-in deployment configurations like \`CodeDeployDefault.OneAtATime\`, \`HalfAtATime\`, and \`AllAtOnce\`. ([AWS Documentation][1])
 
@@ -530,7 +557,7 @@ In AWS CodeDeploy, those "how many at once?" knobs are built-in deployment confi
 
 Blue/Green is the "two environments, one switch" pattern.
 
-You keep **Blue** (current production) running, you create **Green** (new version) next to it, validate Green, and then you flip traffic. If something smells wrong, you flip back. Smooth, fast rollback, very calm energy.
+You keep **Blue** (current production) running, you create **Green** (new version) next to it, validate Green, and then you flip traffic. If something smells wrong, you flip back. Smooth, fast rollback, low-stress rollback.
 
 For ECS specifically, AWS supports a **blue/green deployment type controlled by CodeDeploy**, where you verify the new service before sending production traffic. ([AWS Documentation][2])
 
@@ -650,10 +677,11 @@ https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configuration
 [4]: https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorial-ecs-create-appspec-file.html?utm_source=chatgpt.com "Step 2: Create the AppSpec file - AWS CodeDeploy"`,
       },
       es: {
-        title: 'Patrones de despliegue en AWS: de "subo a prod y rezo" a releases controlados y de bajo riesgo',
+        title:
+          'Patrones de despliegue en AWS: de "subo a prod y rezo" a releases controlados y de bajo riesgo',
         summary:
-          'Mapa practico de rolling, blue/green y canary, mas un checklist minimo para desplegar en AWS con menos riesgo.',
-        body: `Me importan mucho los despliegues.
+          "Mapa practico de rolling, blue/green y canary, mas un checklist minimo para desplegar en AWS con menos riesgo.",
+        body: `He pasado anos ayudando equipos a pasar de releases manuales a despliegues automatizados.
 
 No en el sentido de "amo YAML" (ok... a veces), sino en el practico: ayudar equipos a pasar de un solo servidor con releases manuales a un setup que escala, revierte rapido y no te hace sudar cada release del viernes.
 
@@ -684,8 +712,7 @@ Rolling es el patron de "actualizar la flota gradualmente".
 
 Si tienes 5 servers, actualizas uno, luego el siguiente, y asi. Puedes hacerlo:
 - uno por uno,
-- mitad por mitad,
-- o en lotes mas grandes (porcentaje, segun la plataforma).
+- por porcentajes grandes (5% o 20% son comunes).
 
 En AWS CodeDeploy, esos "cuantos a la vez?" vienen listos como configuraciones de despliegue tipo \`CodeDeployDefault.OneAtATime\`, \`HalfAtATime\` y \`AllAtOnce\`. ([AWS Documentation][1])
 
@@ -704,7 +731,7 @@ En AWS CodeDeploy, esos "cuantos a la vez?" vienen listos como configuraciones d
 
 Blue/Green es el patron de "dos entornos, un switch".
 
-Mantienes **Blue** (prod actual) corriendo, creas **Green** (nueva version) al lado, validas Green y luego mueves trafico. Si algo huele raro, vuelves atras. Rollback rapido, energia tranquila.
+Mantienes **Blue** (prod actual) corriendo, creas **Green** (nueva version) al lado, validas Green y luego mueves trafico. Si algo huele raro, vuelves atras. Rollback rapido, con menos estres.
 
 Para ECS, AWS soporta despliegue **blue/green controlado por CodeDeploy**, donde validas el servicio nuevo antes de enviar trafico de prod. ([AWS Documentation][2])
 
@@ -824,20 +851,26 @@ https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configuration
 [4]: https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorial-ecs-create-appspec-file.html?utm_source=chatgpt.com "Step 2: Create the AppSpec file - AWS CodeDeploy"`,
       },
     },
-  }
+  },
 ];
 
 export const ArticlesPage: FC<Props> = ({ route, language }) => {
-  const slug = route.replace(/^#\/article\/?/, '').trim();
-  const article = slug ? articles.find(item => item.slug === slug) : undefined;
+  const slug = route.replace(/^#\/article\/?/, "").trim();
+  const article = slug
+    ? articles.find((item) => item.slug === slug)
+    : undefined;
   const copy = labels[language];
 
   if (slug && !article) {
     return (
       <AnimatedSection id="article" stagger>
         <div className="pt-20 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">{copy.notFoundTitle}</h1>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">{copy.notFoundBody}</p>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+            {copy.notFoundTitle}
+          </h1>
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+            {copy.notFoundBody}
+          </p>
           <a
             href="/#/article"
             className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-gray-900 bg-amber-300 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(252,211,77,0.5)]"
@@ -855,20 +888,31 @@ export const ArticlesPage: FC<Props> = ({ route, language }) => {
     return (
       <AnimatedSection id="article" stagger>
         <div className="pt-20 max-w-3xl mx-auto">
-          <a href="/#/article" className="text-amber-300 hover:text-amber-200 transition-colors text-sm">
+          <a
+            href="/#/article"
+            className="text-amber-300 hover:text-amber-200 transition-colors text-sm"
+          >
             {copy.backToList}
           </a>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-3">{articleCopy.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-3">
+            {articleCopy.title}
+          </h1>
           <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-widest text-gray-500 mb-8">
             <span>{article.date[language]}</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-300/60" aria-hidden />
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-amber-300/60"
+              aria-hidden
+            />
             <span>
               {copy.readTimeLabel}: {article.readTime[language]}
             </span>
           </div>
           <p className="text-lg text-gray-300 mb-8">{articleCopy.summary}</p>
           <div className="space-y-6">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={markdownComponents}
+            >
               {articleCopy.body}
             </ReactMarkdown>
           </div>
@@ -880,31 +924,39 @@ export const ArticlesPage: FC<Props> = ({ route, language }) => {
   return (
     <AnimatedSection id="article" stagger>
       <div className="pt-20 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">{copy.title}</h1>
-        <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">{copy.subtitle}</p>
+        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+          {copy.title}
+        </h1>
+        <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+          {copy.subtitle}
+        </p>
       </div>
       <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {articles.map(item => {
+        {articles.map((item) => {
           const articleCopy = item.content[language];
           const isExternal = Boolean(item.externalUrl);
           return (
             <a
               key={item.externalUrl || item.slug}
               href={isExternal ? item.externalUrl : `/#/article/${item.slug}`}
-              target={isExternal ? '_blank' : undefined}
-              rel={isExternal ? 'noopener noreferrer' : undefined}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
               className="group bg-gray-900 border border-gray-800 rounded-xl p-6 transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(252,211,77,0.12)]"
             >
               <div className="flex items-center justify-between text-xs uppercase tracking-widest text-gray-500 mb-3">
                 <span>{item.date[language]}</span>
                 {isExternal && (
-                  <span className="text-amber-300/80">{item.source?.[language] || 'External'}</span>
+                  <span className="text-amber-300/80">
+                    {item.source?.[language] || "External"}
+                  </span>
                 )}
               </div>
               <h2 className="text-2xl font-semibold text-white mb-3 group-hover:text-amber-200 transition-colors">
                 {articleCopy.title}
               </h2>
-              <p className="text-gray-400 leading-relaxed mb-4">{articleCopy.summary}</p>
+              <p className="text-gray-400 leading-relaxed mb-4">
+                {articleCopy.summary}
+              </p>
               <div className="text-xs uppercase tracking-widest text-amber-300/80">
                 {copy.readTimeLabel}: {item.readTime[language]}
               </div>
