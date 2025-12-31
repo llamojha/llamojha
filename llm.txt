@@ -1,0 +1,20 @@
+# Alvaro Llamojha — Portfolio
+
+## Summary
+Personal portfolio for Alvaro Llamojha, a DevOps and observability engineer. The site highlights experience, skills, talks, projects, animations, and selected articles.
+
+## Key Pages
+- https://amllamojha.com/
+- https://amllamojha.com/#/projects
+- https://amllamojha.com/#/animations
+- https://amllamojha.com/#/article
+- https://amllamojha.com/#/article/serverless-migrations
+- https://amllamojha.com/#/article/genai-ops
+- https://amllamojha.com/#/article/observability-playbook
+
+## Content Notes
+- Articles are available in English and Spanish on-page.
+- Some listed articles are external links to Dev.to.
+
+## Contact
+- Email: mailto:hello@amllamojha.com
