@@ -11,7 +11,7 @@ if (!rootElement) {
 }
 
 const Main = () => {
-  const [animationMode, setAnimationMode] = useState('rain');
+  const [animationMode, setAnimationMode] = useState('plexus');
 
   return (
     <React.StrictMode>
