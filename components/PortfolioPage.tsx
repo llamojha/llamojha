@@ -40,6 +40,15 @@ const copy = {
         liveUrl: '/#/animations',
       },
       {
+        title: 'KiroHub',
+        description:
+          'Discover and reuse community-proven Hooks, Steering, MCP, and Powers for Kiro-powered workflows.',
+        tags: ['Kiro', 'Community', 'AI Workflows', 'Developer Tooling'],
+        liveUrl: 'https://kirohub.dev',
+        previewUrl: 'https://kirohub.dev',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://kirohub.dev',
+      },
+      {
         title: 'Slimelord',
         description:
           'An arcade-inspired browser game built with Phaser.js featuring responsive controls, dynamic enemy patterns, and crunchy pixel art.',
@@ -102,6 +111,15 @@ const copy = {
           'Galeria dedicada a los modos de fondo Pixi.js usados en la home, con previews en vivo, modos alternables y snippets anotados.',
         tags: ['Pixi.js', 'TypeScript', 'Diseno de movimiento', 'Fondos interactivos'],
         liveUrl: '/#/animations',
+      },
+      {
+        title: 'KiroHub',
+        description:
+          'Directorio para descubrir y reutilizar Hooks, Steering, MCP y Powers validados por la comunidad.',
+        tags: ['Kiro', 'Comunidad', 'Flujos de IA', 'Herramientas dev'],
+        liveUrl: 'https://kirohub.dev',
+        previewUrl: 'https://kirohub.dev',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://kirohub.dev',
       },
       {
         title: 'Slimelord',

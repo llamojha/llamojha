@@ -134,6 +134,27 @@ const markdownComponents = {
 
 const articles: Article[] = [
   {
+    slug: "devto-stop-vibecoding-ai-monoliths",
+    date: { en: "Jan 5, 2026", es: "5 Ene 2026" },
+    readTime: { en: "4 min", es: "4 min" },
+    externalUrl: "https://dev.to/llamojha/stop-vibecoding-ai-monoliths-295g",
+    source: { en: "Dev.to", es: "Dev.to" },
+    content: {
+      en: {
+        title: "Stop Vibecoding AI Monoliths",
+        summary:
+          "A practical take on avoiding AI-driven monoliths by structuring work into smaller, reusable pieces.",
+        body: "",
+      },
+      es: {
+        title: "Deten los monolitos de IA por vibe coding",
+        summary:
+          "Una guia practica para evitar monolitos de IA y volver a piezas pequenas y reutilizables.",
+        body: "",
+      },
+    },
+  },
+  {
     slug: "devto-posthog-observability",
     date: { en: "Dec 18, 2025", es: "18 Dic 2025" },
     readTime: { en: "5 min", es: "5 min" },
