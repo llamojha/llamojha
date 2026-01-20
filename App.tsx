@@ -5,6 +5,7 @@ import { AnimatedSection } from './components/AnimatedSection';
 import { PortfolioPage } from './components/PortfolioPage';
 import { AnimationsPage } from './components/AnimationsPage';
 import { ArticlesPage, type Language } from './components/ArticlesPage';
+import { RetroPage } from './components/RetroPage';
 
 type NavLink = {
   label: string;
@@ -640,6 +641,9 @@ export default function App() {
   }, []);
 
   const renderContent = () => {
+    if (route.startsWith('#/retro')) {
+      return <RetroPage />;
+    }
     if (route.startsWith('#/projects')) {
       return <PortfolioPage language={language} />;
     }
@@ -652,22 +656,23 @@ export default function App() {
     return <HomePage content={copy[language]} />;
   };
 
+  const isRetroPage = route.startsWith('#/retro');
   const navLinks = copy[language].navLinks;
   
   return (
     <div className="text-white min-h-screen">
-      <Header
+      {!isRetroPage && <Header
         currentRoute={route}
         navLinks={navLinks}
         language={language}
         onLanguageChange={setLanguage}
         languageLabel={copy[language].languageLabel}
-      />
+      />}
       <main>
         {renderContent()}
       </main>
-      <Footer currentRoute={route} navLinks={navLinks} content={copy[language].footer}/>
-      <BackToTopButton />
+      {!isRetroPage && <Footer currentRoute={route} navLinks={navLinks} content={copy[language].footer}/>}
+      {!isRetroPage && <BackToTopButton />}
     </div>
   );
 }
