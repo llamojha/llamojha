@@ -33,6 +33,15 @@ const copy = {
     },
     projects: [
       {
+        title: 'Waypoint',
+        description:
+          'A persistent sandbox RPG where skills replace classes and the world remembers your choices. Explore Summerland Island with no DM required.',
+        tags: ['RPG', 'AI-Powered', 'Interactive Fiction', 'Game Design'],
+        liveUrl: 'https://waypoint.amllamojha.com',
+        previewUrl: 'https://waypoint.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://waypoint.amllamojha.com',
+      },
+      {
         title: 'Pixi JS Background Animations',
         description:
           'A dedicated gallery for the Pixi.js background modes used across the homepage, featuring live previews, toggleable modes, and annotated code snippets.',
@@ -105,6 +114,15 @@ const copy = {
       previewAriaLabel: (title: string) => `Abrir demo en vivo de ${title}`,
     },
     projects: [
+      {
+        title: 'Waypoint',
+        description:
+          'Un RPG sandbox persistente donde las habilidades reemplazan las clases y el mundo recuerda tus decisiones. Explora la isla Summerland sin necesidad de DM.',
+        tags: ['RPG', 'IA', 'Ficción interactiva', 'Diseño de juegos'],
+        liveUrl: 'https://waypoint.amllamojha.com',
+        previewUrl: 'https://waypoint.amllamojha.com',
+        imageUrl: 'https://v1.screenshot.11ty.dev/https://waypoint.amllamojha.com',
+      },
       {
         title: 'Pixi JS Background Animations',
         description:

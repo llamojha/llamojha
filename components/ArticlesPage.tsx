@@ -18,6 +18,9 @@ type Article = {
   content: { en: ArticleCopy; es: ArticleCopy };
   externalUrl?: string;
   source?: { en: string; es: string };
+  thumbnail?: string;
+  pdfUrl?: string;
+  downloadUrl?: string;
 };
 
 type Props = {
@@ -133,6 +136,95 @@ const markdownComponents = {
 };
 
 const articles: Article[] = [
+  {
+    slug: "kiro-context-engineering",
+    date: { en: "Mar 19, 2026", es: "19 Mar 2026" },
+    readTime: { en: "Slides", es: "Diapositivas" },
+    thumbnail: "/kiro-context-engineering-preview.png",
+    pdfUrl: "/kiro-context-engineering.pdf",
+    downloadUrl: "/kiro-context-engineering.pptx",
+    source: { en: "Presentation", es: "Presentación" },
+    content: {
+      en: {
+        title: "Kiro Context Engineering",
+        summary:
+          "A presentation on context engineering with Kiro — steering files, specs, and hooks for AI-assisted development.",
+        body: "",
+      },
+      es: {
+        title: "Kiro Context Engineering",
+        summary:
+          "Una presentación sobre ingeniería de contexto con Kiro — archivos de dirección, specs y hooks para desarrollo asistido por IA.",
+        body: "",
+      },
+    },
+  },
+  {
+    slug: "aws-builders-como-sacar-maximo-partido-kiro",
+    date: { en: "Mar 16, 2026", es: "16 Mar 2026" },
+    readTime: { en: "10 min", es: "10 min" },
+    externalUrl:
+      "https://dev.to/aws-builders/como-sacar-el-maximo-partido-a-kiro-4i00",
+    source: { en: "Dev.to", es: "Dev.to" },
+    content: {
+      en: {
+        title: "How to Get the Most Out of Kiro",
+        summary:
+          "A deep dive into Kiro's ecosystem — steerings, hooks, MCPs, powers, agents, and how they all fit together.",
+        body: "",
+      },
+      es: {
+        title: "Cómo sacar el máximo partido a Kiro",
+        summary:
+          "Un recorrido por el ecosistema de Kiro — steerings, hooks, MCPs, powers, agentes y cómo encajan todas las piezas.",
+        body: "",
+      },
+    },
+  },
+  {
+    slug: "aws-builders-nova-agent-manager",
+    date: { en: "Feb 10, 2026", es: "10 Feb 2026" },
+    readTime: { en: "5 min", es: "5 min" },
+    externalUrl:
+      "https://builder.aws.com/content/39TlwWxgPcIawL93p5UAcE0vSjT/nova-agent-manager-interface-a-nova-powered-command-centre-for-coding-agents",
+    source: { en: "AWS Community", es: "AWS Community" },
+    content: {
+      en: {
+        title: "Nova Agent Manager Interface",
+        summary:
+          "A Nova-powered command centre for coding agents — managing and orchestrating AI agents from a single interface.",
+        body: "",
+      },
+      es: {
+        title: "Nova Agent Manager Interface",
+        summary:
+          "Un centro de mando impulsado por Nova para agentes de código — gestionando y orquestando agentes de IA desde una sola interfaz.",
+        body: "",
+      },
+    },
+  },
+  {
+    slug: "devto-kiro-cli-raspberry-pi-400",
+    date: { en: "Jan 15, 2026", es: "15 Ene 2026" },
+    readTime: { en: "4 min", es: "4 min" },
+    externalUrl:
+      "https://dev.to/kirodotdev/running-kiro-cli-from-a-raspberry-pi-400-4d2h",
+    source: { en: "Dev.to", es: "Dev.to" },
+    content: {
+      en: {
+        title: "Running Kiro CLI from a Raspberry Pi 400",
+        summary:
+          "Setting up and running Kiro CLI on a Raspberry Pi 400 — from SIGILL crashes to a working ARM64 setup.",
+        body: "",
+      },
+      es: {
+        title: "Ejecutando Kiro CLI desde una Raspberry Pi 400",
+        summary:
+          "Configurando y ejecutando Kiro CLI en una Raspberry Pi 400 — desde errores SIGILL hasta una instalación ARM64 funcional.",
+        body: "",
+      },
+    },
+  },
   {
     slug: "devto-stop-vibecoding-ai-monoliths",
     date: { en: "Jan 5, 2026", es: "5 Ene 2026" },
@@ -929,14 +1021,34 @@ export const ArticlesPage: FC<Props> = ({ route, language }) => {
             </span>
           </div>
           <p className="text-lg text-gray-300 mb-8">{articleCopy.summary}</p>
-          <div className="space-y-6">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={markdownComponents}
-            >
-              {articleCopy.body}
-            </ReactMarkdown>
-          </div>
+          {article.pdfUrl ? (
+            <div className="space-y-6">
+              <iframe
+                src={article.pdfUrl}
+                className="w-full rounded-lg border border-gray-800"
+                style={{ height: "80vh" }}
+                title={articleCopy.title}
+              />
+              {article.downloadUrl && (
+                <a
+                  href={article.downloadUrl}
+                  download
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-gray-900 bg-amber-300 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(252,211,77,0.5)]"
+                >
+                  ⬇ {language === "en" ? "Download PPTX" : "Descargar PPTX"}
+                </a>
+              )}
+            </div>
+          ) : (
+            <div className="space-y-6">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={markdownComponents}
+              >
+                {articleCopy.body}
+              </ReactMarkdown>
+            </div>
+          )}
         </div>
       </AnimatedSection>
     );
@@ -964,9 +1076,16 @@ export const ArticlesPage: FC<Props> = ({ route, language }) => {
               rel={isExternal ? "noopener noreferrer" : undefined}
               className="group bg-gray-900 border border-gray-800 rounded-xl p-6 transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(252,211,77,0.12)]"
             >
+              {item.thumbnail && (
+                <img
+                  src={item.thumbnail}
+                  alt={articleCopy.title}
+                  className="w-full rounded-lg mb-4 object-cover"
+                />
+              )}
               <div className="flex items-center justify-between text-xs uppercase tracking-widest text-gray-500 mb-3">
                 <span>{item.date[language]}</span>
-                {isExternal && (
+                {item.source && (
                   <span className="text-amber-300/80">
                     {item.source?.[language] || "External"}
                   </span>
