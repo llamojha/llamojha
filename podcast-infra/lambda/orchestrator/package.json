@@ -1,0 +1,10 @@
+{
+  "name": "podcast-orchestrator",
+  "version": "1.0.0",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.600.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.600.0",
+    "@aws-sdk/client-polly": "^3.600.0",
+    "gray-matter": "^4.0.3"
+  }
+}
