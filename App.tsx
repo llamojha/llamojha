@@ -6,6 +6,7 @@ import { PortfolioPage } from './components/PortfolioPage';
 import { AnimationsPage } from './components/AnimationsPage';
 import { ArticlesPage, type Language } from './components/ArticlesPage';
 import { RetroPage } from './components/RetroPage';
+import { PodcastsPage } from './components/PodcastsPage';
 
 type NavLink = {
   label: string;
@@ -21,6 +22,7 @@ const copy = {
       { label: 'Projects', section: 'projects', type: 'route' },
       { label: 'Animations', section: 'animations', type: 'route' },
       { label: 'Articles', section: 'article', type: 'route' },
+      { label: 'Podcasts', section: 'podcasts', type: 'route' },
       { label: 'Talks', section: 'talks', type: 'section' },
       { label: 'Contact', section: 'contact', type: 'section' },
     ] as NavLink[],
@@ -652,6 +654,9 @@ export default function App() {
     }
     if (route.startsWith('#/article')) {
       return <ArticlesPage route={route} language={language} />;
+    }
+    if (route.startsWith('#/podcasts')) {
+      return <PodcastsPage onBack={() => window.location.hash = ''} />;
     }
     return <HomePage content={copy[language]} />;
   };
