@@ -656,7 +656,7 @@ export default function App() {
       return <ArticlesPage route={route} language={language} />;
     }
     if (route.startsWith('#/podcasts')) {
-      return <PodcastsPage onBack={() => window.location.hash = ''} />;
+      return <PodcastsPage route={route} language={language} />;
     }
     return <HomePage content={copy[language]} />;
   };
