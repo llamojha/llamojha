@@ -137,6 +137,157 @@ const markdownComponents = {
 
 const articles: Article[] = [
   {
+    slug: "claude-managed-agents-vs-bedrock-agentcore",
+    date: { en: "Apr 13, 2026", es: "13 Abr 2026" },
+    readTime: { en: "6 min", es: "6 min" },
+    content: {
+      en: {
+        title: "Claude Managed Agents vs Amazon Bedrock AgentCore",
+        summary:
+          "A comparison of two approaches to Agents as a Service — Anthropic's managed Claude worker runtime vs AWS's modular agent platform.",
+        body: `![Claude Managed Agents vs Amazon Bedrock AgentCore](/claude-vs-agentcore.png)
+
+I've come to realise that building a good and secure agent is not straightforward, it relies on a good harness and good infrastructure. It needs a runtime, isolation boundaries, session handling, recovery logic, credential management, observability, and some workable approach to governance once more than one team starts building them. The scaffolding required to make that agent do real work safely and reliably.
+
+That is a lot of work and a lot of moving pieces, and why should you do it yourself when someone else can handle it for you? This is where Agents as a Service come in.
+
+Anthropic recently announced [**Claude Managed Agents**](https://platform.claude.com/docs/en/managed-agents/overview) and AWS had its own solution already [**Amazon Bedrock AgentCore**](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html).
+
+They are both responses to the same problem, but they solve it from different starting assumptions. Anthropic is packaging a managed **Claude-native worker runtime**. AWS is packaging a **modular platform of agent infrastructure services**. One is closer to managing the worker itself. The other is closer to managing the factory around the worker.
+
+## Claude Managed Agents
+
+![Claude Managed Agents](/claude-managed-agents-diagram.png)
+
+[Claude Managed Agents](https://www.anthropic.com/engineering/managed-agents) is Anthropic's answer to Agent as a Service. The product is opinionated by design. Instead of exposing a set of low-level infrastructure building blocks and asking users to assemble them, Anthropic gives you a managed runtime for running a Claude-based agent over time.
+
+The important part in here is that Anthropic is taking ownership of the runtime concerns around the agent itself. Session handling, execution flow, the harness around the model, and the relationship between long-running work and the execution environment are treated as part of the managed product.
+
+Architecturally, this is where Anthropic's approach stands out. The system separates the orchestration layer from the tool execution environment and persistent session state. In practice, that means the session can outlive the specific container doing the work. If execution fails or a container dies, the agent does not have to lose the whole thread of work with it.
+
+This approach reduces the amount of infrastructure a team has to build before the agent becomes useful. You are closer to a working system earlier. It also means you are buying into Anthropic's way of structuring agent execution. That is the trade-off here. You get speed and a more integrated runtime, but the abstraction is more opinionated and more tightly coupled to the Claude ecosystem.
+
+If your team is already committed to Claude (and only to Claude) and wants the shortest path from prototype to production, that is exactly the appeal.
+
+## Amazon Bedrock AgentCore
+
+![Amazon Bedrock AgentCore](/agentcore-diagram.png)
+
+AWS is not really trying to package the entire agent experience into one tightly integrated harness. Instead, it does what it knows best. It is building a broader system of services around the operational realities of agents. [Runtime](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-how-it-works.html) is part of that system, but it is not the whole story. Around it, AWS has added [Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/how-it-works.html), [Gateway](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-core-concepts.html), [Identity](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity-overview.html), [Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html), Policy, [Browser](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-tool.html), [Code Interpreter](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/code-interpreter-tool.html), and [Registry](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/registry.html).
+
+It assumes that production agent systems have multiple distinct concerns, and those concerns should have separate surfaces, separate controls, and separate service boundaries. Runtime handles execution. Identity handles authentication and authorization. Gateway helps expose tools and services in a cleaner way, including MCP-oriented patterns. Memory deals with short-term and longer-lived context. Observability and Policy exist because once agents start taking actions, inspection and guardrails stop being optional. [Registry](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/registry.html) exists because once multiple teams start building agents, tools, prompts, and workflows, discovery and governance become real platform problems.
+
+It is worth mentioning that while you can use Amazon Bedrock catalogue of models (including Claude models), you can also [bring your own model](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/using-any-model.html) and integrate it into the runtime. This gives you the flexibility you need in an era where a new model seems to appear every week.
+
+So, while Claude Managed Agents feels like a managed worker runtime, AgentCore feels more like a platform substrate for agent systems. It is less about hiding the moving parts and more about standardizing them.
+
+That makes it a better fit for teams that already think in platform terms, care about explicit boundaries, or need their agent stack to sit naturally inside broader AWS operations.
+
+## Pricing reflects the philosophy
+
+In [Claude Managed Agents pricing](https://platform.claude.com/docs/en/about-claude/pricing), you pay for model usage, and on top of that Anthropic charges a session-based runtime fee while the agent is actively running. Claude Managed Agents keeps pricing relatively simple: you pay the normal Claude token rates, plus **$0.08 per active session-hour** while the agent is running, which makes it easier to estimate from the outside because the extra runtime cost is tied to the session itself rather than broken into infrastructure-style units.
+
+[Amazon Bedrock AgentCore pricing](https://aws.amazon.com/bedrock/agentcore/pricing/) is more granular and more AWS-like. You pay for model inference separately, and then pay infrastructure-style pricing for Runtime at **$0.0895 per vCPU-hour** and **$0.00945 per GB-hour**, with other services such as Gateway and Memory billed by usage as needed.
+
+## Which one actually fits better
+
+This is not a winner-takes-all comparison. The better product depends on where you want the abstraction boundary to sit.
+
+If you want the provider to manage the worker, Claude Managed Agents is closer to that model. Anthropic owns more of the harness, the session lifecycle, and the execution flow. That is attractive when speed matters, when you already trust the Claude stack, and when your main goal is to get a capable Claude-based worker into production without building too much surrounding infrastructure yourself.
+
+If you want the provider to manage the factory around the worker, AgentCore is closer to that model. AWS gives you a broader set of services for runtime, memory, identity, gateway, observability, policy, and discovery. That is a better fit for environments where those concerns need to be explicit, separate, and governable.
+
+So the real decision is not whether one product is universally better. The real decision is whether you want a more opinionated managed runtime or a more modular agent platform.
+
+If you want a managed Claude worker runtime, Claude Managed Agents is the cleaner answer.
+If you want a modular enterprise platform for agents, AgentCore is the stronger answer.
+
+## Conclusion
+
+Managed agent services are becoming important for the same reason managed databases, serverless runtimes, and managed messaging systems became important. Teams do not want to keep rebuilding the substrate around the thing they actually care about.
+
+In the case of agents, that substrate includes execution, isolation, sessions, tools, credentials, observability, memory, policy, identity, and governance. That is the space both Claude Managed Agents and Amazon Bedrock AgentCore are trying to own.
+
+Claude Managed Agents reduces complexity by owning more of the runtime harness itself.
+
+Amazon Bedrock AgentCore reduces complexity by standardizing the surrounding services as a platform.
+
+One is giving you a managed Claude worker.
+The other is giving you a modular enterprise platform for agents.`,
+      },
+      es: {
+        title: "Claude Managed Agents vs Amazon Bedrock AgentCore",
+        summary:
+          "Una comparación de dos enfoques de Agents as a Service — el runtime gestionado de Anthropic vs la plataforma modular de AWS.",
+        body: `## El Problema que Ambos Resuelven
+
+Construir un agente bueno y seguro no es sencillo. Requiere un buen harness e infraestructura — runtime, límites de aislamiento, manejo de sesiones, lógica de recuperación, gestión de credenciales, observabilidad y gobernanza cuando más de un equipo empieza a construirlos.
+
+Es mucho trabajo. ¿Por qué hacerlo tú mismo cuando alguien más puede manejarlo? Aquí es donde entra Agents as a Service.
+
+Anthropic anunció recientemente [**Claude Managed Agents**](https://www.anthropic.com/engineering/managed-agents) y AWS tiene [**Amazon Bedrock AgentCore**](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html).
+
+Resuelven el mismo problema desde diferentes supuestos. Anthropic empaqueta un **runtime de worker nativo de Claude**. AWS empaqueta una **plataforma modular de servicios de infraestructura para agentes**. Uno gestiona el worker. El otro gestiona la fábrica alrededor del worker.
+
+## Claude Managed Agents
+
+[Claude Managed Agents](https://www.anthropic.com/engineering/managed-agents) es la respuesta de Anthropic a Agent as a Service. El producto es opinionado por diseño. En lugar de exponer bloques de infraestructura de bajo nivel, Anthropic te da un runtime gestionado para ejecutar un agente basado en Claude.
+
+Anthropic toma propiedad de las preocupaciones del runtime: manejo de sesiones, flujo de ejecución, el harness alrededor del modelo y la relación entre trabajo de larga duración y el entorno de ejecución.
+
+Arquitectónicamente, el sistema separa la capa de orquestación del entorno de ejecución de herramientas y el estado persistente de sesión. La sesión puede sobrevivir al contenedor específico haciendo el trabajo. Si la ejecución falla o un contenedor muere, el agente no pierde todo el hilo de trabajo.
+
+Esto reduce la infraestructura que un equipo tiene que construir antes de que el agente sea útil. Obtienes velocidad y un runtime más integrado, pero la abstracción es más opinionada y acoplada al ecosistema Claude.
+
+Si tu equipo ya está comprometido con Claude y quiere el camino más corto de prototipo a producción, ese es exactamente el atractivo.
+
+## Amazon Bedrock AgentCore
+
+AWS no intenta empaquetar toda la experiencia del agente en un harness integrado. En cambio, construye un sistema más amplio de servicios alrededor de las realidades operativas de los agentes.
+
+[Runtime](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-how-it-works.html) es parte de ese sistema, pero no toda la historia. Alrededor, AWS ha añadido [Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/how-it-works.html), [Gateway](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-core-concepts.html), [Identity](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity-overview.html), [Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html), Policy, [Browser](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-tool.html), [Code Interpreter](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/code-interpreter-tool.html) y [Registry](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/registry.html).
+
+Asume que los sistemas de agentes en producción tienen múltiples preocupaciones distintas que deberían tener superficies, controles y límites de servicio separados:
+- **Runtime** maneja la ejecución
+- **Identity** maneja autenticación y autorización
+- **Gateway** expone herramientas y servicios, incluyendo patrones orientados a MCP
+- **Memory** maneja contexto de corto y largo plazo
+- **Observability y Policy** existen porque una vez que los agentes toman acciones, la inspección y los guardrails dejan de ser opcionales
+- **Registry** existe porque una vez que múltiples equipos construyen agentes, el descubrimiento y la gobernanza se vuelven problemas reales de plataforma
+
+Puedes usar el catálogo de modelos de Amazon Bedrock (incluyendo Claude), o [traer tu propio modelo](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/using-any-model.html). Esto da flexibilidad en una era donde aparece un nuevo modelo cada semana.
+
+AgentCore se siente más como un sustrato de plataforma para sistemas de agentes. Se trata menos de ocultar las partes móviles y más de estandarizarlas. Eso lo hace mejor para equipos que piensan en términos de plataforma, les importan los límites explícitos, o necesitan que su stack de agentes encaje naturalmente dentro de operaciones AWS más amplias.
+
+## El Pricing Refleja la Filosofía
+
+En [pricing de Claude Managed Agents](https://platform.claude.com/docs/en/about-claude/pricing), pagas por uso del modelo más una tarifa de runtime basada en sesión. Tarifas de tokens de Claude más **$0.08 por hora de sesión activa**. Simple de estimar porque el costo extra de runtime está atado a la sesión misma.
+
+[Pricing de Amazon Bedrock AgentCore](https://aws.amazon.com/bedrock/agentcore/pricing/) es más granular y estilo AWS. Pagas por inferencia del modelo por separado, luego pricing estilo infraestructura para Runtime a **$0.0895 por vCPU-hora** y **$0.00945 por GB-hora**, con Gateway y Memory facturados por uso según sea necesario.
+
+## Cuál Encaja Mejor
+
+Esta no es una comparación de ganador absoluto. El mejor producto depende de dónde quieras que esté el límite de abstracción.
+
+**Si quieres que el proveedor gestione el worker** — Claude Managed Agents está más cerca de ese modelo. Anthropic posee más del harness, ciclo de vida de sesión y flujo de ejecución. Atractivo cuando la velocidad importa, cuando confías en el stack de Claude, y cuando tu objetivo es poner un worker capaz basado en Claude en producción sin construir infraestructura circundante.
+
+**Si quieres que el proveedor gestione la fábrica alrededor del worker** — AgentCore está más cerca de ese modelo. AWS te da un conjunto más amplio de servicios para runtime, memoria, identidad, gateway, observabilidad, política y descubrimiento. Mejor para entornos donde esas preocupaciones necesitan ser explícitas, separadas y gobernables.
+
+## Conclusión
+
+Los servicios de agentes gestionados se están volviendo importantes por la misma razón que las bases de datos gestionadas, runtimes serverless y sistemas de mensajería gestionados se volvieron importantes. Los equipos no quieren seguir reconstruyendo el sustrato alrededor de lo que realmente les importa.
+
+En el caso de los agentes, ese sustrato incluye ejecución, aislamiento, sesiones, herramientas, credenciales, observabilidad, memoria, política, identidad y gobernanza.
+
+- **Claude Managed Agents** reduce complejidad al poseer más del harness de runtime
+- **Amazon Bedrock AgentCore** reduce complejidad al estandarizar los servicios circundantes como plataforma
+
+Uno te da un worker Claude gestionado.
+El otro te da una plataforma empresarial modular para agentes.`,
+      },
+    },
+  },
+  {
     slug: "kiro-context-engineering",
     date: { en: "Mar 19, 2026", es: "19 Mar 2026" },
     readTime: { en: "Slides", es: "Diapositivas" },
