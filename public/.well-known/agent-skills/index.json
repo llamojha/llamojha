@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "portfolio-navigation",
+      "type": "skill-md",
+      "description": "Navigate the portfolio and discover machine-readable resources for Alvaro Llamojha's DevOps & Observability site.",
+      "url": "https://amllamojha.com/.well-known/agent-skills/portfolio-navigation/SKILL.md",
+      "digest": "sha256:c525e268dd28c4acd88c548ffc37a84f603ad7cb3251405630fe4a8942f29550"
+    }
+  ]
+}

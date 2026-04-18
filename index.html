@@ -94,5 +94,54 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      if (navigator.modelContext) {
+        const ac = new AbortController();
+        const pages = [
+          { hash: '', title: 'Home' },
+          { hash: '#/projects', title: 'Projects' },
+          { hash: '#/animations', title: 'Animations' },
+          { hash: '#/article', title: 'Articles' },
+          { hash: '#/podcasts', title: 'Podcasts' },
+        ];
+
+        navigator.modelContext.registerTool({
+          name: 'navigate_to_page',
+          title: 'Navigate to page',
+          description: 'Navigate to a page on the portfolio site. Available pages: ' + pages.map(p => p.title).join(', '),
+          inputSchema: {
+            type: 'object',
+            properties: {
+              page: {
+                type: 'string',
+                enum: pages.map(p => p.title),
+                description: 'Page name to navigate to'
+              }
+            },
+            required: ['page']
+          },
+          annotations: { readOnlyHint: true },
+          execute: async (input) => {
+            const match = pages.find(p => p.title.toLowerCase() === input.page.toLowerCase());
+            if (match) { window.location.hash = match.hash; return { navigated: match.title }; }
+            return { error: 'Unknown page' };
+          }
+        }, { signal: ac.signal });
+
+        navigator.modelContext.registerTool({
+          name: 'get_site_info',
+          title: 'Get site info',
+          description: 'Returns structured information about this portfolio site and its owner.',
+          inputSchema: { type: 'object', properties: {} },
+          annotations: { readOnlyHint: true },
+          execute: async () => ({
+            name: 'Alvaro Llamojha',
+            role: 'DevOps & Observability Engineer',
+            site: 'https://amllamojha.com',
+            resources: { llm_txt: '/llm.txt', sitemap: '/sitemap.xml', api_catalog: '/.well-known/api-catalog' }
+          })
+        }, { signal: ac.signal });
+      }
+    </script>
   </body>
 </html>

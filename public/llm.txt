@@ -11,10 +11,17 @@ Personal portfolio for Alvaro Llamojha, a DevOps and observability engineer. The
 - https://amllamojha.com/#/article/serverless-migrations
 - https://amllamojha.com/#/article/genai-ops
 - https://amllamojha.com/#/article/observability-playbook
+- https://amllamojha.com/#/podcasts
 
 ## Content Notes
 - Articles are available in English and Spanish on-page.
 - Some listed articles are external links to Dev.to.
+
+## Machine-Readable Resources
+- Full markdown version: https://amllamojha.com/llm-full.txt
+- API Catalog (RFC 9727): https://amllamojha.com/.well-known/api-catalog
+- Agent Skills: https://amllamojha.com/.well-known/agent-skills/index.json
+- Sitemap: https://amllamojha.com/sitemap.xml
 
 ## Contact
 - Email: mailto:hello@amllamojha.com

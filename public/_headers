@@ -1,0 +1,13 @@
+# Homepage — Link headers for agent discovery (RFC 8288)
+/
+  Link: </.well-known/api-catalog>; rel="api-catalog"
+  Link: </llm.txt>; rel="service-doc"; type="text/plain"
+  Link: </sitemap.xml>; rel="describedby"; type="application/xml"
+
+# API catalog — correct Content-Type (RFC 9727)
+/.well-known/api-catalog
+  Content-Type: application/linkset+json
+
+# Agent skills index
+/.well-known/agent-skills/index.json
+  Access-Control-Allow-Origin: *

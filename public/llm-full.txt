@@ -1,0 +1,63 @@
+# Alvaro Llamojha — DevOps & Observability Engineer
+
+> Portfolio: https://amllamojha.com
+
+## Summary
+
+Extensive experience designing cloud-native platforms for large-scale e-commerce organisations. Skilled in AWS, serverless architectures, IaC, and end-to-end monitoring. Passionate about developer enablement and the responsible adoption of generative AI.
+
+## Core Competencies
+
+- **Cloud & Serverless Architecture** — AWS, Serverless Framework, ECS Fargate, and Terraform for scalable, resilient infrastructure.
+- **CI/CD & Observability** — Automating delivery with CircleCI & GitHub Actions, ensuring reliability with New Relic, ELK, and PagerDuty.
+- **Generative AI Enablement** — Partnering with start-ups to build AI-assisted workflows and prototypes using AWS Bedrock and LLM orchestration.
+
+## Professional Experience
+
+### Director & Principal Consultant — No Limits Solutions (May 2022 – Present)
+Provided observability, platform, and DevOps consulting for retail and data-driven organisations. Delivered New Relic rollouts, established monitoring and alerting, and supported GenAI start-ups with AWS and serverless stacks.
+
+### Senior AWS DevOps & Serverless Engineer — LEGO.com (May 2018 – May 2022)
+Designed the first serverless microservices with Node.js/TypeScript, transitioned infrastructure to AWS ECS Fargate with Terraform, and eliminated high-severity incidents during peak seasons through refined monitoring.
+
+### DevOps Engineer — SecretSales (Aug 2017 – May 2018)
+Introduced Docker containerisation for local and AWS ECS environments using CloudFormation. Strengthened production observability with New Relic, CloudWatch, and PagerDuty.
+
+### Systems Engineer & DevOps — Various (Apr 2012 – Aug 2017)
+Supported mission-critical air traffic systems (Indra UK), operated media data platforms (MetaBroadcast), and built CI/CD pipelines for various tech start-ups.
+
+## More About Me
+
+### GenAI & Start-up Collaborations
+Partnered with early-stage start-ups on projects introducing AI-assisted internal tools, building prototypes on AWS Bedrock and developing serverless pipelines to orchestrate LLM prompts and embeddings.
+
+### Education & Certifications
+AWS Solutions Architect Associate (2020). Continuously learning and applying modern technologies in cloud and software engineering.
+
+### Volunteering
+As a mentor at CodeYourFuture, I support aspiring technologists through project guidance, pair-programming, and career coaching to help them build confidence and employability.
+
+## Public Tech Talks
+
+- **Tag-Based Deployment for a Serverless Mono-repo** — Presented at GCS Connect (2020).
+
+## Site Pages
+
+- [Home](https://amllamojha.com/)
+- [Projects](https://amllamojha.com/#/projects)
+- [Animations](https://amllamojha.com/#/animations)
+- [Articles](https://amllamojha.com/#/article)
+- [Podcasts](https://amllamojha.com/#/podcasts)
+
+## Machine-Readable Resources
+
+- [LLM summary](/llm.txt)
+- [Sitemap](/sitemap.xml)
+- [API Catalog](/.well-known/api-catalog)
+- [Agent Skills](/.well-known/agent-skills/index.json)
+
+## Contact
+
+- LinkedIn: https://www.linkedin.com/in/llamojha/
+- Email: hello@amllamojha.com
+- Location: London, UK

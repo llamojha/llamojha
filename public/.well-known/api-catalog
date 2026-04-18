@@ -1,0 +1,19 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://amllamojha.com/",
+      "service-doc": [
+        {
+          "href": "https://amllamojha.com/llm.txt",
+          "type": "text/plain"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://amllamojha.com/sitemap.xml",
+          "type": "application/xml"
+        }
+      ]
+    }
+  ]
+}
