@@ -2,7 +2,7 @@
 
 **Tags:** `#kiro` `#ai` `#aws` `#agentcore`
 
-**TLDR;** Usé dos capacidades de Amazon Bedrock AgentCore, AWS Agent Registry para búsqueda híbrida sobre más de 10k recursos de Kiro, y AgentCore Harness para probar skills generados contra un agente real, para construir un generador de skills con IA para Kiro Hub. Pruébalo en [kirohub.dev/generate](https://kirohub.dev/generate).
+**TLDR;** Usé dos capacidades de Amazon Bedrock AgentCore, Amazon Bedrock Registry para búsqueda híbrida sobre más de 10k recursos de Kiro, y AgentCore Harness para probar skills generados contra un agente real, para construir un generador de skills con IA para Kiro Hub. Pruébalo en [kirohub.dev/generate](https://kirohub.dev/generate).
 
 ---
 
