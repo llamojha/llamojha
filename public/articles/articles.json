@@ -1,6 +1,14 @@
 {
   "articles": [
     {
+      "slug": "kiro-skill-generator",
+      "type": "markdown",
+      "date": { "en": "May 3, 2026", "es": "3 May 2026" },
+      "readTime": { "en": "8 min", "es": "8 min" },
+      "title": { "en": "KiroHub: Generate a Kiro Skill in 60 Seconds with Bedrock Registry and AgentCore Harness", "es": "KiroHub: Genera un Kiro Skill en 60 segundos con Bedrock Registry y AgentCore Harness" },
+      "summary": { "en": "How I used AWS Agent Registry for hybrid search over 10k+ resources and AgentCore Harness for testing generated skills against a real agent.", "es": "Cómo usé AWS Agent Registry para búsqueda híbrida sobre más de 10k recursos y AgentCore Harness para probar skills generados contra un agente real." }
+    },
+    {
       "slug": "claude-managed-agents-vs-bedrock-agentcore",
       "type": "markdown",
       "date": { "en": "Apr 13, 2026", "es": "13 Abr 2026" },
