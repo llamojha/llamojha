@@ -1,6 +1,14 @@
 {
   "articles": [
     {
+      "slug": "get-the-best-out-of-kiro",
+      "type": "markdown",
+      "date": { "en": "May 26, 2026", "es": "26 May 2026" },
+      "readTime": { "en": "10 min", "es": "10 min" },
+      "title": { "en": "Get the Best Out of Kiro", "es": "Get the Best Out of Kiro" },
+      "summary": { "en": "A guide to Kiro's ecosystem — steerings, hooks, MCPs, powers, customizable agents, and spec-driven development — and how all the pieces fit together.", "es": "A guide to Kiro's ecosystem — steerings, hooks, MCPs, powers, customizable agents, and spec-driven development — and how all the pieces fit together." }
+    },
+    {
       "slug": "kiro-skill-generator",
       "type": "markdown",
       "date": { "en": "May 3, 2026", "es": "3 May 2026" },
