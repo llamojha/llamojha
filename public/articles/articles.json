@@ -1,6 +1,14 @@
 {
   "articles": [
     {
+      "slug": "how-I-use-kiro",
+      "type": "markdown",
+      "date": { "en": "May 31, 2026", "es": "31 May 2026" },
+      "readTime": { "en": "7 min", "es": "7 min" },
+      "title": { "en": "How I Use Kiro: A Teammate, Not an Autopilot", "es": "Cómo uso Kiro: un compañero de equipo, no un piloto automático" },
+      "summary": { "en": "Six ways I use Kiro day to day — pair programming, reusable skills, specs and sub-agents, a council of agents, and layered docs — staying in the loop instead of vibe-coding.", "es": "Seis formas en que uso Kiro en mi día a día — pair programming, skills reutilizables, specs y sub-agentes, un consejo de agentes y documentación por capas — manteniendo el control, sin vibe coding." }
+    },
+    {
       "slug": "get-the-best-out-of-kiro",
       "type": "markdown",
       "date": { "en": "May 26, 2026", "es": "26 May 2026" },

@@ -61,14 +61,36 @@ const labels = {
   },
 };
 
+const getNodeText = (node: React.ReactNode): string => {
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(getNodeText).join("");
+  if (React.isValidElement(node))
+    return getNodeText((node.props as { children?: React.ReactNode }).children);
+  return "";
+};
+
+// GitHub-style slug so in-document anchor links (e.g. a TOC) resolve to headings.
+const slugify = (node: React.ReactNode): string =>
+  getNodeText(node)
+    .toLowerCase()
+    .trim()
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/\s+/g, "-");
+
 const markdownComponents = {
   h2: ({ children }: { children: React.ReactNode }) => (
-    <h2 className="text-2xl md:text-3xl font-semibold text-white mt-10 mb-4">
+    <h2
+      id={slugify(children)}
+      className="text-2xl md:text-3xl font-semibold text-white mt-10 mb-4 scroll-mt-24"
+    >
       {children}
     </h2>
   ),
   h3: ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-xl md:text-2xl font-semibold text-white mt-8 mb-3">
+    <h3
+      id={slugify(children)}
+      className="text-xl md:text-2xl font-semibold text-white mt-8 mb-3 scroll-mt-24"
+    >
       {children}
     </h3>
   ),
@@ -89,16 +111,34 @@ const markdownComponents = {
       {children}
     </blockquote>
   ),
-  a: ({ children, href }: { children: React.ReactNode; href?: string }) => (
-    <a
-      href={href}
-      className="text-amber-300 hover:text-amber-200 underline underline-offset-4 transition-colors"
-      target={href?.startsWith("http") ? "_blank" : undefined}
-      rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
-    >
-      {children}
-    </a>
-  ),
+  a: ({ children, href }: { children: React.ReactNode; href?: string }) => {
+    const isExternal = href?.startsWith("http");
+    const isAnchor = href?.startsWith("#");
+    return (
+      <a
+        href={href}
+        // In-page anchors (TOC) must scroll without changing the hash, which
+        // drives the app router (App.tsx) and would otherwise leave the article.
+        onClick={
+          isAnchor
+            ? (event) => {
+                event.preventDefault();
+                const raw = href!.slice(1);
+                const target =
+                  document.getElementById(raw) ||
+                  document.getElementById(decodeURIComponent(raw));
+                target?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            : undefined
+        }
+        className="text-amber-300 hover:text-amber-200 underline underline-offset-4 transition-colors"
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+      >
+        {children}
+      </a>
+    );
+  },
   code: ({
     inline,
     children,
