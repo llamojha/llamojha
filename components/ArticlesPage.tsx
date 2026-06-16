@@ -31,7 +31,14 @@ interface ExternalArticle extends BaseArticle {
   source?: { en: string; es: string };
 }
 
-type Article = MarkdownArticle | PdfArticle | ExternalArticle;
+interface SlidesArticle extends BaseArticle {
+  type: "slides";
+  embedUrl: string;
+  downloadUrl?: string;
+  source?: { en: string; es: string };
+}
+
+type Article = MarkdownArticle | PdfArticle | ExternalArticle | SlidesArticle;
 
 type Props = {
   route: string;
@@ -291,7 +298,37 @@ export const ArticlesPage: FC<Props> = ({ route, language }) => {
           <p className="text-lg text-gray-300 mb-8">
             {article.summary[language]}
           </p>
-          {article.type === "pdf" ? (
+          {article.type === "slides" ? (
+            <div className="space-y-6">
+              <iframe
+                src={article.embedUrl}
+                className="w-full rounded-lg border border-gray-800 bg-gray-950"
+                style={{ height: "80vh" }}
+                title={article.title[language]}
+                allow="fullscreen"
+                allowFullScreen
+              />
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href={article.embedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-gray-900 bg-amber-300 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(252,211,77,0.5)]"
+                >
+                  ⛶ {language === "en" ? "Open fullscreen" : "Abrir en pantalla completa"}
+                </a>
+                {article.downloadUrl && (
+                  <a
+                    href={article.downloadUrl}
+                    download
+                    className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-amber-300 border border-amber-300/40 rounded-full transition-all duration-300 hover:bg-amber-300/10"
+                  >
+                    ⬇ {language === "en" ? "Download PPTX" : "Descargar PPTX"}
+                  </a>
+                )}
+              </div>
+            </div>
+          ) : article.type === "pdf" ? (
             <div className="space-y-6">
               <iframe
                 src={article.pdfUrl}

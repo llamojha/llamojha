@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFD666">
+<title>Qué es Kiro · Presentación</title>
+
+<!-- Llamojha Design System — real tokens, fonts & motifs -->
+<link rel="stylesheet" href="ds/styles.css">
+
+<style>
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--surface-page);
+    color:var(--text-body);
+    font-family:var(--font-body);
+    overflow:hidden;
+    -webkit-user-select:none; user-select:none;
+    -webkit-font-smoothing:antialiased;
+  }
+  :focus-visible{ outline:2px solid var(--focus-ring); outline-offset:2px; border-radius:var(--radius-sm); }
+
+  /* ---- Stage: brand canvas (vignette + gold glow) over the constellation ---- */
+  #stage{
+    position:fixed; inset:0; display:grid; place-items:center;
+    background:
+      var(--wash-vignette),
+      var(--wash-gold-glow),
+      var(--surface-page);
+  }
+  #net{ position:absolute; inset:0; width:100%; height:100%; display:block; z-index:0; opacity:.9; }
+
+  /* Fixed 1280×720 design surface, scaled to fit the viewport */
+  #frame{
+    position:relative; z-index:1;
+    width:1280px; height:720px; flex:0 0 auto;
+    transform:scale(var(--scale,1)); transform-origin:center center;
+    box-shadow:var(--shadow-lg);
+  }
+  .slide{
+    position:absolute; inset:0; width:1280px; height:720px; overflow:hidden;
+    opacity:0; transition:opacity var(--dur-base) var(--ease-out);
+    pointer-events:none;
+  }
+  .slide.active{opacity:1}
+  .slide img{ -webkit-user-drag:none; user-drag:none; }
+
+  /* ---- Edge click zones + chevrons (IconButton · ghost) ---- */
+  .nav-zone{
+    position:fixed; top:0; bottom:72px; width:16vw; max-width:230px;
+    display:flex; align-items:center; cursor:pointer; z-index:5;
+    opacity:0; transition:opacity var(--dur-base) var(--ease-out);
+    border:0; background:transparent;
+  }
+  .nav-zone:hover{opacity:1}
+  #zone-prev{left:0; justify-content:flex-start; padding-left:var(--space-5)}
+  #zone-next{right:0; justify-content:flex-end; padding-right:var(--space-5)}
+  .chev{
+    width:48px; height:48px; border-radius:var(--radius-pill);
+    display:grid; place-items:center; color:var(--text-secondary);
+    background:var(--glass-fill); border:1px solid var(--border-default);
+    -webkit-backdrop-filter:var(--blur-glass); backdrop-filter:var(--blur-glass);
+    box-shadow:var(--shadow-sm);
+    transition:color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  }
+  .nav-zone:hover .chev{ color:var(--text-accent); border-color:var(--border-accent); }
+  .nav-zone:active .chev{ transform:scale(0.92); }
+  .chev svg{width:22px;height:22px}
+
+  /* ---- Bottom control bar (glass card) ---- */
+  #bar{
+    position:fixed; left:50%; bottom:var(--space-4); transform:translateX(-50%);
+    z-index:10; display:flex; align-items:center; gap:var(--space-1);
+    padding:var(--space-2) var(--space-3); border-radius:var(--radius-lg);
+    background:var(--glass-fill); border:1px solid var(--border-default);
+    -webkit-backdrop-filter:var(--blur-glass); backdrop-filter:var(--blur-glass);
+    box-shadow:var(--shadow-md), var(--shadow-inset);
+    transition:opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+  }
+  #bar.hidden{opacity:0; transform:translateX(-50%) translateY(14px); pointer-events:none}
+  .btn{
+    appearance:none; border:1px solid transparent; background:transparent;
+    color:var(--text-secondary); width:38px; height:38px; border-radius:var(--radius-pill);
+    display:grid; place-items:center; cursor:pointer;
+    transition:background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  }
+  .btn:hover{ background:var(--surface-inset); color:var(--text-accent); border-color:var(--border-accent); }
+  .btn:active{ transform:scale(0.92); }
+  .btn svg{width:20px;height:20px}
+  .btn[disabled]{opacity:.45; cursor:not-allowed}
+  .btn[disabled]:hover{background:transparent;color:var(--text-secondary);border-color:transparent}
+  .sep{width:1px;height:24px;background:var(--border-default);margin:0 var(--space-1)}
+  #counter{
+    font-family:var(--font-mono); font-size:var(--fs-caption);
+    letter-spacing:var(--ls-wide); color:var(--text-muted);
+    min-width:84px; text-align:center; padding:0 var(--space-2); cursor:pointer;
+    transition:color var(--dur-base) var(--ease-out);
+  }
+  #counter:hover{color:var(--text-secondary)}
+  #counter b{color:var(--text-accent); font-weight:var(--fw-semibold)}
+
+  /* ---- Progress (single gold accent) ---- */
+  #progress{
+    position:fixed; left:0; bottom:0; height:2px; z-index:10;
+    background:linear-gradient(90deg,var(--gold-700),var(--gold-500));
+    box-shadow:0 0 12px rgba(255,214,102,.35);
+    width:0; transition:width var(--dur-base) var(--ease-out);
+  }
+
+  /* ---- Overview / índice ---- */
+  #overview{
+    position:fixed; inset:0; z-index:20; display:none; flex-direction:column;
+    background:rgba(6,9,15,.93);
+    -webkit-backdrop-filter:saturate(120%) blur(6px); backdrop-filter:saturate(120%) blur(6px);
+  }
+  #overview.open{display:flex}
+  #ov-head{
+    padding:var(--space-6) var(--gutter) var(--space-4);
+    border-bottom:1px solid var(--border-subtle); flex:0 0 auto;
+  }
+  #ov-eyebrow{
+    font-family:var(--font-mono); font-size:var(--fs-label);
+    letter-spacing:var(--ls-label); text-transform:uppercase;
+    color:var(--text-accent); margin:0 0 var(--space-2);
+  }
+  #ov-title{
+    font-family:var(--font-display); font-weight:var(--fw-bold);
+    font-size:var(--fs-display-lg); line-height:var(--lh-tight);
+    letter-spacing:var(--ls-display); color:var(--text-display); margin:0;
+  }
+  #ov-title em{ font-style:italic; font-weight:var(--fw-semibold); color:var(--text-accent-deep); }
+  #ov-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr));
+    gap:var(--space-4); padding:var(--space-5) var(--gutter) var(--space-8);
+    overflow:auto; flex:1 1 auto;
+  }
+  .thumb{
+    position:relative; border:1px solid var(--border-subtle); border-radius:var(--radius-lg);
+    overflow:hidden; cursor:pointer; background:var(--surface-page); aspect-ratio:16/9;
+    transition:border-color var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+  .thumb:hover{ border-color:var(--border-accent); transform:translateY(-3px); box-shadow:var(--shadow-md); }
+  .thumb.current{ border-color:var(--border-accent); box-shadow:var(--glow-gold); }
+  .thumb-scaler{ position:absolute; top:0; left:0; width:1280px; height:720px; transform-origin:top left; }
+  .thumb-scaler .slide{ opacity:1; position:absolute; }
+  .thumb span{
+    position:absolute; left:var(--space-2); top:var(--space-2); z-index:2;
+    font-family:var(--font-mono); font-size:var(--fs-label); font-weight:var(--fw-semibold);
+    letter-spacing:var(--ls-wide); color:var(--text-accent);
+    background:var(--accent-soft); border:1px solid var(--border-accent);
+    padding:2px 8px; border-radius:var(--radius-pill);
+  }
+
+  /* ---- Help hint (mono eyebrow voice) ---- */
+  #hint{
+    position:fixed; right:var(--gutter); top:var(--space-4); z-index:10;
+    font-family:var(--font-mono); font-size:var(--fs-label); letter-spacing:var(--ls-wide);
+    color:var(--text-faint);
+    transition:opacity var(--dur-slow) var(--ease-out);
+  }
+  #hint.hidden{opacity:0}
+  #hint kbd{
+    font-family:var(--font-mono); color:var(--text-secondary); background:var(--surface-card);
+    border:1px solid var(--border-subtle); border-radius:var(--radius-sm);
+    padding:1px 5px; font-size:10px;
+  }
+  @media (max-width:680px){ #hint{display:none} .nav-zone{bottom:84px} #ov-title{font-size:var(--fs-h1)} }
+  @media (prefers-reduced-motion: reduce){ *{transition-duration:.01ms !important} }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <canvas id="net" data-constellation data-density="0.7" data-anchor="0.5,0.92"></canvas>
+    <div id="frame"></div>
+  </div>
+
+  <button class="nav-zone" id="zone-prev" aria-label="Anterior">
+    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></span>
+  </button>
+  <button class="nav-zone" id="zone-next" aria-label="Siguiente">
+    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+
+  <div id="hint">
+    <kbd>←</kbd> <kbd>→</kbd> NAVEGAR · <kbd>F</kbd> PANTALLA COMPLETA · <kbd>O</kbd> ÍNDICE
+  </div>
+
+  <div id="progress"></div>
+
+  <nav id="bar">
+    <button class="btn" id="first" title="Primera (Inicio)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg></button>
+    <button class="btn" id="prev" title="Anterior (←)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <div id="counter"><b>1</b> / 20</div>
+    <button class="btn" id="next" title="Siguiente (→)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="btn" id="last" title="Última (Fin)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg></button>
+    <div class="sep"></div>
+    <button class="btn" id="lang" title="Switch language" style="width:auto;min-width:38px;padding:0 11px;font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:var(--ls-wide);font-weight:var(--fw-semibold)">ES</button>
+    <button class="btn" id="grid" title="Índice (O)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+    <button class="btn" id="fs" title="Pantalla completa (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
+  </nav>
+
+  <div id="overview" aria-hidden="true">
+    <header id="ov-head">
+      <p id="ov-eyebrow">— ÍNDICE · 20 SLIDES</p>
+      <h1 id="ov-title">Qué es Kiro <em>y cómo sacarle el máximo partido</em></h1>
+    </header>
+    <div id="ov-grid"></div>
+  </div>
+
+  <script src="ds/constellation.js"></script>
+  <script src="slides-data.js"></script>
+  <script src="slides-data-en.js"></script>
+<script>
+(function(){
+  const DECKS = { es: window.SLIDES_ES || [], en: window.SLIDES_EN || [] };
+  const UI = {
+    es:{ eyebrow:n=>`— ÍNDICE · ${n} SLIDES`, title:'Qué es Kiro <em>y cómo sacarle el máximo partido</em>',
+         hint:'<kbd>←</kbd> <kbd>→</kbd> NAVEGAR · <kbd>F</kbd> PANTALLA COMPLETA · <kbd>O</kbd> ÍNDICE',
+         goto:n=>`Ir a slide (1-${n}):`, swap:'Cambiar a inglés' },
+    en:{ eyebrow:n=>`— INDEX · ${n} SLIDES`, title:'What is Kiro <em>and how to get the most out of it</em>',
+         hint:'<kbd>←</kbd> <kbd>→</kbd> NAVIGATE · <kbd>F</kbd> FULLSCREEN · <kbd>O</kbd> INDEX',
+         goto:n=>`Go to slide (1-${n}):`, swap:'Switch to Spanish' },
+  };
+  const pad = n => String(n).padStart(2,'0');
+
+  const frame = document.getElementById('frame');
+  const ovGrid = document.getElementById('ov-grid');
+  const overview = document.getElementById('overview');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  const bar = document.getElementById('bar');
+  const hint = document.getElementById('hint');
+  const langBtn = document.getElementById('lang');
+
+  let lang = localStorage.getItem('kiro-lang');
+  if(lang !== 'es' && lang !== 'en') lang = 'es';
+  let SLIDES = DECKS[lang], COUNT = SLIDES.length;
+  let slides = [], thumbs = [], cur = -1;
+
+  // (Re)build slides + thumbnails for the current language
+  function buildDeck(){
+    SLIDES = DECKS[lang]; COUNT = SLIDES.length;
+    frame.querySelectorAll('.slide').forEach(n=>n.remove());
+    ovGrid.innerHTML=''; slides=[]; thumbs=[];
+    for(let i=0;i<COUNT;i++){
+      const wrap = document.createElement('div');
+      wrap.innerHTML = SLIDES[i];
+      const sec = wrap.firstElementChild;     // the <section class="slide">
+      frame.appendChild(sec);
+      slides.push(sec);
+    }
+    for(let i=0;i<COUNT;i++){
+      const t = document.createElement('div');
+      t.className='thumb'; t.dataset.i=i;
+      const scaler = document.createElement('div'); scaler.className='thumb-scaler';
+      const clone = slides[i].cloneNode(true); clone.classList.add('active');
+      scaler.appendChild(clone); t.appendChild(scaler);
+      const label = document.createElement('span'); label.textContent = pad(i+1);
+      t.appendChild(label);
+      t.addEventListener('click', ()=>{ go(i); closeGrid(); });
+      ovGrid.appendChild(t); thumbs.push(t);
+    }
+  }
+
+  function applyChrome(){
+    document.getElementById('ov-eyebrow').textContent = UI[lang].eyebrow(COUNT);
+    document.getElementById('ov-title').innerHTML = UI[lang].title;
+    hint.innerHTML = UI[lang].hint;
+    langBtn.textContent = lang.toUpperCase();
+    langBtn.title = UI[lang].swap;
+    document.documentElement.lang = lang;
+  }
+
+  function setLang(l){
+    if(l===lang || !DECKS[l] || !DECKS[l].length) return;
+    lang = l; localStorage.setItem('kiro-lang', l);
+    const keep = Math.max(0, cur);
+    buildDeck(); applyChrome();
+    cur = -1; go(keep); sizeThumbs();
+  }
+
+  function sizeThumbs(){
+    thumbs.forEach(t=>{
+      const s = t.clientWidth/1280;
+      t.querySelector('.thumb-scaler').style.transform = `scale(${s})`;
+    });
+  }
+
+  // Scale the 1280×720 stage to fit viewport
+  function fit(){
+    const s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    document.documentElement.style.setProperty('--scale', s);
+  }
+  window.addEventListener('resize', ()=>{ fit(); sizeThumbs(); });
+
+  const clamp = i => Math.max(0, Math.min(COUNT-1, i));
+
+  function go(i){
+    i = clamp(i);
+    if(i === cur) return;
+    if(cur >= 0) slides[cur].classList.remove('active');
+    cur = i;
+    slides[cur].classList.add('active');
+    counter.innerHTML = `<b>${i+1}</b> / ${COUNT}`;
+    progress.style.width = ((i+1)/COUNT*100) + '%';
+    document.getElementById('first').disabled = i===0;
+    document.getElementById('prev').disabled  = i===0;
+    document.getElementById('next').disabled  = i===COUNT-1;
+    document.getElementById('last').disabled  = i===COUNT-1;
+    thumbs.forEach((t,k)=> t.classList.toggle('current', k===i));
+    if(thumbs[i] && overview.classList.contains('open')) thumbs[i].scrollIntoView({block:'nearest'});
+    if(location.hash !== '#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  const next = ()=> go(cur+1);
+  const prev = ()=> go(cur-1);
+
+  function openGrid(){ overview.classList.add('open'); overview.setAttribute('aria-hidden','false'); sizeThumbs(); }
+  function closeGrid(){ overview.classList.remove('open'); overview.setAttribute('aria-hidden','true'); }
+  function toggleGrid(){ overview.classList.contains('open') ? closeGrid() : openGrid(); }
+
+  function toggleFs(){
+    if(!document.fullscreenElement){ document.documentElement.requestFullscreen?.(); }
+    else { document.exitFullscreen?.(); }
+  }
+
+  document.getElementById('first').onclick = ()=> go(0);
+  document.getElementById('prev').onclick  = prev;
+  document.getElementById('next').onclick  = next;
+  document.getElementById('last').onclick  = ()=> go(COUNT-1);
+  document.getElementById('grid').onclick  = toggleGrid;
+  document.getElementById('fs').onclick     = toggleFs;
+  document.getElementById('zone-prev').onclick = prev;
+  document.getElementById('zone-next').onclick = next;
+  langBtn.onclick = ()=> setLang(lang==='es'?'en':'es');
+  counter.onclick = ()=>{
+    const n = parseInt(prompt(UI[lang].goto(COUNT), cur+1), 10);
+    if(!isNaN(n)) go(n-1);
+  };
+
+  document.addEventListener('keydown', e=>{
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    switch(e.key){
+      case 'ArrowRight': case 'PageDown': case ' ': case 'l': case 'j': case 'Enter': next(); e.preventDefault(); break;
+      case 'ArrowLeft':  case 'PageUp':   case 'h': case 'k': case 'Backspace': prev(); e.preventDefault(); break;
+      case 'Home': go(0); e.preventDefault(); break;
+      case 'End':  go(COUNT-1); e.preventDefault(); break;
+      case 'f': case 'F': toggleFs(); break;
+      case 'o': case 'O': case 'g': case 'G': toggleGrid(); e.preventDefault(); break;
+      case 'Escape': if(overview.classList.contains('open')) closeGrid(); break;
+    }
+  });
+
+  // Auto-hide controls when idle
+  let idle;
+  function wake(){
+    bar.classList.remove('hidden'); hint.classList.remove('hidden');
+    document.body.style.cursor='';
+    clearTimeout(idle);
+    idle = setTimeout(()=>{
+      if(overview.classList.contains('open')) return;
+      bar.classList.add('hidden'); hint.classList.add('hidden');
+      document.body.style.cursor='none';
+    }, 2600);
+  }
+  ['mousemove','keydown','click','touchstart'].forEach(ev=>document.addEventListener(ev, wake, {passive:true}));
+
+  // Touch swipe
+  let tx=null;
+  document.addEventListener('touchstart', e=>{ tx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', e=>{
+    if(tx===null) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    if(Math.abs(dx)>50){ dx<0 ? next() : prev(); }
+    tx=null;
+  }, {passive:true});
+
+  // Boot
+  fit();
+  buildDeck();
+  applyChrome();
+  go(clamp((parseInt(location.hash.slice(1),10)||1)-1));
+  wake();
+  window.addEventListener('hashchange', ()=>{
+    const n = clamp((parseInt(location.hash.slice(1),10)||1)-1);
+    if(n!==cur) go(n);
+  });
+})();
+</script>
+</body>
+</html>

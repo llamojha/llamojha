@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "slug": "que-es-kiro-presentacion",
+      "type": "slides",
+      "date": { "en": "Jun 15, 2026", "es": "15 Jun 2026" },
+      "readTime": { "en": "20 slides", "es": "20 diapositivas" },
+      "title": { "en": "What is Kiro — and How to Get the Most Out of It", "es": "Qué es Kiro y cómo sacarle el máximo partido" },
+      "summary": { "en": "An interactive slide deck on Kiro — what it is, its surfaces, steering, specs, hooks, MCPs, powers, and agents. Use ← → to navigate, F for fullscreen, O for the index, and the ES/EN toggle to switch language.", "es": "Una presentación interactiva sobre Kiro — qué es, sus superficies, steering, specs, hooks, MCPs, powers y agentes. Usa ← → para navegar, F para pantalla completa, O para el índice y el botón ES/EN para cambiar de idioma." },
+      "thumbnail": "/presentations/kiro/assets/g_hero.png",
+      "embedUrl": "/presentations/kiro/index.html",
+      "source": { "en": "Presentation", "es": "Presentación" }
+    },
+    {
       "slug": "how-I-use-kiro",
       "type": "markdown",
       "date": { "en": "May 31, 2026", "es": "31 May 2026" },
