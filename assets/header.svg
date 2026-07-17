@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="118" viewBox="0 0 850 118" role="img">
+<style>
+  .f{font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+  .m{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+       .pulse{animation:pulse 2.4s ease-in-out infinite}
+</style>
+
+<rect x="0" y="0" width="850" height="118" rx="6" fill="#1B2126" stroke="#2E363D"/>
+<circle cx="28" cy="40" r="4" fill="#1CE783" class="pulse"/><circle cx="28" cy="40" r="7" fill="none" stroke="#1CE783" stroke-opacity="0.25"/>
+<text x="46" y="46" class="f" font-size="24" font-weight="700" fill="#E8ECEE">Alvaro Llamojha</text>
+<text x="46" y="70" class="f" font-size="13" fill="#9AA1A6">DevOps &amp; Observability Engineer&#160;&#160;·&#160;&#160;AWS&#160;·&#160;Serverless&#160;·&#160;IaC&#160;·&#160;End-to-end monitoring</text>
+<rect x="694" y="26" width="130" height="26" rx="13" fill="rgba(28,231,131,0.10)" stroke="#1CE783" stroke-opacity="0.4"/>
+<circle cx="710" cy="39" r="3.5" fill="#1CE783" class="pulse"/>
+<text x="722" y="43" class="m" font-size="11" letter-spacing="1" fill="#1CE783">OPERATIONAL</text>
+<text x="824" y="70" class="m" font-size="10" fill="#68707A" text-anchor="end">&#9202; Since 2012</text>
+<line x1="16" y1="88" x2="834" y2="88" stroke="#2E363D"/>
+<text x="16" y="106" class="m" font-size="10" fill="#68707A">env: production&#160;&#160;·&#160;&#160;region: eu-west-1&#160;&#160;·&#160;&#160;last refreshed 2026-07-17 14:10 UTC</text>
+<text x="834" y="106" class="m" font-size="10" fill="#FFD666" text-anchor="end">amllamojha.com</text>
+</svg>

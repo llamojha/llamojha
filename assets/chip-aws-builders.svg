@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="125" height="36" viewBox="0 0 125 36" role="img">
+<style>
+  .f{font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+  .m{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+  
+</style>
+
+<rect x="0" y="0" width="125" height="36" rx="6" fill="#1B2126" stroke="#2E363D"/>
+<circle cx="18" cy="18" r="3" fill="#FFD666"/>
+<text x="28" y="22.5" class="m" font-size="12" fill="#E8ECEE">AWS Builders</text>
+</svg>

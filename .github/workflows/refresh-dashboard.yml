@@ -1,0 +1,40 @@
+name: Refresh dashboard
+
+on:
+  schedule:
+    # Every 6 hours; offset minute to avoid GitHub's busy :00 cron slots
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/refresh-dashboard.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate dashboard widgets
+        run: node scripts/generate-dashboard.mjs
+
+      - name: Commit refreshed widgets
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "actions@github.com"
+          git add assets data
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: refresh dashboard telemetry"
+            git push
+          fi

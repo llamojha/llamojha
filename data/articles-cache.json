@@ -1,0 +1,347 @@
+{
+  "articles": [
+    {
+      "slug": "que-es-kiro-presentacion",
+      "type": "slides",
+      "date": {
+        "en": "Jun 15, 2026",
+        "es": "15 Jun 2026"
+      },
+      "readTime": {
+        "en": "20 slides",
+        "es": "20 diapositivas"
+      },
+      "title": {
+        "en": "What is Kiro — and How to Get the Most Out of It",
+        "es": "Qué es Kiro y cómo sacarle el máximo partido"
+      },
+      "summary": {
+        "en": "An interactive slide deck on Kiro — what it is, its surfaces, steering, specs, hooks, MCPs, powers, and agents. Use ← → to navigate, F for fullscreen, O for the index, and the ES/EN toggle to switch language.",
+        "es": "Una presentación interactiva sobre Kiro — qué es, sus superficies, steering, specs, hooks, MCPs, powers y agentes. Usa ← → para navegar, F para pantalla completa, O para el índice y el botón ES/EN para cambiar de idioma."
+      },
+      "thumbnail": "/presentations/kiro/assets/g_hero.png",
+      "embedUrl": "/presentations/kiro/index.html",
+      "source": {
+        "en": "Presentation",
+        "es": "Presentación"
+      }
+    },
+    {
+      "slug": "how-I-use-kiro",
+      "type": "markdown",
+      "date": {
+        "en": "May 31, 2026",
+        "es": "31 May 2026"
+      },
+      "readTime": {
+        "en": "7 min",
+        "es": "7 min"
+      },
+      "title": {
+        "en": "How I Use Kiro: A Teammate, Not an Autopilot",
+        "es": "Cómo uso Kiro: un compañero de equipo, no un piloto automático"
+      },
+      "summary": {
+        "en": "Six ways I use Kiro day to day — pair programming, reusable skills, specs and sub-agents, a council of agents, and layered docs — staying in the loop instead of vibe-coding.",
+        "es": "Seis formas en que uso Kiro en mi día a día — pair programming, skills reutilizables, specs y sub-agentes, un consejo de agentes y documentación por capas — manteniendo el control, sin vibe coding."
+      }
+    },
+    {
+      "slug": "get-the-best-out-of-kiro",
+      "type": "markdown",
+      "date": {
+        "en": "May 26, 2026",
+        "es": "26 May 2026"
+      },
+      "readTime": {
+        "en": "10 min",
+        "es": "10 min"
+      },
+      "title": {
+        "en": "Get the Best Out of Kiro",
+        "es": "Get the Best Out of Kiro"
+      },
+      "summary": {
+        "en": "A guide to Kiro's ecosystem — steerings, hooks, MCPs, powers, customizable agents, and spec-driven development — and how all the pieces fit together.",
+        "es": "A guide to Kiro's ecosystem — steerings, hooks, MCPs, powers, customizable agents, and spec-driven development — and how all the pieces fit together."
+      }
+    },
+    {
+      "slug": "kiro-skill-generator",
+      "type": "markdown",
+      "date": {
+        "en": "May 3, 2026",
+        "es": "3 May 2026"
+      },
+      "readTime": {
+        "en": "8 min",
+        "es": "8 min"
+      },
+      "title": {
+        "en": "KiroHub: Generate a Kiro Skill in 60 Seconds with Bedrock Registry and AgentCore Harness",
+        "es": "KiroHub: Genera un Kiro Skill en 60 segundos con Bedrock Registry y AgentCore Harness"
+      },
+      "summary": {
+        "en": "How I used AWS Agent Registry for hybrid search over 10k+ resources and AgentCore Harness for testing generated skills against a real agent.",
+        "es": "Cómo usé AWS Agent Registry para búsqueda híbrida sobre más de 10k recursos y AgentCore Harness para probar skills generados contra un agente real."
+      }
+    },
+    {
+      "slug": "claude-managed-agents-vs-bedrock-agentcore",
+      "type": "markdown",
+      "date": {
+        "en": "Apr 13, 2026",
+        "es": "13 Abr 2026"
+      },
+      "readTime": {
+        "en": "6 min",
+        "es": "6 min"
+      },
+      "title": {
+        "en": "Claude Managed Agents vs Amazon Bedrock AgentCore",
+        "es": "Claude Managed Agents vs Amazon Bedrock AgentCore"
+      },
+      "summary": {
+        "en": "A comparison of two approaches to Agents as a Service — Anthropic's managed Claude worker runtime vs AWS's modular agent platform.",
+        "es": "Una comparación de dos enfoques de Agents as a Service — el runtime gestionado de Anthropic vs la plataforma modular de AWS."
+      }
+    },
+    {
+      "slug": "kiro-context-engineering",
+      "type": "pdf",
+      "date": {
+        "en": "Mar 19, 2026",
+        "es": "19 Mar 2026"
+      },
+      "readTime": {
+        "en": "Slides",
+        "es": "Diapositivas"
+      },
+      "title": {
+        "en": "Kiro Context Engineering",
+        "es": "Kiro Context Engineering"
+      },
+      "summary": {
+        "en": "A presentation on context engineering with Kiro — steering files, specs, and hooks for AI-assisted development.",
+        "es": "Una presentación sobre ingeniería de contexto con Kiro — archivos de dirección, specs y hooks para desarrollo asistido por IA."
+      },
+      "thumbnail": "/kiro-context-engineering-preview.png",
+      "pdfUrl": "/kiro-context-engineering.pdf",
+      "downloadUrl": "/kiro-context-engineering.pptx",
+      "source": {
+        "en": "Presentation",
+        "es": "Presentación"
+      }
+    },
+    {
+      "slug": "aws-builders-como-sacar-maximo-partido-kiro",
+      "type": "external",
+      "date": {
+        "en": "Mar 16, 2026",
+        "es": "16 Mar 2026"
+      },
+      "readTime": {
+        "en": "10 min",
+        "es": "10 min"
+      },
+      "title": {
+        "en": "How to Get the Most Out of Kiro",
+        "es": "Cómo sacar el máximo partido a Kiro"
+      },
+      "summary": {
+        "en": "A deep dive into Kiro's ecosystem — steerings, hooks, MCPs, powers, agents, and how they all fit together.",
+        "es": "Un recorrido por el ecosistema de Kiro — steerings, hooks, MCPs, powers, agentes y cómo encajan todas las piezas."
+      },
+      "externalUrl": "https://dev.to/aws-builders/como-sacar-el-maximo-partido-a-kiro-4i00",
+      "source": {
+        "en": "Dev.to",
+        "es": "Dev.to"
+      }
+    },
+    {
+      "slug": "aws-builders-nova-agent-manager",
+      "type": "external",
+      "date": {
+        "en": "Feb 10, 2026",
+        "es": "10 Feb 2026"
+      },
+      "readTime": {
+        "en": "5 min",
+        "es": "5 min"
+      },
+      "title": {
+        "en": "Nova Agent Manager Interface",
+        "es": "Nova Agent Manager Interface"
+      },
+      "summary": {
+        "en": "A Nova-powered command centre for coding agents — managing and orchestrating AI agents from a single interface.",
+        "es": "Un centro de mando impulsado por Nova para agentes de código — gestionando y orquestando agentes de IA desde una sola interfaz."
+      },
+      "externalUrl": "https://builder.aws.com/content/39TlwWxgPcIawL93p5UAcE0vSjT/nova-agent-manager-interface-a-nova-powered-command-centre-for-coding-agents",
+      "source": {
+        "en": "AWS Community",
+        "es": "AWS Community"
+      }
+    },
+    {
+      "slug": "devto-kiro-cli-raspberry-pi-400",
+      "type": "external",
+      "date": {
+        "en": "Jan 15, 2026",
+        "es": "15 Ene 2026"
+      },
+      "readTime": {
+        "en": "4 min",
+        "es": "4 min"
+      },
+      "title": {
+        "en": "Running Kiro CLI from a Raspberry Pi 400",
+        "es": "Ejecutando Kiro CLI desde una Raspberry Pi 400"
+      },
+      "summary": {
+        "en": "Setting up and running Kiro CLI on a Raspberry Pi 400 — from SIGILL crashes to a working ARM64 setup.",
+        "es": "Configurando y ejecutando Kiro CLI en una Raspberry Pi 400 — desde errores SIGILL hasta una instalación ARM64 funcional."
+      },
+      "externalUrl": "https://dev.to/kirodotdev/running-kiro-cli-from-a-raspberry-pi-400-4d2h",
+      "source": {
+        "en": "Dev.to",
+        "es": "Dev.to"
+      }
+    },
+    {
+      "slug": "devto-stop-vibecoding-ai-monoliths",
+      "type": "external",
+      "date": {
+        "en": "Jan 5, 2026",
+        "es": "5 Ene 2026"
+      },
+      "readTime": {
+        "en": "4 min",
+        "es": "4 min"
+      },
+      "title": {
+        "en": "Stop Vibecoding AI Monoliths",
+        "es": "Deten los monolitos de IA por vibe coding"
+      },
+      "summary": {
+        "en": "A practical take on avoiding AI-driven monoliths by structuring work into smaller, reusable pieces.",
+        "es": "Una guia practica para evitar monolitos de IA y volver a piezas pequenas y reutilizables."
+      },
+      "externalUrl": "https://dev.to/llamojha/stop-vibecoding-ai-monoliths-295g",
+      "source": {
+        "en": "Dev.to",
+        "es": "Dev.to"
+      }
+    },
+    {
+      "slug": "devto-posthog-observability",
+      "type": "external",
+      "date": {
+        "en": "Dec 18, 2025",
+        "es": "18 Dic 2025"
+      },
+      "readTime": {
+        "en": "5 min",
+        "es": "5 min"
+      },
+      "title": {
+        "en": "Building My First Kiro: Power PostHog Observability",
+        "es": "Construyendo mi primer Kiro: observabilidad con PostHog"
+      },
+      "summary": {
+        "en": "A build log on wiring observability workflows with PostHog.",
+        "es": "Registro de construccion sobre workflows de observabilidad con PostHog."
+      },
+      "externalUrl": "https://dev.to/kirodotdev/building-my-first-kiro-power-posthog-observability-fik",
+      "source": {
+        "en": "Dev.to",
+        "es": "Dev.to"
+      }
+    },
+    {
+      "slug": "devto-no-vibe-no-code",
+      "type": "external",
+      "date": {
+        "en": "Dec 3, 2025",
+        "es": "3 Dic 2025"
+      },
+      "readTime": {
+        "en": "6 min",
+        "es": "6 min"
+      },
+      "title": {
+        "en": "No Vibe No Code: Bootstrapping Ideas",
+        "es": "No Vibe No Code: ideas para bootstrapping"
+      },
+      "summary": {
+        "en": "How the idea for No Vibe No Code took shape, from concept to execution.",
+        "es": "Como nacio la idea de No Vibe No Code, desde el concepto hasta la ejecucion."
+      },
+      "externalUrl": "https://dev.to/kirodotdev/no-vibe-no-code-bootstrapping-ideas-o88",
+      "source": {
+        "en": "Dev.to",
+        "es": "Dev.to"
+      }
+    },
+    {
+      "slug": "serverless-migrations",
+      "type": "markdown",
+      "date": {
+        "en": "Oct 21, 2025",
+        "es": "21 Oct 2025"
+      },
+      "readTime": {
+        "en": "4 min",
+        "es": "4 min"
+      },
+      "title": {
+        "en": "From vibe coding to specs: how I started shipping bigger changes with Kiro",
+        "es": "De vibe coding a specs: como empece a entregar cambios mas grandes con Kiro"
+      },
+      "summary": {
+        "en": "Why vibe coding breaks at scale, how specs fixed the drift, and the workflow that made Kiro practical.",
+        "es": "Por que el vibe coding se rompe a escala, como los specs reducen el drift y el flujo que hizo Kiro practico."
+      }
+    },
+    {
+      "slug": "genai-ops",
+      "type": "markdown",
+      "date": {
+        "en": "Sep 3, 2025",
+        "es": "3 Sep 2025"
+      },
+      "readTime": {
+        "en": "5 min",
+        "es": "5 min"
+      },
+      "title": {
+        "en": "Amplify v1 → Amplify Gen 2: why I loved v1 for hosting, why I hated it for backend, and why Gen 2 finally feels right",
+        "es": "Amplify v1 → Amplify Gen 2: por que me encanto v1 para hosting, por que odie el backend, y por que Gen 2 por fin se siente bien"
+      },
+      "summary": {
+        "en": "Why v1 nailed hosting but hurt backend management, and how Gen 2 fixes the workflow with code-first backend and sandbox environments.",
+        "es": "Por que v1 era perfecto para hosting pero doloroso en backend, y como Gen 2 arregla el flujo con backend code-first y sandbox."
+      }
+    },
+    {
+      "slug": "observability-playbook",
+      "type": "markdown",
+      "date": {
+        "en": "Aug 11, 2025",
+        "es": "11 Ago 2025"
+      },
+      "readTime": {
+        "en": "7 min",
+        "es": "7 min"
+      },
+      "title": {
+        "en": "Deployment patterns on AWS: from \"ship to prod and pray\" to controlled, low-risk deployments",
+        "es": "Patrones de despliegue en AWS: de \"subo a prod y rezo\" a releases controlados y de bajo riesgo"
+      },
+      "summary": {
+        "en": "A practical map of rolling, blue/green, and canary deployments plus a minimal checklist for safer AWS deployments.",
+        "es": "Mapa practico de rolling, blue/green y canary, mas un checklist minimo para desplegar en AWS con menos riesgo."
+      }
+    }
+  ]
+}
