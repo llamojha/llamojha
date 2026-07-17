@@ -1,20 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="850" height="118" viewBox="0 0 850 118" role="img">
 <style>
-  .f{font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
-  .m{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+  .f{font-family:'Geist','Helvetica Neue',-apple-system,system-ui,sans-serif}
+  .m{font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,Menlo,monospace}
+  .s{font-family:'Playfair Display',Georgia,'Times New Roman',serif}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
        .pulse{animation:pulse 2.4s ease-in-out infinite}
 </style>
 
-<rect x="0" y="0" width="850" height="118" rx="6" fill="#1B2126" stroke="#2E363D"/>
-<circle cx="28" cy="40" r="4" fill="#1CE783" class="pulse"/><circle cx="28" cy="40" r="7" fill="none" stroke="#1CE783" stroke-opacity="0.25"/>
-<text x="46" y="46" class="f" font-size="24" font-weight="700" fill="#E8ECEE">Alvaro Llamojha</text>
-<text x="46" y="70" class="f" font-size="13" fill="#9AA1A6">DevOps &amp; Observability Engineer&#160;&#160;·&#160;&#160;AWS&#160;·&#160;Serverless&#160;·&#160;IaC&#160;·&#160;End-to-end monitoring</text>
-<rect x="694" y="26" width="130" height="26" rx="13" fill="rgba(28,231,131,0.10)" stroke="#1CE783" stroke-opacity="0.4"/>
-<circle cx="710" cy="39" r="3.5" fill="#1CE783" class="pulse"/>
-<text x="722" y="43" class="m" font-size="11" letter-spacing="1" fill="#1CE783">OPERATIONAL</text>
-<text x="824" y="70" class="m" font-size="10" fill="#68707A" text-anchor="end">&#9202; Since 2012</text>
-<line x1="16" y1="88" x2="834" y2="88" stroke="#2E363D"/>
-<text x="16" y="106" class="m" font-size="10" fill="#68707A">env: production&#160;&#160;·&#160;&#160;region: eu-west-1&#160;&#160;·&#160;&#160;last refreshed 2026-07-17 14:11 UTC</text>
+<rect x="0" y="0" width="850" height="118" rx="6" fill="#111A2D" stroke="#243353"/>
+<line x1="470" y1="30" x2="516" y2="58" stroke="#3DD6C4" stroke-opacity="0.16"/><line x1="516" y1="58" x2="558" y2="24" stroke="#3DD6C4" stroke-opacity="0.16"/><line x1="558" y1="24" x2="604" y2="44" stroke="#3DD6C4" stroke-opacity="0.16"/><line x1="516" y1="58" x2="576" y2="74" stroke="#3DD6C4" stroke-opacity="0.16"/><line x1="604" y1="44" x2="576" y2="74" stroke="#3DD6C4" stroke-opacity="0.16"/><line x1="604" y1="44" x2="640" y2="62" stroke="#FFD666" stroke-opacity="0.3"/><line x1="576" y1="74" x2="640" y2="62" stroke="#FFD666" stroke-opacity="0.3"/><circle cx="470" cy="30" r="2" fill="#3DD6C4" fill-opacity="0.7"/><circle cx="516" cy="58" r="2" fill="#3DD6C4" fill-opacity="0.7"/><circle cx="558" cy="24" r="2" fill="#3DD6C4" fill-opacity="0.7"/><circle cx="604" cy="44" r="2" fill="#3DD6C4" fill-opacity="0.7"/><circle cx="576" cy="74" r="2" fill="#3DD6C4" fill-opacity="0.7"/><circle cx="640" cy="62" r="3" fill="#FFD666" class="pulse"/>
+<circle cx="28" cy="40" r="4" fill="#4ECB8E" class="pulse"/><circle cx="28" cy="40" r="7" fill="none" stroke="#4ECB8E" stroke-opacity="0.25"/>
+<text x="46" y="47" class="s" font-size="23" font-weight="700" letter-spacing="1.5" fill="#FFFFFF">ALVARO LLAMOJHA</text>
+<text x="46" y="72" class="s" font-size="14" font-style="italic" font-weight="600" fill="#FFD666">DevOps &amp; Observability Engineer</text>
+<rect x="694" y="26" width="130" height="26" rx="13" fill="rgba(78,203,142,0.10)" stroke="#4ECB8E" stroke-opacity="0.4"/>
+<circle cx="710" cy="39" r="3.5" fill="#4ECB8E" class="pulse"/>
+<text x="722" y="43" class="m" font-size="11" letter-spacing="1" fill="#4ECB8E">OPERATIONAL</text>
+<text x="824" y="72" class="m" font-size="10" letter-spacing="2.2" fill="#6E7A8E" text-anchor="end">&#8212; SINCE 2012</text>
+<line x1="16" y1="88" x2="834" y2="88" stroke="#243353"/>
+<text x="16" y="106" class="m" font-size="10" fill="#6E7A8E">env: production&#160;&#160;·&#160;&#160;region: eu-west-1&#160;&#160;·&#160;&#160;last refreshed 2026-07-17 14:26 UTC</text>
 <text x="834" y="106" class="m" font-size="10" fill="#FFD666" text-anchor="end">amllamojha.com</text>
 </svg>

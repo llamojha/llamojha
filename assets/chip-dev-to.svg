@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="81" height="36" viewBox="0 0 81 36" role="img">
 <style>
-  .f{font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
-  .m{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+  .f{font-family:'Geist','Helvetica Neue',-apple-system,system-ui,sans-serif}
+  .m{font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,Menlo,monospace}
+  .s{font-family:'Playfair Display',Georgia,'Times New Roman',serif}
   
 </style>
 
-<rect x="0" y="0" width="81" height="36" rx="6" fill="#1B2126" stroke="#2E363D"/>
+<rect x="0" y="0" width="81" height="36" rx="6" fill="#111A2D" stroke="#243353"/>
 <circle cx="18" cy="18" r="3" fill="#FFD666"/>
-<text x="28" y="22.5" class="m" font-size="12" fill="#E8ECEE">Dev.to</text>
+<text x="28" y="22.5" class="m" font-size="12" fill="#E6EBF2">Dev.to</text>
 </svg>

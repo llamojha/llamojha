@@ -61,24 +61,29 @@ const LINKS = [
 
 const W = 850; // widget width, tuned to GitHub's README column
 
-// New Relic dark-theme palette, with the site's amber as brand accent
+// Llamojha Design System tokens (claude.ai/design "Llamojha Design System"):
+// ink surfaces, gold primary accent, teal for data signals, semantic status.
 const C = {
-  tile: '#1B2126',
-  tileAlt: '#171C21',
-  border: '#2E363D',
-  text: '#E8ECEE',
-  muted: '#9AA1A6',
-  faint: '#68707A',
-  green: '#1CE783',
-  greenDim: 'rgba(28,231,131,0.10)',
-  amber: '#FFD666',
-  amberDim: 'rgba(255,214,102,0.10)',
-  red: '#F5554B',
-  redDim: 'rgba(245,85,75,0.10)',
+  tile: '#111A2D', // --surface-card (ink-600)
+  tileAlt: '#0B1120', // --surface-raised (ink-700)
+  border: '#243353', // --ink-400 subtle border on dark
+  text: '#E6EBF2', // --slate-100
+  muted: '#9AA6B8', // --slate-300
+  faint: '#6E7A8E', // --slate-400
+  green: '#4ECB8E', // --success
+  greenDim: 'rgba(78,203,142,0.10)',
+  amber: '#FFD666', // --gold-500 primary accent
+  amberDim: 'rgba(255,214,102,0.12)', // --accent-soft
+  teal: '#3DD6C4', // --teal-500 constellation / data signals
+  tealDim: 'rgba(61,214,196,0.12)',
+  red: '#F2657A', // --danger
+  redDim: 'rgba(242,101,122,0.10)',
 };
 
-const FONT = `-apple-system,'Segoe UI',Helvetica,Arial,sans-serif`;
-const MONO = `ui-monospace,'SF Mono',Menlo,Consolas,monospace`;
+// --font-* fallback stacks (webfonts can't load inside GitHub-served SVGs)
+const SERIF = `'Playfair Display',Georgia,'Times New Roman',serif`;
+const FONT = `'Geist','Helvetica Neue',-apple-system,system-ui,sans-serif`;
+const MONO = `'JetBrains Mono','SFMono-Regular',ui-monospace,Menlo,monospace`;
 
 // ---------------------------------------------------------------------------
 // Data collection
@@ -150,6 +155,7 @@ function svg(w, h, body, { animated = false } = {}) {
 <style>
   .f{font-family:${FONT}}
   .m{font-family:${MONO}}
+  .s{font-family:${SERIF}}
   ${pulse}
 </style>
 ${body}
@@ -159,12 +165,12 @@ ${body}
 const tile = (x, y, w, h, fill = C.tile) =>
   `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="${fill}" stroke="${C.border}"/>`;
 
-/** New Relic-style widget title bar: caps label + kebab menu dots. */
+/** Widget title bar: mono eyebrow with em-dash lead and wide tracking, plus kebab dots. */
 function widgetTitle(x, y, w, label) {
   const dots = [0, 5, 10]
     .map((dy) => `<circle cx="${x + w - 22}" cy="${y + 15 + dy}" r="1.4" fill="${C.faint}"/>`)
     .join('');
-  return `<text x="${x + 16}" y="${y + 24}" class="f" font-size="11" letter-spacing="1.4" fill="${C.muted}">${esc(label.toUpperCase())}</text>${dots}`;
+  return `<text x="${x + 16}" y="${y + 24}" class="m" font-size="10" letter-spacing="1.8" fill="${C.muted}">&#8212; ${esc(label.toUpperCase())}</text>${dots}`;
 }
 
 const statusDot = (cx, cy, color, pulse = false) =>
@@ -189,15 +195,33 @@ const approxTextWidth = (text, size) => text.length * size * 0.62;
 
 function headerSvg(refreshedAt) {
   const h = 118;
+
+  // Constellation motif: drifting teal nodes, faint links, one gold anchor node
+  const nodes = [
+    [470, 30], [516, 58], [558, 24], [604, 44], [576, 74],
+  ];
+  const links = [[0, 1], [1, 2], [2, 3], [1, 4], [3, 4]];
+  const anchor = [640, 62];
+  const constellation =
+    links
+      .map(([a, b]) =>
+        `<line x1="${nodes[a][0]}" y1="${nodes[a][1]}" x2="${nodes[b][0]}" y2="${nodes[b][1]}" stroke="${C.teal}" stroke-opacity="0.16"/>`)
+      .join('') +
+    `<line x1="${nodes[3][0]}" y1="${nodes[3][1]}" x2="${anchor[0]}" y2="${anchor[1]}" stroke="${C.amber}" stroke-opacity="0.3"/>` +
+    `<line x1="${nodes[4][0]}" y1="${nodes[4][1]}" x2="${anchor[0]}" y2="${anchor[1]}" stroke="${C.amber}" stroke-opacity="0.3"/>` +
+    nodes.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2" fill="${C.teal}" fill-opacity="0.7"/>`).join('') +
+    `<circle cx="${anchor[0]}" cy="${anchor[1]}" r="3" fill="${C.amber}" class="pulse"/>`;
+
   const body = `
 ${tile(0, 0, W, h)}
+${constellation}
 ${statusDot(28, 40, C.green, true)}
-<text x="46" y="46" class="f" font-size="24" font-weight="700" fill="${C.text}">Alvaro Llamojha</text>
-<text x="46" y="70" class="f" font-size="13" fill="${C.muted}">DevOps &amp; Observability Engineer&#160;&#160;·&#160;&#160;AWS&#160;·&#160;Serverless&#160;·&#160;IaC&#160;·&#160;End-to-end monitoring</text>
+<text x="46" y="47" class="s" font-size="23" font-weight="700" letter-spacing="1.5" fill="#FFFFFF">ALVARO LLAMOJHA</text>
+<text x="46" y="72" class="s" font-size="14" font-style="italic" font-weight="600" fill="${C.amber}">DevOps &amp; Observability Engineer</text>
 <rect x="${W - 156}" y="26" width="130" height="26" rx="13" fill="${C.greenDim}" stroke="${C.green}" stroke-opacity="0.4"/>
 <circle cx="${W - 140}" cy="39" r="3.5" fill="${C.green}" class="pulse"/>
 <text x="${W - 128}" y="43" class="m" font-size="11" letter-spacing="1" fill="${C.green}">OPERATIONAL</text>
-<text x="${W - 26}" y="70" class="m" font-size="10" fill="${C.faint}" text-anchor="end">&#9202; Since ${CAREER_START}</text>
+<text x="${W - 26}" y="72" class="m" font-size="10" letter-spacing="2.2" fill="${C.faint}" text-anchor="end">&#8212; SINCE ${CAREER_START}</text>
 <line x1="16" y1="88" x2="${W - 16}" y2="88" stroke="${C.border}"/>
 <text x="16" y="106" class="m" font-size="10" fill="${C.faint}">env: production&#160;&#160;·&#160;&#160;region: eu-west-1&#160;&#160;·&#160;&#160;last refreshed ${esc(refreshedAt)}</text>
 <text x="${W - 16}" y="106" class="m" font-size="10" fill="${C.amber}" text-anchor="end">amllamojha.com</text>`;
@@ -229,7 +253,7 @@ function billboardsSvg(services, articleCount) {
       return `
 ${tile(x, 0, bw, h)}
 ${widgetTitle(x, 0, bw, b.label)}
-<text x="${x + 16}" y="78" class="f" font-size="40" font-weight="700" fill="${b.color}">${esc(b.value)}</text>
+<text x="${x + 16}" y="78" class="m" font-size="38" font-weight="700" fill="${b.color}">${esc(b.value)}</text>
 <text x="${x + 16}" y="106" class="f" font-size="11" fill="${C.faint}">${esc(b.sub)}</text>`;
     })
     .join('');
@@ -260,7 +284,7 @@ function servicesSvg(services) {
       const ms = s.ms == null ? '—' : `${s.ms} ms`;
       const frac = s.ms == null ? 1 : Math.min(1, Math.log(1 + s.ms) / Math.log(1 + maxMs));
       const barW = Math.max(4, Math.round(frac * barMax));
-      const barColor = !s.up ? C.red : s.ms > 2000 ? C.amber : C.green;
+      const barColor = !s.up ? C.red : s.ms > 2000 ? C.amber : C.teal;
       const stripe = i % 2 ? `<rect x="9" y="${y}" width="${W - 18}" height="${rowH}" fill="${C.tileAlt}"/>` : '';
       const resultChip = chip(462, cy - 9, result, color, dim);
       return `
@@ -291,7 +315,7 @@ function stackSvg() {
     }
     const out = `
 <rect x="${x}" y="${y - 15}" width="${cw}" height="22" rx="11" fill="${C.tileAlt}" stroke="${C.border}"/>
-<circle cx="${x + 13}" cy="${y - 4}" r="3" fill="${C.green}"/>
+<circle cx="${x + 13}" cy="${y - 4}" r="3" fill="${C.teal}"/>
 <text x="${x + 23}" y="${y}" class="f" font-size="11" fill="${C.text}">${esc(label)}</text>`;
     x += cw + 8;
     return out;
@@ -319,8 +343,8 @@ function logsSvg(articles) {
       const y = top + i * rowH;
       const cy = y + rowH / 2 - 2;
       const stripe = i % 2 ? `<rect x="9" y="${y}" width="${W - 18}" height="${rowH}" fill="${C.tileAlt}"/>` : '';
-      const levelColor = e.pinned ? C.amber : C.green;
-      const levelDim = e.pinned ? C.amberDim : C.greenDim;
+      const levelColor = e.pinned ? C.amber : C.teal;
+      const levelDim = e.pinned ? C.amberDim : C.tealDim;
       const level = chip(24, cy - 9, e.level, levelColor, levelDim);
       const srcChip = chip(W - 24 - (14 + e.source.length * 6.6), cy - 9, e.source, C.amber, C.amberDim, false);
       let title = e.title;
