@@ -1,6 +1,29 @@
 {
   "articles": [
     {
+      "slug": "kiro-crew-getting-started",
+      "type": "markdown",
+      "date": {
+        "en": "Sep 6, 2026",
+        "es": "6 Sep 2026"
+      },
+      "readTime": {
+        "en": "9 min",
+        "es": "9 min"
+      },
+      "title": {
+        "en": "Kiro Crew: What It Is and How to Get Started",
+        "es": "Kiro Crew: qué es y cómo empezar a usarlo"
+      },
+      "summary": {
+        "en": "A practical introduction to Kiro Crew — installation, persistent sessions, Knowledge, scheduled tasks, Artifacts, Apps, security, channels, and remote execution.",
+        "es": "Una introducción práctica a Kiro Crew — instalación, sesiones persistentes, Knowledge, tareas programadas, Artifacts, Apps, seguridad, canales y ejecución remota."
+      },
+      "audioUrl": {
+        "es": "https://podcastinfrastack-outputbucket7114eb27-llu0mhp3zjjt.s3.eu-west-1.amazonaws.com/articles-audio/kiro-crew-getting-started-es-8885f5454c8ead41.mp3"
+      }
+    },
+    {
       "slug": "que-es-kiro-presentacion",
       "type": "slides",
       "date": {
