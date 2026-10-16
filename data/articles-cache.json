@@ -1,6 +1,33 @@
 {
   "articles": [
     {
+      "slug": "de-asistente-a-companero-kiro",
+      "type": "slides",
+      "date": {
+        "en": "Oct 17, 2026",
+        "es": "17 Oct 2026"
+      },
+      "readTime": {
+        "en": "30 slides",
+        "es": "30 diapositivas"
+      },
+      "title": {
+        "en": "From Assistant to Teammate: A Year Working with Kiro",
+        "es": "De asistente a compañero: un año trabajando con Kiro"
+      },
+      "summary": {
+        "en": "My AWS Community Day Spain 2026 talk (in Spanish): a technical retrospective of a year with Kiro — from the IDE and Specs to the CLI, context engineering, working with Kiro as a teammate, earning enough trust for YOLO mode, and Kiro Crew with its guardrails. Use ← → to navigate, F for fullscreen and O for the index, or download the PPTX with speaker notes.",
+        "es": "Mi charla en el AWS Community Day España 2026: una retrospectiva técnica de un año con Kiro — del IDE y las Specs al CLI, el contexto, trabajar con Kiro como compañero, ganar confianza hasta el modo YOLO y Kiro Crew con sus guardrails. Usa ← → para navegar, F para pantalla completa y O para el índice, o descarga el PPTX con las notas de orador."
+      },
+      "thumbnail": "/de-asistente-a-companero-kiro-preview.png",
+      "embedUrl": "/presentations/de-asistente-a-companero-kiro/index.html",
+      "downloadUrl": "/de-asistente-a-companero-kiro.pptx",
+      "source": {
+        "en": "Presentation",
+        "es": "Presentación"
+      }
+    },
+    {
       "slug": "kiro-crew-getting-started",
       "type": "markdown",
       "date": {
