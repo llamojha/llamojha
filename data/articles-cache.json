@@ -8,16 +8,16 @@
         "es": "17 Oct 2026"
       },
       "readTime": {
-        "en": "30 slides",
-        "es": "30 diapositivas"
+        "en": "26 slides",
+        "es": "26 diapositivas"
       },
       "title": {
         "en": "From Assistant to Teammate: A Year Working with Kiro",
         "es": "De asistente a compañero: un año trabajando con Kiro"
       },
       "summary": {
-        "en": "My AWS Community Day Spain 2026 talk (in Spanish): a technical retrospective of a year with Kiro — from the IDE and Specs to the CLI, context engineering, working with Kiro as a teammate, earning enough trust for YOLO mode, and Kiro Crew with its guardrails. Use ← → to navigate, F for fullscreen and O for the index, or download the PPTX with speaker notes.",
-        "es": "Mi charla en el AWS Community Day España 2026: una retrospectiva técnica de un año con Kiro — del IDE y las Specs al CLI, el contexto, trabajar con Kiro como compañero, ganar confianza hasta el modo YOLO y Kiro Crew con sus guardrails. Usa ← → para navegar, F para pantalla completa y O para el índice, o descarga el PPTX con las notas de orador."
+        "en": "My AWS Community Day Spain 2026 talk (in Spanish): a month-by-month technical retrospective of a year with Kiro — from the IDE and Specs to the CLI, context engineering and KiroHub, my workflow, Kiro Web, iOS and /goal, and Kiro Crew with its guardrails, plus what comes next. Use ← → to navigate, F for fullscreen and O for the index, or download the PPTX with speaker notes.",
+        "es": "Mi charla en el AWS Community Day España 2026: una retrospectiva técnica, mes a mes, de un año con Kiro — del IDE y las Specs al CLI, el contexto y KiroHub, mi flujo de trabajo, Kiro Web, iOS y /goal, y Kiro Crew con sus guardrails, más lo que viene. Usa ← → para navegar, F para pantalla completa y O para el índice, o descarga el PPTX con las notas de orador."
       },
       "thumbnail": "/de-asistente-a-companero-kiro-preview.png",
       "embedUrl": "/presentations/de-asistente-a-companero-kiro/index.html",
