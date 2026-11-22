@@ -1,6 +1,33 @@
 {
   "articles": [
     {
+      "slug": "kiroween-2026-kiro-nights-madrid",
+      "type": "slides",
+      "date": {
+        "en": "Nov 24, 2026",
+        "es": "24 Nov 2026"
+      },
+      "readTime": {
+        "en": "17 slides",
+        "es": "17 diapositivas"
+      },
+      "title": {
+        "en": "Kiroween 2026 · Kiro Nights Madrid",
+        "es": "Kiroween 2026 · Kiro Nights Madrid"
+      },
+      "summary": {
+        "en": "My Kiro Nights Madrid talk (in English): what Kiroween 2026 is, the dates that matter in Madrid time, who can join, the four categories with projects being built this year, last year's winners, the submission checklist and how to get started tonight, ending with the hands-on hour. Use ← → to navigate, F for fullscreen and O for the index, or download the PPTX with speaker notes.",
+        "es": "Mi charla en Kiro Nights Madrid (en inglés): qué es Kiroween 2026, las fechas clave en hora de Madrid, quién puede participar, las cuatro categorías con proyectos de este año, los ganadores del año pasado, la checklist de entrega y cómo empezar esa misma noche, hasta la hora práctica. Usa ← → para navegar, F para pantalla completa y O para el índice, o descarga el PPTX con las notas de orador."
+      },
+      "thumbnail": "/kiroween-2026-kiro-nights-madrid-preview.png",
+      "embedUrl": "/presentations/kiroween-2026-kiro-nights-madrid/index.html",
+      "downloadUrl": "/kiroween-2026-kiro-nights-madrid.pptx",
+      "source": {
+        "en": "Presentation",
+        "es": "Presentación"
+      }
+    },
+    {
       "slug": "de-asistente-a-companero-kiro",
       "type": "slides",
       "date": {
